@@ -59,7 +59,7 @@ INSERT INTO FESTIVAL (year, start_date, end_date, name, description, image, imag
 (2023, '2023-06-02 12:00:00', '2023-06-04 23:59:59', 'Rock am Ring 2023', 'One of Germanys largest rock music festivals', 'rock_am_ring_2023.jpg', 'Rock am Ring aerial view', 6),
 (2023, '2023-08-03 14:00:00', '2023-08-06 23:59:59', 'Woodstock Revival 2023', 'Modern revival of the iconic music festival', 'woodstock_2023.jpg', 'Woodstock Revival main stage', 7),
 (2024, '2024-07-18 12:00:00', '2024-07-21 23:59:59', 'Boom Festival 2024', 'Biennial transformational festival in Portugal', 'boom_2024.jpg', 'Boom Festival art installations', 8),
-(2025, '2025-05-28 16:00:00', '2025-05-30 23:59:59', 'Ultra Music Festival 2025', 'Annual outdoor electronic music festival in Miami', 'ultra_2025.jpg', 'Ultra Music Festival night performance', 9),
+(2025, '2025-05-28 15:00:00', '2025-05-30 23:59:59', 'Ultra Music Festival 2025', 'Annual outdoor electronic music festival in Miami', 'ultra_2025.jpg', 'Ultra Music Festival night performance', 9),
 (2025, '2025-08-22 14:00:00', '2025-08-24 23:59:59', 'Creamfields 2025', 'Major dance music festival held in the UK', 'creamfields_2025.jpg', 'Creamfields light show', 10);
 
 -- Εισαγωγή σκηνών (VENUE)
@@ -238,7 +238,7 @@ INSERT INTO STAFF (first_name, last_name, age, role, experience_level, staff_typ
 ('Timothy', 'Stewart', 29, 'Box Office Staff', 'beginner', 'auxiliary'),
 ('Olivia', 'Sanchez', 24, 'Information Desk', 'trainee', 'auxiliary'),
 ('Donald', 'Morris', 32, 'Accessibility Coordinator', 'experienced', 'auxiliary'),
-('Deborah', 'Rogers', 27, 'Hospitality Assistant', 'beginner', 'auxiliary');
+('Deborah', 'Rogers', 27, 'Hospitality Assistant', 'beginner', 'auxiliary'),
 ('Owen', 'Wallace', 26, 'Social Media Coordinator', 'intermediate', 'auxiliary'),
 ('Zoe', 'Hudson', 24, 'Sustainability Coordinator', 'beginner', 'auxiliary'),
 ('Liam', 'Spencer', 29, 'Food Vendor Liaison', 'intermediate', 'auxiliary'),
@@ -379,7 +379,6 @@ INSERT INTO ARTIST (first_name, last_name, birthdate, performer_id) VALUES
 ('Ella', 'Yelich-O''Connor', '1996-11-07 00:00:00', 19),
 ('Christopher', 'Breaux', '1987-10-28 00:00:00', 20),
 ('Thomas', 'Bangalter', '1975-01-03 00:00:00', 21),
-('Guy-Manuel', 'de Homem-Christo', '1974-02-08 00:00:00', 21),
 ('David', 'Guetta', '1967-11-07 00:00:00', 22),
 ('Sonny', 'Moore', '1988-01-15 00:00:00', 23),
 ('Joel', 'Zimmerman', '1981-01-05 00:00:00', 24),
@@ -566,31 +565,31 @@ INSERT INTO ARTIST (first_name, last_name, birthdate, performer_id) VALUES
 -- Συσχέτιση μελών με συγκροτήματα
 INSERT INTO ARTIST_BAND (artist_id, band_id, join_date, leave_date) VALUES
 -- Coldplay
+(26, 1, '1996-01-01 00:00:00', NULL),
 (27, 1, '1996-01-01 00:00:00', NULL),
 (28, 1, '1996-01-01 00:00:00', NULL),
 (29, 1, '1996-01-01 00:00:00', NULL),
-(30, 1, '1996-01-01 00:00:00', NULL),
 -- Imagine Dragons
+(30, 2, '2008-01-01 00:00:00', NULL),
 (31, 2, '2008-01-01 00:00:00', NULL),
 (32, 2, '2008-01-01 00:00:00', NULL),
 (33, 2, '2008-01-01 00:00:00', NULL),
-(34, 2, '2008-01-01 00:00:00', NULL),
 -- Maroon 5
+(34, 3, '1994-01-01 00:00:00', NULL),
 (35, 3, '1994-01-01 00:00:00', NULL),
-(36, 3, '1994-01-01 00:00:00', NULL),
 -- Twenty One Pilots
-(37, 4, '2009-01-01 00:00:00', NULL),
-(38, 4, '2011-01-01 00:00:00', NULL),
+(36, 4, '2009-01-01 00:00:00', NULL),
+(37, 4, '2011-01-01 00:00:00', NULL),
 -- The 1975
+(38, 5, '2002-01-01 00:00:00', NULL),
 (39, 5, '2002-01-01 00:00:00', NULL),
 (40, 5, '2002-01-01 00:00:00', NULL),
 (41, 5, '2002-01-01 00:00:00', NULL),
-(42, 5, '2002-01-01 00:00:00', NULL),
 -- Arctic Monkeys
+(42, 6, '2002-01-01 00:00:00', NULL),
 (43, 6, '2002-01-01 00:00:00', NULL),
-(44, 6, '2002-01-01 00:00:00', NULL),
-(45, 6, '2006-01-01 00:00:00', NULL),
-(46, 6, '2002-01-01 00:00:00', NULL);
+(44, 6, '2006-01-01 00:00:00', NULL),
+(45, 6, '2002-01-01 00:00:00', NULL);
 
 -- Εισαγωγή εκδηλώσεων (EVENT)
 INSERT INTO EVENT (name, date, description, festival_id, venue_id) VALUES
@@ -686,7 +685,7 @@ INSERT INTO EVENT (name, date, description, festival_id, venue_id) VALUES
 
 -- Εισαγωγή εμφανίσεων (PERFORMANCE)
 INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VALUES
--- Coachella 2020 (event_id 1-7)
+-- Coachella 2020 (event_id 1-6)
 ('headline', '2020-04-10 21:00:00', '2020-04-10 23:00:00', 3, 1), -- Beyoncé at Coachella Main Stage Day 1
 ('special guest', '2020-04-10 19:00:00', '2020-04-10 20:30:00', 9, 1), -- Taylor Swift at Coachella Main Stage Day 1
 ('warm up', '2020-04-10 17:00:00', '2020-04-10 18:30:00', 16, 1), -- Harry Styles at Coachella Main Stage Day 1
@@ -795,7 +794,7 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('headline', '2023-06-03 20:00:00', '2023-06-03 22:00:00', 33, 39), -- Red Hot Chili Peppers at Rock am Ring Centerfeld Day 2
 ('special guest', '2023-06-03 18:00:00', '2023-06-03 19:30:00', 35, 39), -- Radiohead at Rock am Ring Centerfeld Day 2
 ('warm up', '2023-06-03 16:00:00', '2023-06-03 17:30:00', 41, 39), -- The Strokes at Rock am Ring Centerfeld Day 2
-('headline', '2023-06-03 19:30:00', '2023-06-03 21:30:00', 40, 40), -- Tame Impala at Rock am Ring Mandora Stage Day 2
+('headline', '2023-06-03 19:30:00', '2023-06-03 21:30:00', 52, 40), -- Jonny Buckland at Rock am Ring Mandora Stage Day 2
 ('warm up', '2023-06-03 17:30:00', '2023-06-03 19:00:00', 49, 40), -- MGMT at Rock am Ring Mandora Stage Day 2
 ('headline', '2023-06-04 20:00:00', '2023-06-04 22:00:00', 37, 41), -- Muse at Rock am Ring Centerfeld Day 3
 ('special guest', '2023-06-04 18:00:00', '2023-06-04 19:30:00', 36, 41), -- The Killers at Rock am Ring Centerfeld Day 3
@@ -822,7 +821,7 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('headline', '2023-08-06 20:00:00', '2023-08-06 22:00:00', 4, 49), -- The Weeknd at Woodstock Peace Garden Day 4
 ('special guest', '2023-08-06 18:00:00', '2023-08-06 19:30:00', 13, 49), -- Lady Gaga at Woodstock Peace Garden Day 4
 ('warm up', '2023-08-06 16:00:00', '2023-08-06 17:30:00', 22, 49), -- David Guetta at Woodstock Peace Garden Day 4
-('headline', '2023-08-06 19:30:00', '2023-08-06 21:30:00', 31, 50), -- Arctic Monkeys at Woodstock Freedom Stage Day 4
+('headline', '2023-08-06 19:30:00', '2023-08-06 21:30:00', 3, 50), -- Beyoncé at Woodstock Freedom Stage Day 4
 ('warm up', '2023-08-06 17:30:00', '2023-08-06 19:00:00', 46, 50), -- Kings of Leon at Woodstock Freedom Stage Day 4
 
 -- Boom Festival 2024 (event_id 51-58)
@@ -834,35 +833,35 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('headline', '2024-07-19 21:00:00', '2024-07-19 23:00:00', 24, 53), -- Deadmau5 at Boom Dance Temple Day 2
 ('special guest', '2024-07-19 19:00:00', '2024-07-19 20:30:00', 25, 53), -- Calvin Harris at Boom Dance Temple Day 2
 ('warm up', '2024-07-19 17:00:00', '2024-07-19 18:30:00', 5, 53), -- Dua Lipa at Boom Dance Temple Day 2
-('headline', '2024-07-19 20:30:00', '2024-07-19 22:30:00', 43, 54), -- Florence + The Machine at Boom Sacred Fire Day 2
-('warm up', '2024-07-19 18:30:00', '2024-07-19 20:00:00', 48, 54), -- The xx at Boom Sacred Fire Day 2
+('headline', '2024-07-19 20:30:00', '2024-07-19 22:30:00', 1, 54), -- Adele at The Machine at Boom Sacred Fire Day 2
+('warm up', '2024-07-19 18:30:00', '2024-07-19 20:00:00', 19, 54), -- Lorde at Boom Sacred Fire Day 2
 ('headline', '2024-07-20 21:00:00', '2024-07-20 23:00:00', 21, 55), -- Daft Punk at Boom Dance Temple Day 3
 ('special guest', '2024-07-20 19:00:00', '2024-07-20 20:30:00', 22, 55), -- David Guetta at Boom Dance Temple Day 3
 ('warm up', '2024-07-20 17:00:00', '2024-07-20 18:30:00', 23, 55), -- Skrillex at Boom Dance Temple Day 3
-('headline', '2024-07-20 20:30:00', '2024-07-20 22:30:00', 44, 56), -- Arcade Fire at Boom Sacred Fire Day 3
+('headline', '2024-07-20 20:30:00', '2024-07-20 22:30:00', 33, 56), -- Red Hot Chili Peppers at Boom Sacred Fire Day 3
 ('warm up', '2024-07-20 18:30:00', '2024-07-20 20:00:00', 49, 56), -- MGMT at Boom Sacred Fire Day 3
 ('headline', '2024-07-21 21:00:00', '2024-07-21 23:00:00', 24, 57), -- Deadmau5 at Boom Dance Temple Day 4
 ('special guest', '2024-07-21 19:00:00', '2024-07-21 20:30:00', 25, 57), -- Calvin Harris at Boom Dance Temple Day 4
 ('warm up', '2024-07-21 17:00:00', '2024-07-21 18:30:00', 5, 57), -- Dua Lipa at Boom Dance Temple Day 4
-('headline', '2024-07-21 20:30:00', '2024-07-21 22:30:00', 45, 58), -- The Black Keys at Boom Sacred Fire Day 4
+('headline', '2024-07-21 20:30:00', '2024-07-21 22:30:00', 15, 58), --  Rihanna at Boom Sacred Fire Day 4
 ('warm up', '2024-07-21 18:30:00', '2024-07-21 20:00:00', 50, 58), -- Paramore at Boom Sacred Fire Day 4
 
 -- Ultra Music Festival 2025 (event_id 59-64)
-('headline', '2025-03-28 21:00:00', '2025-03-28 23:00:00', 22, 59), -- David Guetta at Ultra Main Stage Day 1
-('special guest', '2025-03-28 19:00:00', '2025-03-28 20:30:00', 23, 59), -- Skrillex at Ultra Main Stage Day 1
-('warm up', '2025-03-28 17:00:00', '2025-03-28 18:30:00', 24, 59), -- Deadmau5 at Ultra Main Stage Day 1
-('headline', '2025-03-28 20:30:00', '2025-03-28 22:30:00', 25, 60), -- Calvin Harris at Ultra Resistance Stage Day 1
-('warm up', '2025-03-28 18:30:00', '2025-03-28 20:00:00', 21, 60), -- Daft Punk at Ultra Resistance Stage Day 1
-('headline', '2025-03-29 21:00:00', '2025-03-29 23:00:00', 23, 61), -- Skrillex at Ultra Main Stage Day 2
-('special guest', '2025-03-29 19:00:00', '2025-03-29 20:30:00', 24, 61), -- Deadmau5 at Ultra Main Stage Day 2
-('warm up', '2025-03-29 17:00:00', '2025-03-29 18:30:00', 25, 61), -- Calvin Harris at Ultra Main Stage Day 2
-('headline', '2025-03-29 20:30:00', '2025-03-29 22:30:00', 21, 62), -- Daft Punk at Ultra Resistance Stage Day 2
-('warm up', '2025-03-29 18:30:00', '2025-03-29 20:00:00', 22, 62), -- David Guetta at Ultra Resistance Stage Day 2
-('headline', '2025-03-30 21:00:00', '2025-03-30 23:00:00', 24, 63), -- Deadmau5 at Ultra Main Stage Day 3
-('special guest', '2025-03-30 19:00:00', '2025-03-30 20:30:00', 25, 63), -- Calvin Harris at Ultra Main Stage Day 3
-('warm up', '2025-03-30 17:00:00', '2025-03-30 18:30:00', 21, 63), -- Daft Punk at Ultra Main Stage Day 3
-('headline', '2025-03-30 20:30:00', '2025-03-30 22:30:00', 22, 64), -- David Guetta at Ultra Resistance Stage Day 3
-('warm up', '2025-03-30 18:30:00', '2025-03-30 20:00:00', 23, 64), -- Skrillex at Ultra Resistance Stage Day 3
+('headline', '2025-05-28 21:00:00', '2025-05-28 23:00:00', 22, 59), -- David Guetta at Ultra Main Stage Day 1
+('special guest', '2025-05-28 19:00:00', '2025-05-28 20:30:00', 23, 59), -- Skrillex at Ultra Main Stage Day 1
+('warm up', '2025-05-28 17:00:00', '2025-05-28 18:30:00', 24, 59), -- Deadmau5 at Ultra Main Stage Day 1
+('headline', '2025-05-28 20:30:00', '2025-05-28 22:30:00', 25, 60), -- Calvin Harris at Ultra Resistance Stage Day 1
+('warm up', '2025-05-28 18:30:00', '2025-05-28 20:00:00', 21, 60), -- Daft Punk at Ultra Resistance Stage Day 1
+('headline', '2025-05-29 21:00:00', '2025-05-29 23:00:00', 23, 61), -- Skrillex at Ultra Main Stage Day 2
+('special guest', '2025-05-29 19:00:00', '2025-05-29 20:30:00', 24, 61), -- Deadmau5 at Ultra Main Stage Day 2
+('warm up', '2025-05-29 17:00:00', '2025-05-29 18:30:00', 25, 61), -- Calvin Harris at Ultra Main Stage Day 2
+('headline', '2025-05-29 20:30:00', '2025-05-29 22:30:00', 21, 62), -- Daft Punk at Ultra Resistance Stage Day 2
+('warm up', '2025-05-29 18:30:00', '2025-05-29 20:00:00', 22, 62), -- David Guetta at Ultra Resistance Stage Day 2
+('headline', '2025-05-30 21:00:00', '2025-05-30 23:00:00', 24, 63), -- Deadmau5 at Ultra Main Stage Day 3
+('special guest', '2025-05-30 19:00:00', '2025-05-30 20:30:00', 25, 63), -- Calvin Harris at Ultra Main Stage Day 3
+('warm up', '2025-05-30 17:00:00', '2025-05-30 18:30:00', 21, 63), -- Daft Punk at Ultra Main Stage Day 3
+('headline', '2025-05-30 20:30:00', '2025-05-30 22:30:00', 22, 64), -- David Guetta at Ultra Resistance Stage Day 3
+('warm up', '2025-05-30 18:30:00', '2025-05-30 20:00:00', 23, 64), -- Skrillex at Ultra Resistance Stage Day 3
 
 -- Creamfields 2025 (event_id 65-70)
 ('headline', '2025-08-22 21:00:00', '2025-08-22 23:00:00', 25, 65), -- Calvin Harris at Creamfields Steel Yard Day 1
@@ -881,7 +880,7 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('headline', '2025-08-24 20:30:00', '2025-08-24 22:30:00', 25, 70), -- Calvin Harris at Creamfields Arc Stage Day 3
 ('warm up', '2025-08-24 18:30:00', '2025-08-24 20:00:00', 21, 70); -- Daft Punk at Creamfields Arc Stage Day 3
 
--- Populating EVENT_STAFF table for all 71 events
+-- Populating EVENT_STAFF table for all 70 events
 -- For each event, we need technical staff, security staff (5% of venue capacity), and auxiliary staff (2% of venue capacity)
 
 -- Event 1: Coachella Day 1 Main Stage (venue_id = 1, capacity = 400)
@@ -930,7 +929,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 (6, 26), (6, 27), (6, 28), (6, 29), (6, 30), -- Technical staff
 (6, 31), (6, 32), (6, 33), (6, 34), (6, 35), (6, 36), (6, 37), (6, 38), (6, 39), (6, 40),
-(6, 41), (6, 42), (6, 43), (6, 44), -- Security staff
+(6, 41), (6, 42), (6, 43), (6, 44),(6, 45), (6, 46), (6, 47), (6, 48), (6, 49), -- Security staff
 (6, 64), (6, 65), (6, 66), (6, 67), (6, 68), (6, 69), (6, 70), (6, 71); -- Auxiliary staff
 
 -- Event 7: Glastonbury Pyramid Stage Day 1 (venue_id = 6, capacity = 550)
@@ -1483,392 +1482,391 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 (70, 51), (70, 52), (70, 53), -- Security staff
 (70, 79), (70, 80), (70, 81), (70, 82), (70, 83), (70, 84), (70, 85), (70, 86), (70, 87), (70, 88); -- Auxiliary staff
 
--- Εισαγωγή επισκεπτών (VISITOR) 250 in total
-INSERT INTO VISITOR (first_name, last_name, email, phone, birthdate) VALUES
-('James', 'Wilson', 'james.wilson@example.com', '+1-555-123-4567', '1990-05-15 00:00:00'),
-('Emma', 'Johnson', 'emma.johnson@example.com', '+1-555-234-5678', '1988-09-23 00:00:00'),
-('Michael', 'Brown', 'michael.brown@example.com', '+1-555-345-6789', '1995-02-10 00:00:00'),
-('Olivia', 'Davis', 'olivia.davis@example.com', '+1-555-456-7890', '1992-11-30 00:00:00'),
-('William', 'Miller', 'william.miller@example.com', '+1-555-567-8901', '1985-07-18 00:00:00'),
-('Sophia', 'Wilson', 'sophia.wilson@example.com', '+1-555-678-9012', '1993-04-05 00:00:00'),
-('Alexander', 'Moore', 'alexander.moore@example.com', '+1-555-789-0123', '1987-12-12 00:00:00'),
-('Charlotte', 'Taylor', 'charlotte.taylor@example.com', '+1-555-890-1234', '1991-08-25 00:00:00'),
-('Daniel', 'Anderson', 'daniel.anderson@example.com', '+1-555-901-2345', '1989-03-17 00:00:00'),
-('Amelia', 'Thomas', 'amelia.thomas@example.com', '+1-555-012-3456', '1994-06-08 00:00:00'),
-('Matthew', 'Jackson', 'matthew.jackson@example.com', '+1-555-123-4568', '1986-01-20 00:00:00'),
-('Emily', 'White', 'emily.white@example.com', '+1-555-234-5679', '1990-10-14 00:00:00'),
-('Christopher', 'Harris', 'christopher.harris@example.com', '+1-555-345-6780', '1988-05-27 00:00:00'),
-('Abigail', 'Martin', 'abigail.martin@example.com', '+1-555-456-7891', '1993-09-03 00:00:00'),
-('Andrew', 'Thompson', 'andrew.thompson@example.com', '+1-555-567-8902', '1991-02-22 00:00:00'),
-('Elizabeth', 'Garcia', 'elizabeth.garcia@example.com', '+1-555-678-9013', '1987-11-11 00:00:00'),
-('Joshua', 'Martinez', 'joshua.martinez@example.com', '+1-555-789-0124', '1995-04-19 00:00:00'),
-('Mia', 'Robinson', 'mia.robinson@example.com', '+1-555-890-1235', '1989-07-30 00:00:00'),
-('David', 'Clark', 'david.clark@example.com', '+1-555-901-2346', '1992-12-05 00:00:00'),
-('Sofia', 'Rodriguez', 'sofia.rodriguez@example.com', '+1-555-012-3457', '1986-06-15 00:00:00'),
-('Joseph', 'Lewis', 'joseph.lewis@example.com', '+1-555-123-4569', '1994-01-28 00:00:00'),
-('Ella', 'Lee', 'ella.lee@example.com', '+1-555-234-5680', '1990-08-09 00:00:00'),
-('John', 'Walker', 'john.walker@example.com', '+1-555-345-6781', '1988-03-21 00:00:00'),
-('Grace', 'Hall', 'grace.hall@example.com', '+1-555-456-7892', '1993-12-14 00:00:00'),
-('Samuel', 'Allen', 'samuel.allen@example.com', '+1-555-567-8903', '1985-05-07 00:00:00'),
-('Chloe', 'Young', 'chloe.young@example.com', '+1-555-678-9014', '1991-10-26 00:00:00'),
-('Benjamin', 'Hernandez', 'benjamin.hernandez@example.com', '+1-555-789-0125', '1987-04-03 00:00:00'),
-('Lily', 'King', 'lily.king@example.com', '+1-555-890-1236', '1995-09-17 00:00:00'),
-('Henry', 'Wright', 'henry.wright@example.com', '+1-555-901-2347', '1989-02-01 00:00:00'),
-('Zoe', 'Lopez', 'zoe.lopez@example.com', '+1-555-012-3458', '1992-07-23 00:00:00'),
-('Sebastian', 'Hill', 'sebastian.hill@example.com', '+1-555-123-4570', '1986-12-10 00:00:00'),
-('Layla', 'Scott', 'layla.scott@example.com', '+1-555-234-5681', '1994-05-29 00:00:00'),
-('Jack', 'Green', 'jack.green@example.com', '+1-555-345-6782', '1990-11-13 00:00:00'),
-('Nora', 'Adams', 'nora.adams@example.com', '+1-555-456-7893', '1988-04-06 00:00:00'),
-('Ryan', 'Baker', 'ryan.baker@example.com', '+1-555-567-8904', '1993-01-19 00:00:00'),
-('Scarlett', 'Gonzalez', 'scarlett.gonzalez@example.com', '+1-555-678-9015', '1985-08-31 00:00:00'),
-('Nathan', 'Nelson', 'nathan.nelson@example.com', '+1-555-789-0126', '1991-03-24 00:00:00'),
-('Audrey', 'Carter', 'audrey.carter@example.com', '+1-555-890-1237', '1987-06-07 00:00:00'),
-('Isaac', 'Mitchell', 'isaac.mitchell@example.com', '+1-555-901-2348', '1995-11-20 00:00:00'),
-('Hannah', 'Perez', 'hannah.perez@example.com', '+1-555-012-3459', '1989-04-13 00:00:00'),
-('Luke', 'Roberts', 'luke.roberts@example.com', '+1-555-123-4571', '1992-09-26 00:00:00'),
-('Leah', 'Turner', 'leah.turner@example.com', '+1-555-234-5682', '1986-02-08 00:00:00'),
-('Owen', 'Phillips', 'owen.phillips@example.com', '+1-555-345-6783', '1994-07-21 00:00:00'),
-('Stella', 'Campbell', 'stella.campbell@example.com', '+1-555-456-7894', '1990-12-04 00:00:00'),
-('Gabriel', 'Parker', 'gabriel.parker@example.com', '+1-555-567-8905', '1988-05-17 00:00:00'),
-('Aria', 'Evans', 'aria.evans@example.com', '+1-555-678-9016', '1993-10-30 00:00:00'),
-('Carter', 'Edwards', 'carter.edwards@example.com', '+1-555-789-0127', '1985-03-13 00:00:00'),
-('Ellie', 'Collins', 'ellie.collins@example.com', '+1-555-890-1238', '1991-08-26 00:00:00'),
-('Wyatt', 'Stewart', 'wyatt.stewart@example.com', '+1-555-901-2349', '1987-01-09 00:00:00'),
-('Aubrey', 'Sanchez', 'aubrey.sanchez@example.com', '+1-555-012-3460', '1995-06-22 00:00:00'),
-('Julian', 'Morris', 'julian.morris@example.com', '+1-555-123-4572', '1989-11-05 00:00:00'),
-('Bella', 'Rogers', 'bella.rogers@example.com', '+1-555-234-5683', '1992-04-18 00:00:00'),
-('Charles', 'Reed', 'charles.reed@example.com', '+1-555-345-6784', '1986-09-01 00:00:00'),
-('Lucy', 'Cook', 'lucy.cook@example.com', '+1-555-456-7895', '1994-02-14 00:00:00'),
-('Thomas', 'Morgan', 'thomas.morgan@example.com', '+1-555-567-8906', '1990-07-27 00:00:00'),
-('Paisley', 'Bell', 'paisley.bell@example.com', '+1-555-678-9017', '1988-12-10 00:00:00'),
-('Aaron', 'Murphy', 'aaron.murphy@example.com', '+1-555-789-0128', '1993-05-23 00:00:00'),
-('Savannah', 'Bailey', 'savannah.bailey@example.com', '+1-555-890-1239', '1985-10-06 00:00:00'),
-('Eli', 'Rivera', 'eli.rivera@example.com', '+1-555-901-2350', '1991-03-19 00:00:00'),
-('Madelyn', 'Cooper', 'madelyn.cooper@example.com', '+1-555-012-3461', '1987-08-01 00:00:00'),
-('Levi', 'Richardson', 'levi.richardson@example.com', '+1-555-123-4573', '1995-01-14 00:00:00'),
-('Skylar', 'Cox', 'skylar.cox@example.com', '+1-555-234-5684', '1989-06-27 00:00:00'),
-('Dylan', 'Howard', 'dylan.howard@example.com', '+1-555-345-6785', '1992-11-09 00:00:00'),
-('Evelyn', 'Ward', 'evelyn.ward@example.com', '+1-555-456-7896', '1986-04-22 00:00:00'),
-('Caleb', 'Torres', 'caleb.torres@example.com', '+1-555-567-8907', '1994-09-05 00:00:00'),
-('Anna', 'Peterson', 'anna.peterson@example.com', '+1-555-678-9018', '1990-02-16 00:00:00'),
-('Lincoln', 'Gray', 'lincoln.gray@example.com', '+1-555-789-0129', '1988-07-29 00:00:00'),
-('Penelope', 'Ramirez', 'penelope.ramirez@example.com', '+1-555-890-1240', '1993-12-12 00:00:00'),
-('Josiah', 'James', 'josiah.james@example.com', '+1-555-901-2351', '1985-05-25 00:00:00'),
-('Maya', 'Watson', 'maya.watson@example.com', '+1-555-012-3462', '1991-10-08 00:00:00'),
-('Hudson', 'Brooks', 'hudson.brooks@example.com', '+1-555-123-4574', '1987-03-21 00:00:00'),
-('Lillian', 'Kelly', 'lillian.kelly@example.com', '+1-555-234-5685', '1995-08-03 00:00:00'),
-('Asher', 'Sanders', 'asher.sanders@example.com', '+1-555-345-6786', '1989-01-16 00:00:00'),
-('Camila', 'Price', 'camila.price@example.com', '+1-555-456-7897', '1992-06-29 00:00:00'),
-('Leo', 'Bennett', 'leo.bennett@example.com', '+1-555-567-8908', '1986-11-11 00:00:00'),
-('Violet', 'Wood', 'violet.wood@example.com', '+1-555-678-9019', '1994-04-24 00:00:00'),
-('Ezra', 'Barnes', 'ezra.barnes@example.com', '+1-555-789-0130', '1990-09-07 00:00:00'),
-('Avery', 'Ross', 'avery.ross@example.com', '+1-555-890-1241', '1988-02-19 00:00:00'),
-('Kayden', 'Henderson', 'kayden.henderson@example.com', '+1-555-901-2352', '1993-07-02 00:00:00'),
-('Hazel', 'Coleman', 'hazel.coleman@example.com', '+1-555-012-3463', '1985-12-15 00:00:00'),
-('Nolan', 'Jenkins', 'nolan.jenkins@example.com', '+1-555-123-4575', '1991-05-28 00:00:00'),
-('Aurora', 'Perry', 'aurora.perry@example.com', '+1-555-234-5686', '1987-10-10 00:00:00'),
-('Elias', 'Powell', 'elias.powell@example.com', '+1-555-345-6787', '1995-03-23 00:00:00'),
-('Nova', 'Long', 'nova.long@example.com', '+1-555-456-7898', '1989-08-05 00:00:00'),
-('Grayson', 'Patterson', 'grayson.patterson@example.com', '+1-555-567-8909', '1992-01-18 00:00:00'),
-('Emilia', 'Hughes', 'emilia.hughes@example.com', '+1-555-678-9020', '1986-06-01 00:00:00'),
-('Isaiah', 'Flores', 'isaiah.flores@example.com', '+1-555-789-0131', '1994-11-14 00:00:00'),
-('Naomi', 'Washington', 'naomi.washington@example.com', '+1-555-890-1242', '1990-04-27 00:00:00'),
-('Jaxon', 'Butler', 'jaxon.butler@example.com', '+1-555-901-2353', '1988-09-09 00:00:00'),
-('Ruby', 'Simmons', 'ruby.simmons@example.com', '+1-555-012-3464', '1993-02-22 00:00:00'),
-('Mateo', 'Foster', 'mateo.foster@example.com', '+1-555-123-4576', '1985-07-05 00:00:00'),
-('Willow', 'Gonzales', 'willow.gonzales@example.com', '+1-555-234-5687', '1991-12-18 00:00:00'),
-('Ethan', 'Bryant', 'ethan.bryant@example.com', '+1-555-345-6788', '1987-05-31 00:00:00'),
-('Ivy', 'Alexander', 'ivy.alexander@example.com', '+1-555-456-7899', '1995-10-13 00:00:00'),
-('Logan', 'Russell', 'logan.russell@example.com', '+1-555-567-8910', '1989-03-26 00:00:00'),
-('Aaliyah', 'Griffin', 'aaliyah.griffin@example.com', '+1-555-678-9021', '1992-08-08 00:00:00'),
-('Aiden', 'Diaz', 'aiden.diaz@example.com', '+1-555-789-0132', '1986-01-21 00:00:00'),
-('Piper', 'Hayes', 'piper.hayes@example.com', '+1-555-890-1243', '1994-06-04 00:00:00'),
-('Noah', 'Sullivan', 'noah.sullivan@example.com', '+1-555-123-5001', '1988-03-12 00:00:00'),
-('Isabella', 'Myers', 'isabella.myers@example.com', '+1-555-123-5002', '1992-07-24 00:00:00'),
-('Mason', 'Ford', 'mason.ford@example.com', '+1-555-123-5003', '1985-11-05 00:00:00'),
-('Ava', 'Hamilton', 'ava.hamilton@example.com', '+1-555-123-5004', '1993-04-18 00:00:00'),
-('Jacob', 'Graham', 'jacob.graham@example.com', '+1-555-123-5005', '1990-09-30 00:00:00'),
-('Madison', 'Wallace', 'madison.wallace@example.com', '+1-555-123-5006', '1987-02-11 00:00:00'),
-('Ethan', 'Woods', 'ethan.woods@example.com', '+1-555-123-5007', '1994-06-23 00:00:00'),
-('Mila', 'Cole', 'mila.cole@example.com', '+1-555-123-5008', '1989-10-05 00:00:00'),
-('Liam', 'West', 'liam.west@example.com', '+1-555-123-5009', '1986-01-17 00:00:00'),
-('Riley', 'Jordan', 'riley.jordan@example.com', '+1-555-123-5010', '1995-05-29 00:00:00'),
-('Lucas', 'Owens', 'lucas.owens@example.com', '+1-555-123-5011', '1991-08-10 00:00:00'),
-('Zara', 'Reynolds', 'zara.reynolds@example.com', '+1-555-123-5012', '1988-12-22 00:00:00'),
-('Jackson', 'Fisher', 'jackson.fisher@example.com', '+1-555-123-5013', '1993-03-04 00:00:00'),
-('Victoria', 'Ellis', 'victoria.ellis@example.com', '+1-555-123-5014', '1990-07-16 00:00:00'),
-('Aiden', 'Harrison', 'aiden.harrison@example.com', '+1-555-123-5015', '1987-11-28 00:00:00'),
-('Gabriella', 'Gibson', 'gabriella.gibson@example.com', '+1-555-123-5016', '1994-02-09 00:00:00'),
-('Connor', 'McDonald', 'connor.mcdonald@example.com', '+1-555-123-5017', '1989-06-21 00:00:00'),
-('Natalie', 'Dixon', 'natalie.dixon@example.com', '+1-555-123-5018', '1986-10-03 00:00:00'),
-('Elijah', 'Warren', 'elijah.warren@example.com', '+1-555-123-5019', '1995-01-15 00:00:00'),
-('Samantha', 'Ferguson', 'samantha.ferguson@example.com', '+1-555-123-5020', '1991-04-27 00:00:00'),
-('Christian', 'Murray', 'christian.murray@example.com', '+1-555-123-5021', '1988-09-08 00:00:00'),
-('Addison', 'Gardner', 'addison.gardner@example.com', '+1-555-123-5022', '1993-12-20 00:00:00'),
-('Landon', 'Stephens', 'landon.stephens@example.com', '+1-555-123-5023', '1990-03-02 00:00:00'),
-('Brooklyn', 'Payne', 'brooklyn.payne@example.com', '+1-555-123-5024', '1987-07-14 00:00:00'),
-('Adrian', 'Pierce', 'adrian.pierce@example.com', '+1-555-123-5025', '1994-10-26 00:00:00'),
-('Kennedy', 'Knight', 'kennedy.knight@example.com', '+1-555-123-5026', '1989-02-07 00:00:00'),
-('Colton', 'Wells', 'colton.wells@example.com', '+1-555-123-5027', '1986-06-19 00:00:00'),
-('Sadie', 'Meyer', 'sadie.meyer@example.com', '+1-555-123-5028', '1995-11-01 00:00:00'),
-('Brayden', 'Wagner', 'brayden.wagner@example.com', '+1-555-123-5029', '1991-03-13 00:00:00'),
-('Autumn', 'Stone', 'autumn.stone@example.com', '+1-555-123-5030', '1988-07-25 00:00:00'),
-('Dominic', 'Hawkins', 'dominic.hawkins@example.com', '+1-555-123-5031', '1993-11-06 00:00:00'),
-('Peyton', 'Fox', 'peyton.fox@example.com', '+1-555-123-5032', '1990-02-18 00:00:00'),
-('Parker', 'Cunningham', 'parker.cunningham@example.com', '+1-555-123-5033', '1987-06-30 00:00:00'),
-('Melanie', 'Burns', 'melanie.burns@example.com', '+1-555-123-5034', '1994-10-12 00:00:00'),
-('Chase', 'Gordon', 'chase.gordon@example.com', '+1-555-123-5035', '1989-01-24 00:00:00'),
-('Lydia', 'Shaw', 'lydia.shaw@example.com', '+1-555-123-5036', '1986-05-06 00:00:00'),
-('Xavier', 'Holmes', 'xavier.holmes@example.com', '+1-555-123-5037', '1995-09-18 00:00:00'),
-('Claire', 'Rice', 'claire.rice@example.com', '+1-555-123-5038', '1991-12-30 00:00:00'),
-('Sawyer', 'Robertson', 'sawyer.robertson@example.com', '+1-555-123-5039', '1988-04-11 00:00:00'),
-('Gianna', 'Hunt', 'gianna.hunt@example.com', '+1-555-123-5040', '1993-08-23 00:00:00'),
-('Silas', 'Black', 'silas.black@example.com', '+1-555-123-5041', '1990-01-04 00:00:00'),
-('Isabelle', 'Daniels', 'isabelle.daniels@example.com', '+1-555-123-5042', '1987-05-16 00:00:00'),
-('Jace', 'Palmer', 'jace.palmer@example.com', '+1-555-123-5043', '1994-09-28 00:00:00'),
-('Valeria', 'Mills', 'valeria.mills@example.com', '+1-555-123-5044', '1989-02-09 00:00:00'),
-('Declan', 'Nichols', 'declan.nichols@example.com', '+1-555-123-5045', '1986-06-21 00:00:00'),
-('Arianna', 'Grant', 'arianna.grant@example.com', '+1-555-123-5046', '1995-10-03 00:00:00'),
-('Weston', 'Knight', 'weston.knight@example.com', '+1-555-123-5047', '1991-01-15 00:00:00'),
-('Eliana', 'Ferguson', 'eliana.ferguson@example.com', '+1-555-123-5048', '1988-05-27 00:00:00'),
-('Axel', 'Rose', 'axel.rose@example.com', '+1-555-123-5049', '1993-09-08 00:00:00'),
-('Gabrielle', 'Stone', 'gabrielle.stone@example.com', '+1-555-123-5050', '1990-12-20 00:00:00'),
-('Roman', 'Hawkins', 'roman.hawkins@example.com', '+1-555-123-5051', '1987-04-02 00:00:00'),
-('Serenity', 'Fox', 'serenity.fox@example.com', '+1-555-123-5052', '1994-08-14 00:00:00'),
-('Rowan', 'Cunningham', 'rowan.cunningham@example.com', '+1-555-123-5053', '1989-11-26 00:00:00');
-
+-- Εισαγωγή επισκεπτών (VISITOR) 150 in total
+INSERT INTO VISITOR (first_name, last_name, email, phone, age) VALUES
+('James', 'Wilson', 'james.wilson@example.com', '+1-555-123-4567', 33),
+('Emma', 'Johnson', 'emma.johnson@example.com', '+1-555-234-5678', 35),
+('Michael', 'Brown', 'michael.brown@example.com', '+1-555-345-6789', 28),
+('Olivia', 'Davis', 'olivia.davis@example.com', '+1-555-456-7890', 31),
+('William', 'Miller', 'william.miller@example.com', '+1-555-567-8901', 38),
+('Sophia', 'Wilson', 'sophia.wilson@example.com', '+1-555-678-9012', 30),
+('Alexander', 'Moore', 'alexander.moore@example.com', '+1-555-789-0123', 36),
+('Charlotte', 'Taylor', 'charlotte.taylor@example.com', '+1-555-890-1234', 32),
+('Daniel', 'Anderson', 'daniel.anderson@example.com', '+1-555-901-2345', 34),
+('Amelia', 'Thomas', 'amelia.thomas@example.com', '+1-555-012-3456', 29),
+('Matthew', 'Jackson', 'matthew.jackson@example.com', '+1-555-123-4568', 37),
+('Emily', 'White', 'emily.white@example.com', '+1-555-234-5679', 33),
+('Christopher', 'Harris', 'christopher.harris@example.com', '+1-555-345-6780', 35),
+('Abigail', 'Martin', 'abigail.martin@example.com', '+1-555-456-7891', 30),
+('Andrew', 'Thompson', 'andrew.thompson@example.com', '+1-555-567-8902', 32),
+('Elizabeth', 'Garcia', 'elizabeth.garcia@example.com', '+1-555-678-9013', 36),
+('Joshua', 'Martinez', 'joshua.martinez@example.com', '+1-555-789-0124', 28),
+('Mia', 'Robinson', 'mia.robinson@example.com', '+1-555-890-1235', 34),
+('David', 'Clark', 'david.clark@example.com', '+1-555-901-2346', 31),
+('Sofia', 'Rodriguez', 'sofia.rodriguez@example.com', '+1-555-012-3457', 37),
+('Joseph', 'Lewis', 'joseph.lewis@example.com', '+1-555-123-4569', 29),
+('Ella', 'Lee', 'ella.lee@example.com', '+1-555-234-5680', 33),
+('John', 'Walker', 'john.walker@example.com', '+1-555-345-6781', 35),
+('Grace', 'Hall', 'grace.hall@example.com', '+1-555-456-7892', 30),
+('Samuel', 'Allen', 'samuel.allen@example.com', '+1-555-567-8903', 38),
+('Chloe', 'Young', 'chloe.young@example.com', '+1-555-678-9014', 32),
+('Benjamin', 'Hernandez', 'benjamin.hernandez@example.com', '+1-555-789-0125', 36),
+('Lily', 'King', 'lily.king@example.com', '+1-555-890-1236', 28),
+('Henry', 'Wright', 'henry.wright@example.com', '+1-555-901-2347', 34),
+('Zoe', 'Lopez', 'zoe.lopez@example.com', '+1-555-012-3458', 31),
+('Sebastian', 'Hill', 'sebastian.hill@example.com', '+1-555-123-4570', 37),
+('Layla', 'Scott', 'layla.scott@example.com', '+1-555-234-5681', 29),
+('Jack', 'Green', 'jack.green@example.com', '+1-555-345-6782', 33),
+('Nora', 'Adams', 'nora.adams@example.com', '+1-555-456-7893', 35),
+('Ryan', 'Baker', 'ryan.baker@example.com', '+1-555-567-8904', 30),
+('Scarlett', 'Gonzalez', 'scarlett.gonzalez@example.com', '+1-555-678-9015', 38),
+('Nathan', 'Nelson', 'nathan.nelson@example.com', '+1-555-789-0126', 32),
+('Audrey', 'Carter', 'audrey.carter@example.com', '+1-555-890-1237', 36),
+('Isaac', 'Mitchell', 'isaac.mitchell@example.com', '+1-555-901-2348', 28),
+('Hannah', 'Perez', 'hannah.perez@example.com', '+1-555-012-3459', 34),
+('Luke', 'Roberts', 'luke.roberts@example.com', '+1-555-123-4571', 31),
+('Leah', 'Turner', 'leah.turner@example.com', '+1-555-234-5682', 37),
+('Owen', 'Phillips', 'owen.phillips@example.com', '+1-555-345-6783', 29),
+('Stella', 'Campbell', 'stella.campbell@example.com', '+1-555-456-7894', 33),
+('Gabriel', 'Parker', 'gabriel.parker@example.com', '+1-555-567-8905', 35),
+('Aria', 'Evans', 'aria.evans@example.com', '+1-555-678-9016', 30),
+('Carter', 'Edwards', 'carter.edwards@example.com', '+1-555-789-0127', 38),
+('Ellie', 'Collins', 'ellie.collins@example.com', '+1-555-890-1238', 32),
+('Wyatt', 'Stewart', 'wyatt.stewart@example.com', '+1-555-901-2349', 36),
+('Aubrey', 'Sanchez', 'aubrey.sanchez@example.com', '+1-555-012-3460', 28),
+('Julian', 'Morris', 'julian.morris@example.com', '+1-555-123-4572', 34),
+('Bella', 'Rogers', 'bella.rogers@example.com', '+1-555-234-5683', 31),
+('Charles', 'Reed', 'charles.reed@example.com', '+1-555-345-6784', 37),
+('Lucy', 'Cook', 'lucy.cook@example.com', '+1-555-456-7895', 29),
+('Thomas', 'Morgan', 'thomas.morgan@example.com', '+1-555-567-8906', 33),
+('Paisley', 'Bell', 'paisley.bell@example.com', '+1-555-678-9017', 35),
+('Aaron', 'Murphy', 'aaron.murphy@example.com', '+1-555-789-0128', 30),
+('Savannah', 'Bailey', 'savannah.bailey@example.com', '+1-555-890-1239', 38),
+('Eli', 'Rivera', 'eli.rivera@example.com', '+1-555-901-2350', 32),
+('Madelyn', 'Cooper', 'madelyn.cooper@example.com', '+1-555-012-3461', 36),
+('Levi', 'Richardson', 'levi.richardson@example.com', '+1-555-123-4573', 28),
+('Skylar', 'Cox', 'skylar.cox@example.com', '+1-555-234-5684', 34),
+('Dylan', 'Howard', 'dylan.howard@example.com', '+1-555-345-6785', 31),
+('Evelyn', 'Ward', 'evelyn.ward@example.com', '+1-555-456-7896', 37),
+('Caleb', 'Torres', 'caleb.torres@example.com', '+1-555-567-8907', 29),
+('Anna', 'Peterson', 'anna.peterson@example.com', '+1-555-678-9018', 33),
+('Lincoln', 'Gray', 'lincoln.gray@example.com', '+1-555-789-0129', 35),
+('Penelope', 'Ramirez', 'penelope.ramirez@example.com', '+1-555-890-1240', 30),
+('Josiah', 'James', 'josiah.james@example.com', '+1-555-901-2351', 38),
+('Maya', 'Watson', 'maya.watson@example.com', '+1-555-012-3462', 32),
+('Hudson', 'Brooks', 'hudson.brooks@example.com', '+1-555-123-4574', 36),
+('Lillian', 'Kelly', 'lillian.kelly@example.com', '+1-555-234-5685', 28),
+('Asher', 'Sanders', 'asher.sanders@example.com', '+1-555-345-6786', 34),
+('Camila', 'Price', 'camila.price@example.com', '+1-555-456-7897', 31),
+('Leo', 'Bennett', 'leo.bennett@example.com', '+1-555-567-8908', 37),
+('Violet', 'Wood', 'violet.wood@example.com', '+1-555-678-9019', 29),
+('Ezra', 'Barnes', 'ezra.barnes@example.com', '+1-555-789-0130', 33),
+('Avery', 'Ross', 'avery.ross@example.com', '+1-555-890-1241', 35),
+('Kayden', 'Henderson', 'kayden.henderson@example.com', '+1-555-901-2352', 30),
+('Hazel', 'Coleman', 'hazel.coleman@example.com', '+1-555-012-3463', 38),
+('Nolan', 'Jenkins', 'nolan.jenkins@example.com', '+1-555-123-4575', 32),
+('Aurora', 'Perry', 'aurora.perry@example.com', '+1-555-234-5686', 36),
+('Elias', 'Powell', 'elias.powell@example.com', '+1-555-345-6787', 28),
+('Nova', 'Long', 'nova.long@example.com', '+1-555-456-7898', 34),
+('Grayson', 'Patterson', 'grayson.patterson@example.com', '+1-555-567-8909', 31),
+('Emilia', 'Hughes', 'emilia.hughes@example.com', '+1-555-678-9020', 37),
+('Isaiah', 'Flores', 'isaiah.flores@example.com', '+1-555-789-0131', 29),
+('Naomi', 'Washington', 'naomi.washington@example.com', '+1-555-890-1242', 33),
+('Jaxon', 'Butler', 'jaxon.butler@example.com', '+1-555-901-2353', 35),
+('Ruby', 'Simmons', 'ruby.simmons@example.com', '+1-555-012-3464', 30),
+('Mateo', 'Foster', 'mateo.foster@example.com', '+1-555-123-4576', 38),
+('Willow', 'Gonzales', 'willow.gonzales@example.com', '+1-555-234-5687', 32),
+('Ethan', 'Bryant', 'ethan.bryant@example.com', '+1-555-345-6788', 36),
+('Ivy', 'Alexander', 'ivy.alexander@example.com', '+1-555-456-7899', 28),
+('Logan', 'Russell', 'logan.russell@example.com', '+1-555-567-8910', 34),
+('Aaliyah', 'Griffin', 'aaliyah.griffin@example.com', '+1-555-678-9021', 31),
+('Aiden', 'Diaz', 'aiden.diaz@example.com', '+1-555-789-0132', 37),
+('Piper', 'Hayes', 'piper.hayes@example.com', '+1-555-890-1243', 29),
+('Noah', 'Sullivan', 'noah.sullivan@example.com', '+1-555-123-5001', 35),
+('Isabella', 'Myers', 'isabella.myers@example.com', '+1-555-123-5002', 31),
+('Mason', 'Ford', 'mason.ford@example.com', '+1-555-123-5003', 38),
+('Ava', 'Hamilton', 'ava.hamilton@example.com', '+1-555-123-5004', 30),
+('Jacob', 'Graham', 'jacob.graham@example.com', '+1-555-123-5005', 33),
+('Madison', 'Wallace', 'madison.wallace@example.com', '+1-555-123-5006', 36),
+('Ethan', 'Woods', 'ethan.woods@example.com', '+1-555-123-5007', 29),
+('Mila', 'Cole', 'mila.cole@example.com', '+1-555-123-5008', 34),
+('Liam', 'West', 'liam.west@example.com', '+1-555-123-5009', 37),
+('Riley', 'Jordan', 'riley.jordan@example.com', '+1-555-123-5010', 28),
+('Lucas', 'Owens', 'lucas.owens@example.com', '+1-555-123-5011', 32),
+('Zara', 'Reynolds', 'zara.reynolds@example.com', '+1-555-123-5012', 35),
+('Jackson', 'Fisher', 'jackson.fisher@example.com', '+1-555-123-5013', 30),
+('Victoria', 'Ellis', 'victoria.ellis@example.com', '+1-555-123-5014', 33),
+('Aiden', 'Harrison', 'aiden.harrison@example.com', '+1-555-123-5015', 36),
+('Gabriella', 'Gibson', 'gabriella.gibson@example.com', '+1-555-123-5016', 29),
+('Connor', 'McDonald', 'connor.mcdonald@example.com', '+1-555-123-5017', 34),
+('Natalie', 'Dixon', 'natalie.dixon@example.com', '+1-555-123-5018', 37),
+('Elijah', 'Warren', 'elijah.warren@example.com', '+1-555-123-5019', 28),
+('Samantha', 'Ferguson', 'samantha.ferguson@example.com', '+1-555-123-5020', 32),
+('Christian', 'Murray', 'christian.murray@example.com', '+1-555-123-5021', 35),
+('Addison', 'Gardner', 'addison.gardner@example.com', '+1-555-123-5022', 30),
+('Landon', 'Stephens', 'landon.stephens@example.com', '+1-555-123-5023', 33),
+('Brooklyn', 'Payne', 'brooklyn.payne@example.com', '+1-555-123-5024', 36),
+('Adrian', 'Pierce', 'adrian.pierce@example.com', '+1-555-123-5025', 29),
+('Kennedy', 'Knight', 'kennedy.knight@example.com', '+1-555-123-5026', 34),
+('Colton', 'Wells', 'colton.wells@example.com', '+1-555-123-5027', 37),
+('Sadie', 'Meyer', 'sadie.meyer@example.com', '+1-555-123-5028', 28),
+('Brayden', 'Wagner', 'brayden.wagner@example.com', '+1-555-123-5029', 32),
+('Autumn', 'Stone', 'autumn.stone@example.com', '+1-555-123-5030', 35),
+('Dominic', 'Hawkins', 'dominic.hawkins@example.com', '+1-555-123-5031', 30),
+('Peyton', 'Fox', 'peyton.fox@example.com', '+1-555-123-5032', 33),
+('Parker', 'Cunningham', 'parker.cunningham@example.com', '+1-555-123-5033', 36),
+('Melanie', 'Burns', 'melanie.burns@example.com', '+1-555-123-5034', 29),
+('Chase', 'Gordon', 'chase.gordon@example.com', '+1-555-123-5035', 34),
+('Lydia', 'Shaw', 'lydia.shaw@example.com', '+1-555-123-5036', 37),
+('Xavier', 'Holmes', 'xavier.holmes@example.com', '+1-555-123-5037', 28),
+('Claire', 'Rice', 'claire.rice@example.com', '+1-555-123-5038', 32),
+('Sawyer', 'Robertson', 'sawyer.robertson@example.com', '+1-555-123-5039', 35),
+('Gianna', 'Hunt', 'gianna.hunt@example.com', '+1-555-123-5040', 30),
+('Silas', 'Black', 'silas.black@example.com', '+1-555-123-5041', 33),
+('Isabelle', 'Daniels', 'isabelle.daniels@example.com', '+1-555-123-5042', 36),
+('Jace', 'Palmer', 'jace.palmer@example.com', '+1-555-123-5043', 29),
+('Valeria', 'Mills', 'valeria.mills@example.com', '+1-555-123-5044', 34),
+('Declan', 'Nichols', 'declan.nichols@example.com', '+1-555-123-5045', 37),
+('Arianna', 'Grant', 'arianna.grant@example.com', '+1-555-123-5046', 28),
+('Weston', 'Knight', 'weston.knight@example.com', '+1-555-123-5047', 32),
+('Eliana', 'Ferguson', 'eliana.ferguson@example.com', '+1-555-123-5048', 35),
+('Axel', 'Rose', 'axel.rose@example.com', '+1-555-123-5049', 30),
+('Gabrielle', 'Stone', 'gabrielle.stone@example.com', '+1-555-123-5050', 33),
+('Roman', 'Hawkins', 'roman.hawkins@example.com', '+1-555-123-5051', 36),
+('Serenity', 'Fox', 'serenity.fox@example.com', '+1-555-123-5052', 29),
+('Rowan', 'Cunningham', 'rowan.cunningham@example.com', '+1-555-123-5053', 34);
 
 -- Inserting 200 tickets (20 for each festival)
 
 -- Coachella 2020 (festival_id = 1, events 1-6)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2020-1-001', 'VIP', '2020-01-15 10:23:45', 450.00, 'Credit Card', 1, 1, 1),
-('EAN-2020-1-002', 'General Admission', '2020-01-20 14:35:12', 350.00, 'Debit Card', 1, 2, 1),
-('EAN-2020-1-003', 'Early Bird', '2019-12-05 09:12:33', 299.99, 'Credit Card', 1, 3, 2),
-('EAN-2020-1-004', 'Premium', '2020-02-10 16:45:22', 399.99, 'Bank Transfer', 1, 4, 2),
-('EAN-2020-1-005', 'General Admission', '2020-02-15 11:30:45', 350.00, 'Credit Card', 1, 5, 3),
-('EAN-2020-1-006', 'VIP', '2020-01-25 13:22:18', 450.00, 'Debit Card', 1, 6, 3),
-('EAN-2020-1-007', 'Early Bird', '2019-12-10 08:45:30', 299.99, 'Credit Card', 1, 7, 4),
-('EAN-2020-1-008', 'General Admission', '2020-02-20 15:15:40', 350.00, 'Bank Transfer', 1, 8, 4),
-('EAN-2020-1-009', 'Premium', '2020-01-30 12:10:55', 399.99, 'Credit Card', 1, 9, 5),
-('EAN-2020-1-010', 'VIP', '2020-02-05 17:05:23', 450.00, 'Debit Card', 1, 10, 5),
-('EAN-2020-1-011', 'General Admission', '2020-02-12 10:33:42', 350.00, 'Credit Card', 1, 11, 6),
-('EAN-2020-1-012', 'Early Bird', '2019-12-15 09:25:18', 299.99, 'Bank Transfer', 1, 12, 6),
-('EAN-2020-1-013', 'Premium', '2020-01-18 14:40:33', 399.99, 'Credit Card', 1, 13, 1),
-('EAN-2020-1-014', 'General Admission', '2020-02-22 16:20:15', 350.00, 'Debit Card', 1, 14, 2),
-('EAN-2020-1-015', 'VIP', '2020-01-28 11:15:50', 450.00, 'Credit Card', 1, 15, 3),
-('EAN-2020-1-016', 'Early Bird', '2019-12-20 08:55:25', 299.99, 'Bank Transfer', 1, 16, 4),
-('EAN-2020-1-017', 'General Admission', '2020-02-25 15:30:10', 350.00, 'Credit Card', 1, 17, 5),
-('EAN-2020-1-018', 'Premium', '2020-01-22 13:45:38', 399.99, 'Debit Card', 1, 18, 6),
-('EAN-2020-1-019', 'VIP', '2020-02-08 17:25:12', 450.00, 'Credit Card', 1, 19, 1),
-('EAN-2020-1-020', 'General Admission', '2020-02-18 12:50:30', 350.00, 'Bank Transfer', 1, 20, 2);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2020-1-001', 'VIP', '2020-01-15 10:23:45', 450.00, 'Credit Card', 1, 1, 1, NULL, NULL),
+('EAN-2020-1-002', 'General Admission', '2020-01-20 14:35:12', 350.00, 'Debit Card', 1, 2, 1, NULL, NULL),
+('EAN-2020-1-003', 'Early Bird', '2019-12-05 09:12:33', 299.99, 'Credit Card', 1, 3, 2, NULL, NULL),
+('EAN-2020-1-004', 'Premium', '2020-02-10 16:45:22', 399.99, 'Bank Transfer', 1, 4, 2, NULL, NULL),
+('EAN-2020-1-005', 'General Admission', '2020-02-15 11:30:45', 350.00, 'Credit Card', 1, 5, 3, NULL, NULL),
+('EAN-2020-1-006', 'VIP', '2020-01-25 13:22:18', 450.00, 'Debit Card', 1, 6, 3, NULL, NULL),
+('EAN-2020-1-007', 'Early Bird', '2019-12-10 08:45:30', 299.99, 'Credit Card', 1, 7, 4, NULL, NULL),
+('EAN-2020-1-008', 'General Admission', '2020-02-20 15:15:40', 350.00, 'Bank Transfer', 1, 8, 4, NULL, NULL),
+('EAN-2020-1-009', 'Premium', '2020-01-30 12:10:55', 399.99, 'Credit Card', 1, 9, 5, NULL, NULL),
+('EAN-2020-1-010', 'VIP', '2020-02-05 17:05:23', 450.00, 'Debit Card', 1, 10, 5, NULL, NULL),
+('EAN-2020-1-011', 'General Admission', '2020-02-12 10:33:42', 350.00, 'Credit Card', 1, 11, 6, NULL, NULL),
+('EAN-2020-1-012', 'Early Bird', '2019-12-15 09:25:18', 299.99, 'Bank Transfer', 1, 12, 6, NULL, NULL),
+('EAN-2020-1-013', 'Premium', '2020-01-18 14:40:33', 399.99, 'Credit Card', 1, 13, 1, NULL, NULL),
+('EAN-2020-1-014', 'General Admission', '2020-02-22 16:20:15', 350.00, 'Debit Card', 1, 14, 2, NULL, NULL),
+('EAN-2020-1-015', 'VIP', '2020-01-28 11:15:50', 450.00, 'Credit Card', 1, 15, 3, NULL, NULL),
+('EAN-2020-1-016', 'Early Bird', '2019-12-20 08:55:25', 299.99, 'Bank Transfer', 1, 16, 4, NULL, NULL),
+('EAN-2020-1-017', 'General Admission', '2020-02-25 15:30:10', 350.00, 'Credit Card', 1, 17, 5, NULL, NULL),
+('EAN-2020-1-018', 'Premium', '2020-01-22 13:45:38', 399.99, 'Debit Card', 1, 18, 6, NULL, NULL),
+('EAN-2020-1-019', 'VIP', '2020-02-08 17:25:12', 450.00, 'Credit Card', 1, 19, 1, NULL, NULL),
+('EAN-2020-1-020', 'General Admission', '2020-02-18 12:50:30', 350.00, 'Bank Transfer', 1, 20, 2, NULL, NULL);
 
 -- Glastonbury 2021 (festival_id = 2, events 7-16)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2021-2-001', 'VIP', '2021-02-10 09:15:30', 500.00, 'Credit Card', 1, 21, 7),
-('EAN-2021-2-002', 'General Admission', '2021-02-15 13:40:22', 375.00, 'Debit Card', 1, 22, 8),
-('EAN-2021-2-003', 'Early Bird', '2020-12-05 08:30:15', 325.00, 'Credit Card', 1, 23, 9),
-('EAN-2021-2-004', 'Premium', '2021-03-01 15:20:45', 425.00, 'Bank Transfer', 1, 24, 10),
-('EAN-2021-2-005', 'General Admission', '2021-03-05 11:10:33', 375.00, 'Credit Card', 1, 25, 11),
-('EAN-2021-2-006', 'VIP', '2021-02-20 14:25:18', 500.00, 'Debit Card', 1, 26, 12),
-('EAN-2021-2-007', 'Early Bird', '2020-12-10 09:45:20', 325.00, 'Credit Card', 1, 27, 13),
-('EAN-2021-2-008', 'General Admission', '2021-03-10 16:30:42', 375.00, 'Bank Transfer', 1, 28, 14),
-('EAN-2021-2-009', 'Premium', '2021-02-25 12:15:55', 425.00, 'Credit Card', 1, 29, 15),
-('EAN-2021-2-010', 'VIP', '2021-03-15 17:35:28', 500.00, 'Debit Card', 1, 30, 16),
-('EAN-2021-2-011', 'General Admission', '2021-03-20 10:50:15', 375.00, 'Credit Card', 1, 31, 7),
-('EAN-2021-2-012', 'Early Bird', '2020-12-15 08:40:30', 325.00, 'Bank Transfer', 1, 32, 8),
-('EAN-2021-2-013', 'Premium', '2021-02-18 13:55:22', 425.00, 'Credit Card', 1, 33, 9),
-('EAN-2021-2-014', 'General Admission', '2021-03-25 15:45:10', 375.00, 'Debit Card', 1, 34, 10),
-('EAN-2021-2-015', 'VIP', '2021-02-28 11:25:40', 500.00, 'Credit Card', 1, 35, 11),
-('EAN-2021-2-016', 'Early Bird', '2020-12-20 09:20:15', 325.00, 'Bank Transfer', 1, 36, 12),
-('EAN-2021-2-017', 'General Admission', '2021-04-01 16:10:33', 375.00, 'Credit Card', 1, 37, 13),
-('EAN-2021-2-018', 'Premium', '2021-03-05 12:35:45', 425.00, 'Debit Card', 1, 38, 14),
-('EAN-2021-2-019', 'VIP', '2021-03-18 17:50:20', 500.00, 'Credit Card', 1, 39, 15),
-('EAN-2021-2-020', 'General Admission', '2021-03-28 11:05:38', 375.00, 'Bank Transfer', 1, 40, 16);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2021-2-001', 'VIP', '2021-02-10 09:15:30', 500.00, 'Credit Card', 1, 21, 7, NULL, NULL),
+('EAN-2021-2-002', 'General Admission', '2021-02-15 13:40:22', 375.00, 'Debit Card', 1, 22, 8, NULL, NULL),
+('EAN-2021-2-003', 'Early Bird', '2020-12-05 08:30:15', 325.00, 'Credit Card', 1, 23, 9, NULL, NULL),
+('EAN-2021-2-004', 'Premium', '2021-03-01 15:20:45', 425.00, 'Bank Transfer', 1, 24, 10, NULL, NULL),
+('EAN-2021-2-005', 'General Admission', '2021-03-05 11:10:33', 375.00, 'Credit Card', 1, 25, 11, NULL, NULL),
+('EAN-2021-2-006', 'VIP', '2021-02-20 14:25:18', 500.00, 'Debit Card', 1, 26, 12, NULL, NULL),
+('EAN-2021-2-007', 'Early Bird', '2020-12-10 09:45:20', 325.00, 'Credit Card', 1, 27, 13, NULL, NULL),
+('EAN-2021-2-008', 'General Admission', '2021-03-10 16:30:42', 375.00, 'Bank Transfer', 1, 28, 14, NULL, NULL),
+('EAN-2021-2-009', 'Premium', '2021-02-25 12:15:55', 425.00, 'Credit Card', 1, 29, 15, NULL, NULL),
+('EAN-2021-2-010', 'VIP', '2021-03-15 17:35:28', 500.00, 'Debit Card', 1, 30, 16, NULL, NULL),
+('EAN-2021-2-011', 'General Admission', '2021-03-20 10:50:15', 375.00, 'Credit Card', 1, 31, 7, NULL, NULL),
+('EAN-2021-2-012', 'Early Bird', '2020-12-15 08:40:30', 325.00, 'Bank Transfer', 1, 32, 8, NULL, NULL),
+('EAN-2021-2-013', 'Premium', '2021-02-18 13:55:22', 425.00, 'Credit Card', 1, 33, 9, NULL, NULL),
+('EAN-2021-2-014', 'General Admission', '2021-03-25 15:45:10', 375.00, 'Debit Card', 1, 34, 10, NULL, NULL),
+('EAN-2021-2-015', 'VIP', '2021-02-28 11:25:40', 500.00, 'Credit Card', 1, 35, 11, NULL, NULL),
+('EAN-2021-2-016', 'Early Bird', '2020-12-20 09:20:15', 325.00, 'Bank Transfer', 1, 36, 12, NULL, NULL),
+('EAN-2021-2-017', 'General Admission', '2021-04-01 16:10:33', 375.00, 'Credit Card', 1, 37, 13, NULL, NULL),
+('EAN-2021-2-018', 'Premium', '2021-03-05 12:35:45', 425.00, 'Debit Card', 1, 38, 14, NULL, NULL),
+('EAN-2021-2-019', 'VIP', '2021-03-18 17:50:20', 500.00, 'Credit Card', 1, 39, 15, NULL, NULL),
+('EAN-2021-2-020', 'General Admission', '2021-03-28 11:05:38', 375.00, 'Bank Transfer', 1, 40, 16, NULL, NULL);
 
 -- Lollapalooza 2021 (festival_id = 3, events 17-24)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2021-3-001', 'VIP', '2021-04-10 10:15:30', 475.00, 'Credit Card', 1, 41, 17),
-('EAN-2021-3-002', 'General Admission', '2021-04-15 14:25:22', 365.00, 'Debit Card', 1, 42, 18),
-('EAN-2021-3-003', 'Early Bird', '2021-02-05 09:30:15', 315.00, 'Credit Card', 1, 43, 19),
-('EAN-2021-3-004', 'Premium', '2021-05-01 16:20:45', 415.00, 'Bank Transfer', 1, 44, 20),
-('EAN-2021-3-005', 'General Admission', '2021-05-05 12:10:33', 365.00, 'Credit Card', 1, 45, 21),
-('EAN-2021-3-006', 'VIP', '2021-04-20 15:25:18', 475.00, 'Debit Card', 1, 46, 22),
-('EAN-2021-3-007', 'Early Bird', '2021-02-10 08:45:20', 315.00, 'Credit Card', 1, 47, 23),
-('EAN-2021-3-008', 'General Admission', '2021-05-10 17:30:42', 365.00, 'Bank Transfer', 1, 48, 24),
-('EAN-2021-3-009', 'Premium', '2021-04-25 13:15:55', 415.00, 'Credit Card', 1, 49, 17),
-('EAN-2021-3-010', 'VIP', '2021-05-15 18:35:28', 475.00, 'Debit Card', 1, 50, 18),
-('EAN-2021-3-011', 'General Admission', '2021-05-20 11:50:15', 365.00, 'Credit Card', 1, 51, 19),
-('EAN-2021-3-012', 'Early Bird', '2021-02-15 09:40:30', 315.00, 'Bank Transfer', 1, 52, 20),
-('EAN-2021-3-013', 'Premium', '2021-04-18 14:55:22', 415.00, 'Credit Card', 1, 53, 21),
-('EAN-2021-3-014', 'General Admission', '2021-05-25 16:45:10', 365.00, 'Debit Card', 1, 54, 22),
-('EAN-2021-3-015', 'VIP', '2021-04-28 12:25:40', 475.00, 'Credit Card', 1, 55, 23),
-('EAN-2021-3-016', 'Early Bird', '2021-02-20 08:20:15', 315.00, 'Bank Transfer', 1, 56, 24),
-('EAN-2021-3-017', 'General Admission', '2021-06-01 17:10:33', 365.00, 'Credit Card', 1, 57, 17),
-('EAN-2021-3-018', 'Premium', '2021-05-05 13:35:45', 415.00, 'Debit Card', 1, 58, 18),
-('EAN-2021-3-019', 'VIP', '2021-05-18 18:50:20', 475.00, 'Credit Card', 1, 59, 19),
-('EAN-2021-3-020', 'General Admission', '2021-05-28 12:05:38', 365.00, 'Bank Transfer', 1, 60, 20);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2021-3-001', 'VIP', '2021-04-10 10:15:30', 475.00, 'Credit Card', 1, 41, 17, NULL, NULL),
+('EAN-2021-3-002', 'General Admission', '2021-04-15 14:25:22', 365.00, 'Debit Card', 1, 42, 18, NULL, NULL),
+('EAN-2021-3-003', 'Early Bird', '2021-02-05 09:30:15', 315.00, 'Credit Card', 1, 43, 19, NULL, NULL),
+('EAN-2021-3-004', 'Premium', '2021-05-01 16:20:45', 415.00, 'Bank Transfer', 1, 44, 20, NULL, NULL),
+('EAN-2021-3-005', 'General Admission', '2021-05-05 12:10:33', 365.00, 'Credit Card', 1, 45, 21, NULL, NULL),
+('EAN-2021-3-006', 'VIP', '2021-04-20 15:25:18', 475.00, 'Debit Card', 1, 46, 22, NULL, NULL),
+('EAN-2021-3-007', 'Early Bird', '2021-02-10 08:45:20', 315.00, 'Credit Card', 1, 47, 23, NULL, NULL),
+('EAN-2021-3-008', 'General Admission', '2021-05-10 17:30:42', 365.00, 'Bank Transfer', 1, 48, 24, NULL, NULL),
+('EAN-2021-3-009', 'Premium', '2021-04-25 13:15:55', 415.00, 'Credit Card', 1, 49, 17, NULL, NULL),
+('EAN-2021-3-010', 'VIP', '2021-05-15 18:35:28', 475.00, 'Debit Card', 1, 50, 18, NULL, NULL),
+('EAN-2021-3-011', 'General Admission', '2021-05-20 11:50:15', 365.00, 'Credit Card', 1, 51, 19, NULL, NULL),
+('EAN-2021-3-012', 'Early Bird', '2021-02-15 09:40:30', 315.00, 'Bank Transfer', 1, 52, 20, NULL, NULL),
+('EAN-2021-3-013', 'Premium', '2021-04-18 14:55:22', 415.00, 'Credit Card', 1, 53, 21, NULL, NULL),
+('EAN-2021-3-014', 'General Admission', '2021-05-25 16:45:10', 365.00, 'Debit Card', 1, 54, 22, NULL, NULL),
+('EAN-2021-3-015', 'VIP', '2021-04-28 12:25:40', 475.00, 'Credit Card', 1, 55, 23, NULL, NULL),
+('EAN-2021-3-016', 'Early Bird', '2021-02-20 08:20:15', 315.00, 'Bank Transfer', 1, 56, 24, NULL, NULL),
+('EAN-2021-3-017', 'General Admission', '2021-06-01 17:10:33', 365.00, 'Credit Card', 1, 57, 17, NULL, NULL),
+('EAN-2021-3-018', 'Premium', '2021-05-05 13:35:45', 415.00, 'Debit Card', 1, 58, 18, NULL, NULL),
+('EAN-2021-3-019', 'VIP', '2021-05-18 18:50:20', 475.00, 'Credit Card', 1, 59, 19, NULL, NULL),
+('EAN-2021-3-020', 'General Admission', '2021-05-28 12:05:38', 365.00, 'Bank Transfer', 1, 60, 20, NULL, NULL);
 
 -- Fuji Rock 2022 (festival_id = 4, events 25-30)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2022-4-001', 'VIP', '2022-03-10 09:15:30', 525.00, 'Credit Card', 1, 61, 25),
-('EAN-2022-4-002', 'General Admission', '2022-03-15 13:25:22', 385.00, 'Debit Card', 1, 62, 26),
-('EAN-2022-4-003', 'Early Bird', '2022-01-05 08:30:15', 335.00, 'Credit Card', 1, 63, 27),
-('EAN-2022-4-004', 'Premium', '2022-04-01 15:20:45', 435.00, 'Bank Transfer', 1, 64, 28),
-('EAN-2022-4-005', 'General Admission', '2022-04-05 11:10:33', 385.00, 'Credit Card', 1, 65, 29),
-('EAN-2022-4-006', 'VIP', '2022-03-20 14:25:18', 525.00, 'Debit Card', 1, 66, 30),
-('EAN-2022-4-007', 'Early Bird', '2022-01-10 09:45:20', 335.00, 'Credit Card', 1, 67, 25),
-('EAN-2022-4-008', 'General Admission', '2022-04-10 16:30:42', 385.00, 'Bank Transfer', 1, 68, 26),
-('EAN-2022-4-009', 'Premium', '2022-03-25 12:15:55', 435.00, 'Credit Card', 1, 69, 27),
-('EAN-2022-4-010', 'VIP', '2022-04-15 17:35:28', 525.00, 'Debit Card', 1, 70, 28),
-('EAN-2022-4-011', 'General Admission', '2022-04-20 10:50:15', 385.00, 'Credit Card', 1, 71, 29),
-('EAN-2022-4-012', 'Early Bird', '2022-01-15 08:40:30', 335.00, 'Bank Transfer', 1, 72, 30),
-('EAN-2022-4-013', 'Premium', '2022-03-18 13:55:22', 435.00, 'Credit Card', 1, 73, 25),
-('EAN-2022-4-014', 'General Admission', '2022-04-25 15:45:10', 385.00, 'Debit Card', 1, 74, 26),
-('EAN-2022-4-015', 'VIP', '2022-03-28 11:25:40', 525.00, 'Credit Card', 1, 75, 27),
-('EAN-2022-4-016', 'Early Bird', '2022-01-20 09:20:15', 335.00, 'Bank Transfer', 1, 76, 28),
-('EAN-2022-4-017', 'General Admission', '2022-05-01 16:10:33', 385.00, 'Credit Card', 1, 77, 29),
-('EAN-2022-4-018', 'Premium', '2022-04-05 12:35:45', 435.00, 'Debit Card', 1, 78, 30),
-('EAN-2022-4-019', 'VIP', '2022-04-18 17:50:20', 525.00, 'Credit Card', 1, 79, 25),
-('EAN-2022-4-020', 'General Admission', '2022-04-28 11:05:38', 385.00, 'Bank Transfer', 1, 80, 26);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2022-4-001', 'VIP', '2022-03-10 09:15:30', 525.00, 'Credit Card', 1, 61, 25, NULL, NULL),
+('EAN-2022-4-002', 'General Admission', '2022-03-15 13:25:22', 385.00, 'Debit Card', 1, 62, 26, NULL, NULL),
+('EAN-2022-4-003', 'Early Bird', '2022-01-05 08:30:15', 335.00, 'Credit Card', 1, 63, 27, NULL, NULL),
+('EAN-2022-4-004', 'Premium', '2022-04-01 15:20:45', 435.00, 'Bank Transfer', 1, 64, 28, NULL, NULL),
+('EAN-2022-4-005', 'General Admission', '2022-04-05 11:10:33', 385.00, 'Credit Card', 1, 65, 29, NULL, NULL),
+('EAN-2022-4-006', 'VIP', '2022-03-20 14:25:18', 525.00, 'Debit Card', 1, 66, 30, NULL, NULL),
+('EAN-2022-4-007', 'Early Bird', '2022-01-10 09:45:20', 335.00, 'Credit Card', 1, 67, 25, NULL, NULL),
+('EAN-2022-4-008', 'General Admission', '2022-04-10 16:30:42', 385.00, 'Bank Transfer', 1, 68, 26, NULL, NULL),
+('EAN-2022-4-009', 'Premium', '2022-03-25 12:15:55', 435.00, 'Credit Card', 1, 69, 27, NULL, NULL),
+('EAN-2022-4-010', 'VIP', '2022-04-15 17:35:28', 525.00, 'Debit Card', 1, 70, 28, NULL, NULL),
+('EAN-2022-4-011', 'General Admission', '2022-04-20 10:50:15', 385.00, 'Credit Card', 1, 71, 29, NULL, NULL),
+('EAN-2022-4-012', 'Early Bird', '2022-01-15 08:40:30', 335.00, 'Bank Transfer', 1, 72, 30, NULL, NULL),
+('EAN-2022-4-013', 'Premium', '2022-03-18 13:55:22', 435.00, 'Credit Card', 1, 73, 25, NULL, NULL),
+('EAN-2022-4-014', 'General Admission', '2022-04-25 15:45:10', 385.00, 'Debit Card', 1, 74, 26, NULL, NULL),
+('EAN-2022-4-015', 'VIP', '2022-03-28 11:25:40', 525.00, 'Credit Card', 1, 75, 27, NULL, NULL),
+('EAN-2022-4-016', 'Early Bird', '2022-01-20 09:20:15', 335.00, 'Bank Transfer', 1, 76, 28, NULL, NULL),
+('EAN-2022-4-017', 'General Admission', '2022-05-01 16:10:33', 385.00, 'Credit Card', 1, 77, 29, NULL, NULL),
+('EAN-2022-4-018', 'Premium', '2022-04-05 12:35:45', 435.00, 'Debit Card', 1, 78, 30, NULL, NULL),
+('EAN-2022-4-019', 'VIP', '2022-04-18 17:50:20', 525.00, 'Credit Card', 1, 79, 25, NULL, NULL),
+('EAN-2022-4-020', 'General Admission', '2022-04-28 11:05:38', 385.00, 'Bank Transfer', 1, 80, 26, NULL, NULL);
 
 -- Primavera Sound 2022 (festival_id = 5, events 31-36)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2022-5-001', 'VIP', '2022-02-10 10:15:30', 490.00, 'Credit Card', 1, 81, 31),
-('EAN-2022-5-002', 'General Admission', '2022-02-15 14:25:22', 370.00, 'Debit Card', 1, 82, 32),
-('EAN-2022-5-003', 'Early Bird', '2021-12-05 09:30:15', 320.00, 'Credit Card', 1, 83, 33),
-('EAN-2022-5-004', 'Premium', '2022-03-01 16:20:45', 420.00, 'Bank Transfer', 1, 84, 34),
-('EAN-2022-5-005', 'General Admission', '2022-03-05 12:10:33', 370.00, 'Credit Card', 1, 85, 35),
-('EAN-2022-5-006', 'VIP', '2022-02-20 15:25:18', 490.00, 'Debit Card', 1, 86, 36),
-('EAN-2022-5-007', 'Early Bird', '2021-12-10 08:45:20', 320.00, 'Credit Card', 1, 87, 31),
-('EAN-2022-5-008', 'General Admission', '2022-03-10 17:30:42', 370.00, 'Bank Transfer', 1, 88, 32),
-('EAN-2022-5-009', 'Premium', '2022-02-25 13:15:55', 420.00, 'Credit Card', 1, 89, 33),
-('EAN-2022-5-010', 'VIP', '2022-03-15 18:35:28', 490.00, 'Debit Card', 1, 90, 34),
-('EAN-2022-5-011', 'General Admission', '2022-03-20 11:50:15', 370.00, 'Credit Card', 1, 91, 35),
-('EAN-2022-5-012', 'Early Bird', '2021-12-15 09:40:30', 320.00, 'Bank Transfer', 1, 92, 36),
-('EAN-2022-5-013', 'Premium', '2022-02-18 14:55:22', 420.00, 'Credit Card', 1, 93, 31),
-('EAN-2022-5-014', 'General Admission', '2022-03-25 16:45:10', 370.00, 'Debit Card', 1, 94, 32),
-('EAN-2022-5-015', 'VIP', '2022-02-28 12:25:40', 490.00, 'Credit Card', 1, 95, 33),
-('EAN-2022-5-016', 'Early Bird', '2021-12-20 08:20:15', 320.00, 'Bank Transfer', 1, 96, 34),
-('EAN-2022-5-017', 'General Admission', '2022-04-01 17:10:33', 370.00, 'Credit Card', 1, 97, 35),
-('EAN-2022-5-018', 'Premium', '2022-03-05 13:35:45', 420.00, 'Debit Card', 1, 98, 36),
-('EAN-2022-5-019', 'VIP', '2022-03-18 18:50:20', 490.00, 'Credit Card', 1, 99, 31),
-('EAN-2022-5-020', 'General Admission', '2022-03-28 12:05:38', 370.00, 'Bank Transfer', 1, 100, 32);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2022-5-001', 'VIP', '2022-02-10 10:15:30', 490.00, 'Credit Card', 1, 81, 31, NULL, NULL),
+('EAN-2022-5-002', 'General Admission', '2022-02-15 14:25:22', 370.00, 'Debit Card', 1, 82, 32, NULL, NULL),
+('EAN-2022-5-003', 'Early Bird', '2021-12-05 09:30:15', 320.00, 'Credit Card', 1, 83, 33, NULL, NULL),
+('EAN-2022-5-004', 'Premium', '2022-03-01 16:20:45', 420.00, 'Bank Transfer', 1, 84, 34, NULL, NULL),
+('EAN-2022-5-005', 'General Admission', '2022-03-05 12:10:33', 370.00, 'Credit Card', 1, 85, 35, NULL, NULL),
+('EAN-2022-5-006', 'VIP', '2022-02-20 15:25:18', 490.00, 'Debit Card', 1, 86, 36, NULL, NULL),
+('EAN-2022-5-007', 'Early Bird', '2021-12-10 08:45:20', 320.00, 'Credit Card', 1, 87, 31, NULL, NULL),
+('EAN-2022-5-008', 'General Admission', '2022-03-10 17:30:42', 370.00, 'Bank Transfer', 1, 88, 32, NULL, NULL),
+('EAN-2022-5-009', 'Premium', '2022-02-25 13:15:55', 420.00, 'Credit Card', 1, 89, 33, NULL, NULL),
+('EAN-2022-5-010', 'VIP', '2022-03-15 18:35:28', 490.00, 'Debit Card', 1, 90, 34, NULL, NULL),
+('EAN-2022-5-011', 'General Admission', '2022-03-20 11:50:15', 370.00, 'Credit Card', 1, 91, 35, NULL, NULL),
+('EAN-2022-5-012', 'Early Bird', '2021-12-15 09:40:30', 320.00, 'Bank Transfer', 1, 92, 36, NULL, NULL),
+('EAN-2022-5-013', 'Premium', '2022-02-18 14:55:22', 420.00, 'Credit Card', 1, 93, 31, NULL, NULL),
+('EAN-2022-5-014', 'General Admission', '2022-03-25 16:45:10', 370.00, 'Debit Card', 1, 94, 32, NULL, NULL),
+('EAN-2022-5-015', 'VIP', '2022-02-28 12:25:40', 490.00, 'Credit Card', 1, 95, 33, NULL, NULL),
+('EAN-2022-5-016', 'Early Bird', '2021-12-20 08:20:15', 320.00, 'Bank Transfer', 1, 96, 34, NULL, NULL),
+('EAN-2022-5-017', 'General Admission', '2022-04-01 17:10:33', 370.00, 'Credit Card', 1, 97, 35, NULL, NULL),
+('EAN-2022-5-018', 'Premium', '2022-03-05 13:35:45', 420.00, 'Debit Card', 1, 98, 36, NULL, NULL),
+('EAN-2022-5-019', 'VIP', '2022-03-18 18:50:20', 490.00, 'Credit Card', 1, 99, 31, NULL, NULL),
+('EAN-2022-5-020', 'General Admission', '2022-03-28 12:05:38', 370.00, 'Bank Transfer', 1, 100, 32, NULL, NULL);
 
 -- Rock am Ring 2023 (festival_id = 6, events 37-42)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2023-6-001', 'VIP', '2023-02-10 09:15:30', 510.00, 'Credit Card', 1, 101, 37),
-('EAN-2023-6-002', 'General Admission', '2023-02-15 13:25:22', 380.00, 'Debit Card', 1, 102, 38),
-('EAN-2023-6-003', 'Early Bird', '2022-12-05 08:30:15', 330.00, 'Credit Card', 1, 103, 39),
-('EAN-2023-6-004', 'Premium', '2023-03-01 15:20:45', 430.00, 'Bank Transfer', 1, 104, 40),
-('EAN-2023-6-005', 'General Admission', '2023-03-05 11:10:33', 380.00, 'Credit Card', 1, 105, 41),
-('EAN-2023-6-006', 'VIP', '2023-02-20 14:25:18', 510.00, 'Debit Card', 1, 106, 42),
-('EAN-2023-6-007', 'Early Bird', '2022-12-10 09:45:20', 330.00, 'Credit Card', 1, 107, 37),
-('EAN-2023-6-008', 'General Admission', '2023-03-10 16:30:42', 380.00, 'Bank Transfer', 1, 108, 38),
-('EAN-2023-6-009', 'Premium', '2023-02-25 12:15:55', 430.00, 'Credit Card', 1, 109, 39),
-('EAN-2023-6-010', 'VIP', '2023-03-15 17:35:28', 510.00, 'Debit Card', 1, 110, 40),
-('EAN-2023-6-011', 'General Admission', '2023-03-20 10:50:15', 380.00, 'Credit Card', 1, 111, 41),
-('EAN-2023-6-012', 'Early Bird', '2022-12-15 08:40:30', 330.00, 'Bank Transfer', 1, 112, 42),
-('EAN-2023-6-013', 'Premium', '2023-02-18 13:55:22', 430.00, 'Credit Card', 1, 113, 37),
-('EAN-2023-6-014', 'General Admission', '2023-03-25 15:45:10', 380.00, 'Debit Card', 1, 114, 38),
-('EAN-2023-6-015', 'VIP', '2023-02-28 11:25:40', 510.00, 'Credit Card', 1, 115, 39),
-('EAN-2023-6-016', 'Early Bird', '2022-12-20 09:20:15', 330.00, 'Bank Transfer', 1, 116, 40),
-('EAN-2023-6-017', 'General Admission', '2023-04-01 16:10:33', 380.00, 'Credit Card', 1, 117, 41),
-('EAN-2023-6-018', 'Premium', '2023-03-05 12:35:45', 430.00, 'Debit Card', 1, 118, 42),
-('EAN-2023-6-019', 'VIP', '2023-03-18 17:50:20', 510.00, 'Credit Card', 1, 119, 37),
-('EAN-2023-6-020', 'General Admission', '2023-03-28 11:05:38', 380.00, 'Bank Transfer', 1, 120, 38);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2023-6-001', 'VIP', '2023-02-10 09:15:30', 510.00, 'Credit Card', 1, 101, 37, NULL, NULL),
+('EAN-2023-6-002', 'General Admission', '2023-02-15 13:25:22', 380.00, 'Debit Card', 1, 102, 38, NULL, NULL),
+('EAN-2023-6-003', 'Early Bird', '2022-12-05 08:30:15', 330.00, 'Credit Card', 1, 103, 39, NULL, NULL),
+('EAN-2023-6-004', 'Premium', '2023-03-01 15:20:45', 430.00, 'Bank Transfer', 1, 104, 40, NULL, NULL),
+('EAN-2023-6-005', 'General Admission', '2023-03-05 11:10:33', 380.00, 'Credit Card', 1, 105, 41, NULL, NULL),
+('EAN-2023-6-006', 'VIP', '2023-02-20 14:25:18', 510.00, 'Debit Card', 1, 106, 42, NULL, NULL),
+('EAN-2023-6-007', 'Early Bird', '2022-12-10 09:45:20', 330.00, 'Credit Card', 1, 107, 37, NULL, NULL),
+('EAN-2023-6-008', 'General Admission', '2023-03-10 16:30:42', 380.00, 'Bank Transfer', 1, 108, 38, NULL, NULL),
+('EAN-2023-6-009', 'Premium', '2023-02-25 12:15:55', 430.00, 'Credit Card', 1, 109, 39, NULL, NULL),
+('EAN-2023-6-010', 'VIP', '2023-03-15 17:35:28', 510.00, 'Debit Card', 1, 110, 40, NULL, NULL),
+('EAN-2023-6-011', 'General Admission', '2023-03-20 10:50:15', 380.00, 'Credit Card', 1, 111, 41, NULL, NULL),
+('EAN-2023-6-012', 'Early Bird', '2022-12-15 08:40:30', 330.00, 'Bank Transfer', 1, 112, 42, NULL, NULL),
+('EAN-2023-6-013', 'Premium', '2023-02-18 13:55:22', 430.00, 'Credit Card', 1, 113, 37, NULL, NULL),
+('EAN-2023-6-014', 'General Admission', '2023-03-25 15:45:10', 380.00, 'Debit Card', 1, 114, 38, NULL, NULL),
+('EAN-2023-6-015', 'VIP', '2023-02-28 11:25:40', 510.00, 'Credit Card', 1, 115, 39, NULL, NULL),
+('EAN-2023-6-016', 'Early Bird', '2022-12-20 09:20:15', 330.00, 'Bank Transfer', 1, 116, 40, NULL, NULL),
+('EAN-2023-6-017', 'General Admission', '2023-04-01 16:10:33', 380.00, 'Credit Card', 1, 117, 41, NULL, NULL),
+('EAN-2023-6-018', 'Premium', '2023-03-05 12:35:45', 430.00, 'Debit Card', 1, 118, 42, NULL, NULL),
+('EAN-2023-6-019', 'VIP', '2023-03-18 17:50:20', 510.00, 'Credit Card', 1, 119, 37, NULL, NULL),
+('EAN-2023-6-020', 'General Admission', '2023-03-28 11:05:38', 380.00, 'Bank Transfer', 1, 120, 38, NULL, NULL);
 
 -- Woodstock Revival 2023 (festival_id = 7, events 43-50)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2023-7-001', 'VIP', '2023-04-10 10:15:30', 480.00, 'Credit Card', 1, 121, 43),
-('EAN-2023-7-002', 'General Admission', '2023-04-15 14:25:22', 360.00, 'Debit Card', 1, 122, 44),
-('EAN-2023-7-003', 'Early Bird', '2023-02-05 09:30:15', 310.00, 'Credit Card', 1, 123, 45),
-('EAN-2023-7-004', 'Premium', '2023-05-01 16:20:45', 410.00, 'Bank Transfer', 1, 124, 46),
-('EAN-2023-7-005', 'General Admission', '2023-05-05 12:10:33', 360.00, 'Credit Card', 1, 125, 47),
-('EAN-2023-7-006', 'VIP', '2023-04-20 15:25:18', 480.00, 'Debit Card', 1, 126, 48),
-('EAN-2023-7-007', 'Early Bird', '2023-02-10 08:45:20', 310.00, 'Credit Card', 1, 127, 49),
-('EAN-2023-7-008', 'General Admission', '2023-05-10 17:30:42', 360.00, 'Bank Transfer', 1, 128, 50),
-('EAN-2023-7-009', 'Premium', '2023-04-25 13:15:55', 410.00, 'Credit Card', 1, 129, 43),
-('EAN-2023-7-010', 'VIP', '2023-05-15 18:35:28', 480.00, 'Debit Card', 1, 130, 44),
-('EAN-2023-7-011', 'General Admission', '2023-05-20 11:50:15', 360.00, 'Credit Card', 1, 131, 45),
-('EAN-2023-7-012', 'Early Bird', '2023-02-15 09:40:30', 310.00, 'Bank Transfer', 1, 132, 46),
-('EAN-2023-7-013', 'Premium', '2023-04-18 14:55:22', 410.00, 'Credit Card', 1, 133, 47),
-('EAN-2023-7-014', 'General Admission', '2023-05-25 16:45:10', 360.00, 'Debit Card', 1, 134, 48),
-('EAN-2023-7-015', 'VIP', '2023-04-28 12:25:40', 480.00, 'Credit Card', 1, 135, 49),
-('EAN-2023-7-016', 'Early Bird', '2023-02-20 08:20:15', 310.00, 'Bank Transfer', 1, 136, 50),
-('EAN-2023-7-017', 'General Admission', '2023-06-01 17:10:33', 360.00, 'Credit Card', 1, 137, 43),
-('EAN-2023-7-018', 'Premium', '2023-05-05 13:35:45', 410.00, 'Debit Card', 1, 138, 44),
-('EAN-2023-7-019', 'VIP', '2023-05-18 18:50:20', 480.00, 'Credit Card', 1, 139, 45),
-('EAN-2023-7-020', 'General Admission', '2023-05-28 12:05:38', 360.00, 'Bank Transfer', 1, 140, 46);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2023-7-001', 'VIP', '2023-04-10 10:15:30', 480.00, 'Credit Card', 1, 121, 43, NULL, NULL),
+('EAN-2023-7-002', 'General Admission', '2023-04-15 14:25:22', 360.00, 'Debit Card', 1, 122, 44, NULL, NULL),
+('EAN-2023-7-003', 'Early Bird', '2023-02-05 09:30:15', 310.00, 'Credit Card', 1, 123, 45, NULL, NULL),
+('EAN-2023-7-004', 'Premium', '2023-05-01 16:20:45', 410.00, 'Bank Transfer', 1, 124, 46, NULL, NULL),
+('EAN-2023-7-005', 'General Admission', '2023-05-05 12:10:33', 360.00, 'Credit Card', 1, 125, 47, NULL, NULL),
+('EAN-2023-7-006', 'VIP', '2023-04-20 15:25:18', 480.00, 'Debit Card', 1, 126, 48, NULL, NULL),
+('EAN-2023-7-007', 'Early Bird', '2023-02-10 08:45:20', 310.00, 'Credit Card', 1, 127, 49, NULL, NULL),
+('EAN-2023-7-008', 'General Admission', '2023-05-10 17:30:42', 360.00, 'Bank Transfer', 1, 128, 50, NULL, NULL),
+('EAN-2023-7-009', 'Premium', '2023-04-25 13:15:55', 410.00, 'Credit Card', 1, 129, 43, NULL, NULL),
+('EAN-2023-7-010', 'VIP', '2023-05-15 18:35:28', 480.00, 'Debit Card', 1, 130, 44, NULL, NULL),
+('EAN-2023-7-011', 'General Admission', '2023-05-20 11:50:15', 360.00, 'Credit Card', 1, 131, 45, NULL, NULL),
+('EAN-2023-7-012', 'Early Bird', '2023-02-15 09:40:30', 310.00, 'Bank Transfer', 1, 132, 46, NULL, NULL),
+('EAN-2023-7-013', 'Premium', '2023-04-18 14:55:22', 410.00, 'Credit Card', 1, 133, 47, NULL, NULL),
+('EAN-2023-7-014', 'General Admission', '2023-05-25 16:45:10', 360.00, 'Debit Card', 1, 134, 48, NULL, NULL),
+('EAN-2023-7-015', 'VIP', '2023-04-28 12:25:40', 480.00, 'Credit Card', 1, 135, 49, NULL, NULL),
+('EAN-2023-7-016', 'Early Bird', '2023-02-20 08:20:15', 310.00, 'Bank Transfer', 1, 136, 50, NULL, NULL),
+('EAN-2023-7-017', 'General Admission', '2023-06-01 17:10:33', 360.00, 'Credit Card', 1, 137, 43, NULL, NULL),
+('EAN-2023-7-018', 'Premium', '2023-05-05 13:35:45', 410.00, 'Debit Card', 1, 138, 44, NULL, NULL),
+('EAN-2023-7-019', 'VIP', '2023-05-18 18:50:20', 480.00, 'Credit Card', 1, 139, 45, NULL, NULL),
+('EAN-2023-7-020', 'General Admission', '2023-05-28 12:05:38', 360.00, 'Bank Transfer', 1, 140, 46, NULL, NULL);
 
 -- Boom Festival 2024 (festival_id = 8, events 51-58)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2024-8-001', 'VIP', '2024-03-10 09:15:30', 530.00, 'Credit Card', 1, 1, 51),
-('EAN-2024-8-002', 'General Admission', '2024-03-15 13:25:22', 390.00, 'Debit Card', 1, 2, 52),
-('EAN-2024-8-003', 'Early Bird', '2024-01-05 08:30:15', 340.00, 'Credit Card', 1, 3, 53),
-('EAN-2024-8-004', 'Premium', '2024-04-01 15:20:45', 440.00, 'Bank Transfer', 1, 4, 54),
-('EAN-2024-8-005', 'General Admission', '2024-04-05 11:10:33', 390.00, 'Credit Card', 1, 5, 55),
-('EAN-2024-8-006', 'VIP', '2024-03-20 14:25:18', 530.00, 'Debit Card', 1, 6, 56),
-('EAN-2024-8-007', 'Early Bird', '2024-01-10 09:45:20', 340.00, 'Credit Card', 1, 7, 57),
-('EAN-2024-8-008', 'General Admission', '2024-04-10 16:30:42', 390.00, 'Bank Transfer', 1, 8, 58),
-('EAN-2024-8-009', 'Premium', '2024-03-25 12:15:55', 440.00, 'Credit Card', 1, 9, 51),
-('EAN-2024-8-010', 'VIP', '2024-04-15 17:35:28', 530.00, 'Debit Card', 1, 10, 52),
-('EAN-2024-8-011', 'General Admission', '2024-04-20 10:50:15', 390.00, 'Credit Card', 1, 11, 53),
-('EAN-2024-8-012', 'Early Bird', '2024-01-15 08:40:30', 340.00, 'Bank Transfer', 1, 12, 54),
-('EAN-2024-8-013', 'Premium', '2024-03-18 13:55:22', 440.00, 'Credit Card', 1, 13, 55),
-('EAN-2024-8-014', 'General Admission', '2024-04-25 15:45:10', 390.00, 'Debit Card', 1, 14, 56),
-('EAN-2024-8-015', 'VIP', '2024-03-28 11:25:40', 530.00, 'Credit Card', 1, 15, 57),
-('EAN-2024-8-016', 'Early Bird', '2024-01-20 09:20:15', 340.00, 'Bank Transfer', 1, 16, 58),
-('EAN-2024-8-017', 'General Admission', '2024-05-01 16:10:33', 390.00, 'Credit Card', 1, 17, 51),
-('EAN-2024-8-018', 'Premium', '2024-04-05 12:35:45', 440.00, 'Debit Card', 1, 18, 52),
-('EAN-2024-8-019', 'VIP', '2024-04-18 17:50:20', 530.00, 'Credit Card', 1, 19, 53),
-('EAN-2024-8-020', 'General Admission', '2024-04-28 11:05:38', 390.00, 'Bank Transfer', 1, 20, 54);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2024-8-001', 'VIP', '2024-03-10 09:15:30', 530.00, 'Credit Card', 1, 1, 51, NULL, NULL),
+('EAN-2024-8-002', 'General Admission', '2024-03-15 13:25:22', 390.00, 'Debit Card', 1, 2, 52, NULL, NULL),
+('EAN-2024-8-003', 'Early Bird', '2024-01-05 08:30:15', 340.00, 'Credit Card', 1, 3, 53, NULL, NULL),
+('EAN-2024-8-004', 'Premium', '2024-04-01 15:20:45', 440.00, 'Bank Transfer', 1, 4, 54, NULL, NULL),
+('EAN-2024-8-005', 'General Admission', '2024-04-05 11:10:33', 390.00, 'Credit Card', 1, 5, 55, NULL, NULL),
+('EAN-2024-8-006', 'VIP', '2024-03-20 14:25:18', 530.00, 'Debit Card', 1, 6, 56, NULL, NULL),
+('EAN-2024-8-007', 'Early Bird', '2024-01-10 09:45:20', 340.00, 'Credit Card', 1, 7, 57, NULL, NULL),
+('EAN-2024-8-008', 'General Admission', '2024-04-10 16:30:42', 390.00, 'Bank Transfer', 1, 8, 58, NULL, NULL),
+('EAN-2024-8-009', 'Premium', '2024-03-25 12:15:55', 440.00, 'Credit Card', 1, 9, 51, NULL, NULL),
+('EAN-2024-8-010', 'VIP', '2024-04-15 17:35:28', 530.00, 'Debit Card', 1, 10, 52, NULL, NULL),
+('EAN-2024-8-011', 'General Admission', '2024-04-20 10:50:15', 390.00, 'Credit Card', 1, 11, 53, NULL, NULL),
+('EAN-2024-8-012', 'Early Bird', '2024-01-15 08:40:30', 340.00, 'Bank Transfer', 1, 12, 54, NULL, NULL),
+('EAN-2024-8-013', 'Premium', '2024-03-18 13:55:22', 440.00, 'Credit Card', 1, 13, 55, NULL, NULL),
+('EAN-2024-8-014', 'General Admission', '2024-04-25 15:45:10', 390.00, 'Debit Card', 1, 14, 56, NULL, NULL),
+('EAN-2024-8-015', 'VIP', '2024-03-28 11:25:40', 530.00, 'Credit Card', 1, 15, 57, NULL, NULL),
+('EAN-2024-8-016', 'Early Bird', '2024-01-20 09:20:15', 340.00, 'Bank Transfer', 1, 16, 58, NULL, NULL),
+('EAN-2024-8-017', 'General Admission', '2024-05-01 16:10:33', 390.00, 'Credit Card', 1, 17, 51, NULL, NULL),
+('EAN-2024-8-018', 'Premium', '2024-04-05 12:35:45', 440.00, 'Debit Card', 1, 18, 52, NULL, NULL),
+('EAN-2024-8-019', 'VIP', '2024-04-18 17:50:20', 530.00, 'Credit Card', 1, 19, 53, NULL, NULL),
+('EAN-2024-8-020', 'General Admission', '2024-04-28 11:05:38', 390.00, 'Bank Transfer', 1, 20, 54, NULL, NULL);
 
 -- Ultra Music Festival 2025 (festival_id = 9, events 59-64)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2025-9-001', 'VIP', '2025-02-10 10:15:30', 550.00, 'Credit Card', 1, 21, 59),
-('EAN-2025-9-002', 'General Admission', '2025-02-15 14:25:22', 400.00, 'Debit Card', 1, 22, 60),
-('EAN-2025-9-003', 'Early Bird', '2024-12-05 09:30:15', 350.00, 'Credit Card', 1, 23, 61),
-('EAN-2025-9-004', 'Premium', '2025-03-01 16:20:45', 450.00, 'Bank Transfer', 1, 24, 62),
-('EAN-2025-9-005', 'General Admission', '2025-03-05 12:10:33', 400.00, 'Credit Card', 1, 25, 63),
-('EAN-2025-9-006', 'VIP', '2025-02-20 15:25:18', 550.00, 'Debit Card', 1, 26, 64),
-('EAN-2025-9-007', 'Early Bird', '2024-12-10 08:45:20', 350.00, 'Credit Card', 1, 27, 59),
-('EAN-2025-9-008', 'General Admission', '2025-03-10 17:30:42', 400.00, 'Bank Transfer', 1, 28, 60),
-('EAN-2025-9-009', 'Premium', '2025-02-25 13:15:55', 450.00, 'Credit Card', 1, 29, 61),
-('EAN-2025-9-010', 'VIP', '2025-03-15 18:35:28', 550.00, 'Debit Card', 1, 30, 62),
-('EAN-2025-9-011', 'General Admission', '2025-03-20 11:50:15', 400.00, 'Credit Card', 1, 31, 63),
-('EAN-2025-9-012', 'Early Bird', '2024-12-15 09:40:30', 350.00, 'Bank Transfer', 1, 32, 64),
-('EAN-2025-9-013', 'Premium', '2025-02-18 14:55:22', 450.00, 'Credit Card', 1, 33, 59),
-('EAN-2025-9-014', 'General Admission', '2025-03-25 16:45:10', 400.00, 'Debit Card', 1, 34, 60),
-('EAN-2025-9-015', 'VIP', '2025-02-28 12:25:40', 550.00, 'Credit Card', 1, 35, 61),
-('EAN-2025-9-016', 'Early Bird', '2024-12-20 08:20:15', 350.00, 'Bank Transfer', 1, 36, 62),
-('EAN-2025-9-017', 'General Admission', '2025-04-01 17:10:33', 400.00, 'Credit Card', 1, 37, 63),
-('EAN-2025-9-018', 'Premium', '2025-03-05 13:35:45', 450.00, 'Debit Card', 1, 38, 64),
-('EAN-2025-9-019', 'VIP', '2025-03-18 18:50:20', 550.00, 'Credit Card', 1, 39, 59),
-('EAN-2025-9-020', 'General Admission', '2025-03-28 12:05:38', 400.00, 'Bank Transfer', 1, 40, 60);
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2025-9-001', 'VIP', '2025-02-10 10:15:30', 550.00, 'Credit Card', 0, 21, 59, NULL, NULL),
+('EAN-2025-9-002', 'General Admission', '2025-02-15 14:25:22', 400.00, 'Debit Card', 0, 22, 60, NULL, NULL),
+('EAN-2025-9-003', 'Early Bird', '2024-12-05 09:30:15', 350.00, 'Credit Card', 0, 23, 61, NULL, NULL),
+('EAN-2025-9-004', 'Premium', '2025-03-01 16:20:45', 450.00, 'Bank Transfer', 0, 24, 62, NULL, NULL),
+('EAN-2025-9-005', 'General Admission', '2025-03-05 12:10:33', 400.00, 'Credit Card', 0, 25, 63, NULL, NULL),
+('EAN-2025-9-006', 'VIP', '2025-02-20 15:25:18', 550.00, 'Debit Card', 0, 26, 64, NULL, NULL),
+('EAN-2025-9-007', 'Early Bird', '2024-12-10 08:45:20', 350.00, 'Credit Card', 0, 27, 59, NULL, NULL),
+('EAN-2025-9-008', 'General Admission', '2025-03-10 17:30:42', 400.00, 'Bank Transfer', 0, 28, 60, NULL, NULL),
+('EAN-2025-9-009', 'Premium', '2025-02-25 13:15:55', 450.00, 'Credit Card', 0, 29, 61, NULL, NULL),
+('EAN-2025-9-010', 'VIP', '2025-03-15 18:35:28', 550.00, 'Debit Card', 0, 30, 62, NULL, NULL),
+('EAN-2025-9-011', 'General Admission', '2025-03-20 11:50:15', 400.00, 'Credit Card', 0, 31, 63, NULL, NULL),
+('EAN-2025-9-012', 'Early Bird', '2024-12-15 09:40:30', 350.00, 'Bank Transfer', 0, 32, 64, NULL, NULL),
+('EAN-2025-9-013', 'Premium', '2025-02-18 14:55:22', 450.00, 'Credit Card', 0, 33, 59, NULL, NULL),
+('EAN-2025-9-014', 'General Admission', '2025-03-25 16:45:10', 400.00, 'Debit Card', 0, 34, 60, NULL, NULL),
+('EAN-2025-9-015', 'VIP', '2025-02-28 12:25:40', 550.00, 'Credit Card', 0, 35, 61, NULL, NULL),
+('EAN-2025-9-016', 'Early Bird', '2024-12-20 08:20:15', 350.00, 'Bank Transfer', 0, 36, 62, NULL, NULL),
+('EAN-2025-9-017', 'General Admission', '2025-04-01 17:10:33', 400.00, 'Credit Card', 0, 37, 63, NULL, NULL),
+('EAN-2025-9-018', 'Premium', '2025-03-05 13:35:45', 450.00, 'Debit Card', 0, 38, 64, NULL, NULL),
+('EAN-2025-9-019', 'VIP', '2025-03-18 18:50:20', 550.00, 'Credit Card', 0, 39, 59, NULL, NULL),
+('EAN-2025-9-020', 'General Admission', '2025-03-28 12:05:38', 400.00, 'Bank Transfer', 0, 40, 60, NULL, NULL);
 
--- Creamfields 2025 (festival_id = 10, events 65-71)
-INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id) VALUES
-('EAN-2025-10-001', 'VIP', '2025-04-10 09:15:30', 540.00, 'Credit Card', 1, 41, 65),
-('EAN-2025-10-002', 'General Admission', '2025-04-15 13:25:22', 395.00, 'Debit Card', 1, 42, 66),
-('EAN-2025-10-003', 'Early Bird', '2025-02-05 08:30:15', 345.00, 'Credit Card', 1, 43, 67),
-('EAN-2025-10-004', 'Premium', '2025-05-01 15:20:45', 445.00, 'Bank Transfer', 1, 44, 68),
-('EAN-2025-10-005', 'General Admission', '2025-05-05 11:10:33', 395.00, 'Credit Card', 1, 45, 69),
-('EAN-2025-10-006', 'VIP', '2025-04-20 14:25:18', 540.00, 'Debit Card', 1, 46, 70),
-('EAN-2025-10-007', 'Early Bird', '2025-02-10 09:45:20', 345.00, 'Credit Card', 1, 47, 71),
-('EAN-2025-10-008', 'General Admission', '2025-05-10 16:30:42', 395.00, 'Bank Transfer', 1, 48, 65),
-('EAN-2025-10-009', 'Premium', '2025-04-25 12:15:55', 445.00, 'Credit Card', 1, 49, 66),
-('EAN-2025-10-010', 'VIP', '2025-05-15 17:35:28', 540.00, 'Debit Card', 1, 50, 67),
-('EAN-2025-10-011', 'General Admission', '2025-05-20 10:50:15', 395.00, 'Credit Card', 1, 51, 68),
-('EAN-2025-10-012', 'Early Bird', '2025-02-15 08:40:30', 345.00, 'Bank Transfer', 1, 52, 69),
-('EAN-2025-10-013', 'Premium', '2025-04-18 13:55:22', 445.00, 'Credit Card', 1, 53, 70),
-('EAN-2025-10-014', 'General Admission', '2025-05-25 15:45:10', 395.00, 'Debit Card', 1, 54, 71),
-('EAN-2025-10-015', 'VIP', '2025-04-28 11:25:40', 540.00, 'Credit Card', 1, 55, 65),
-('EAN-2025-10-016', 'Early Bird', '2025-02-20 09:20:15', 345.00, 'Bank Transfer', 1, 56, 66),
-('EAN-2025-10-017', 'General Admission', '2025-06-01 16:10:33', 395.00, 'Credit Card', 1, 57, 67),
-('EAN-2025-10-018', 'Premium', '2025-05-05 12:35:45', 445.00, 'Debit Card', 1, 58, 68),
-('EAN-2025-10-019', 'VIP', '2025-05-18 17:50:20', 540.00, 'Credit Card', 1, 59, 69),
-('EAN-2025-10-020', 'General Admission', '2025-05-28 11:05:38', 395.00, 'Bank Transfer', 1, 60, 70);
+-- Creamfields 2025 (festival_id = 10, events 65-70)
+INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, is_activated, visitor_id, event_id, resale_buyer_queue_id, resale_seller_queue_id) VALUES
+('EAN-2025-10-001', 'VIP', '2025-04-10 09:15:30', 540.00, 'Credit Card', 0, 41, 65, NULL, NULL),
+('EAN-2025-10-002', 'General Admission', '2025-04-15 13:25:22', 395.00, 'Debit Card', 0, 42, 66, NULL, NULL),
+('EAN-2025-10-003', 'Early Bird', '2025-02-05 08:30:15', 345.00, 'Credit Card', 0, 43, 67, NULL, NULL),
+('EAN-2025-10-004', 'Premium', '2025-05-01 15:20:45', 445.00, 'Bank Transfer', 0, 44, 68, NULL, NULL),
+('EAN-2025-10-005', 'General Admission', '2025-05-05 11:10:33', 395.00, 'Credit Card', 0, 45, 69, NULL, NULL),
+('EAN-2025-10-006', 'VIP', '2025-04-20 14:25:18', 540.00, 'Debit Card', 0, 46, 70, NULL, NULL),
+('EAN-2025-10-007', 'Early Bird', '2025-02-10 09:45:20', 345.00, 'Credit Card', 0, 47, 70, NULL, NULL),
+('EAN-2025-10-008', 'General Admission', '2025-05-10 16:30:42', 395.00, 'Bank Transfer', 0, 48, 65, NULL, NULL),
+('EAN-2025-10-009', 'Premium', '2025-04-25 12:15:55', 445.00, 'Credit Card', 0, 49, 66, NULL, NULL),
+('EAN-2025-10-010', 'VIP', '2025-05-15 17:35:28', 540.00, 'Debit Card', 0, 50, 67, NULL, NULL),
+('EAN-2025-10-011', 'General Admission', '2025-05-20 10:50:15', 395.00, 'Credit Card', 0, 51, 68, NULL, NULL),
+('EAN-2025-10-012', 'Early Bird', '2025-02-15 08:40:30', 345.00, 'Bank Transfer', 0, 52, 69, NULL, NULL),
+('EAN-2025-10-013', 'Premium', '2025-04-18 13:55:22', 445.00, 'Credit Card', 0, 53, 70, NULL, NULL),
+('EAN-2025-10-014', 'General Admission', '2025-05-25 15:45:10', 395.00, 'Debit Card', 0, 54, 70, NULL, NULL),
+('EAN-2025-10-015', 'VIP', '2025-04-28 11:25:40', 540.00, 'Credit Card', 0, 55, 65, NULL, NULL),
+('EAN-2025-10-016', 'Early Bird', '2025-02-20 09:20:15', 345.00, 'Bank Transfer', 0, 56, 66, NULL, NULL),
+('EAN-2025-10-017', 'General Admission', '2025-06-01 16:10:33', 395.00, 'Credit Card', 0, 57, 67, NULL, NULL),
+('EAN-2025-10-018', 'Premium', '2025-05-05 12:35:45', 445.00, 'Debit Card', 0, 58, 68, NULL, NULL),
+('EAN-2025-10-019', 'VIP', '2025-05-18 17:50:20', 540.00, 'Credit Card', 0, 59, 69, NULL, NULL),
+('EAN-2025-10-020', 'General Admission', '2025-05-28 11:05:38', 395.00, 'Bank Transfer', 0, 60, 70, NULL, NULL);
 
 -- Inserting ratings for performances
 -- Each rating includes scores (1-5) for artist interpretation, sound/lighting, stage presence, organization, and overall impression
@@ -1878,281 +1876,195 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
 (5, 4, 5, 4, 5, 'Incredible performance! The energy was amazing.', '2020-04-15 14:23:45', 1, 1),
 (4, 5, 4, 3, 4, 'Great sound quality, but the organization could have been better.', '2020-04-16 10:35:12', 2, 2),
-(5, 5, 5, 5, 5, 'Best live performance I have ever seen!', '2020-04-15 22:12:33', 3, 3),
-(3, 4, 4, 3, 4, 'Good performance overall, but the sound was a bit off at times.', '2020-04-16 16:45:22', 4, 4),
-(4, 3, 5, 4, 4, 'Amazing stage presence, but lighting could have been better.', '2020-04-17 11:30:45', 5, 5),
-(5, 4, 4, 5, 5, 'Fantastic show! Very well organized.', '2020-04-17 20:22:18', 6, 6),
-(4, 4, 3, 4, 4, 'Solid performance, though I expected more stage presence.', '2020-04-18 08:45:30', 7, 7),
-(3, 5, 4, 4, 4, 'Great lighting effects! The artist was good but not exceptional.', '2020-04-18 15:15:40', 8, 8),
-(5, 5, 4, 3, 4, 'Incredible artist, but the venue was too crowded.', '2020-04-19 12:10:55', 9, 9),
-(4, 5, 5, 4, 5, 'One of the best performances of the festival!', '2020-04-19 17:05:23', 10, 10);
+(5, 5, 5, 5, 5, 'Best live performance I have ever seen!', '2020-04-15 22:12:33', 3, 4),
+(3, 4, 4, 3, 4, 'Good performance overall, but the sound was a bit off at times.', '2020-04-16 16:45:22', 4, 5),
+(4, 3, 5, 4, 4, 'Amazing stage presence, but lighting could have been better.', '2020-04-17 11:30:45', 5, 7),
+(5, 4, 4, 5, 5, 'Fantastic show! Very well organized.', '2020-04-17 20:22:18', 6, 8),
+(4, 4, 3, 4, 4, 'Solid performance, though I expected more stage presence.', '2020-04-18 08:45:30', 7, 9),
+(3, 5, 4, 4, 4, 'Great lighting effects! The artist was good but not exceptional.', '2020-04-18 15:15:40', 8, 10),
+(5, 5, 4, 3, 4, 'Incredible artist, but the venue was too crowded.', '2020-04-19 12:10:55', 9, 11),
+(4, 5, 5, 4, 5, 'One of the best performances of the festival!', '2020-04-19 17:05:23', 10, 12);
 
 -- Ratings for Glastonbury 2021 performances (festival_id = 2)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 5, 5, 4, 5, 'Absolutely phenomenal! The artist exceeded all expectations.', '2021-06-28 09:15:30', 21, 11),
-(4, 4, 5, 5, 5, 'Brilliant performance and excellent organization.', '2021-06-28 13:40:22', 22, 12),
-(5, 3, 4, 4, 4, 'Great interpretation but the sound system had some issues.', '2021-06-29 08:30:15', 23, 13),
-(3, 4, 3, 5, 4, 'Well organized event, but the performance was just average.', '2021-06-29 15:20:45', 24, 14),
-(4, 5, 4, 3, 4, 'Amazing sound and lighting, but crowd management was poor.', '2021-06-30 11:10:33', 25, 15),
-(5, 4, 5, 4, 5, 'Incredible energy from the artist! Truly memorable.', '2021-06-30 14:25:18', 26, 16),
-(4, 3, 4, 4, 4, 'Good performance overall, though the lighting could be improved.', '2021-07-01 09:45:20', 27, 17),
-(3, 5, 3, 5, 4, 'Excellent production value, but the artist seemed a bit off.', '2021-07-01 16:30:42', 28, 18),
-(5, 4, 5, 3, 4, 'Fantastic performance marred only by poor venue organization.', '2021-07-02 12:15:55', 29, 19),
-(4, 5, 4, 5, 5, 'One of the highlights of the festival! Everything was perfect.', '2021-07-02 17:35:28', 30, 20);
+(5, 5, 5, 4, 5, 'Absolutely phenomenal! The artist exceeded all expectations.', '2021-06-28 09:15:30', 21, 16),
+(4, 4, 5, 5, 5, 'Brilliant performance and excellent organization.', '2021-06-28 13:40:22', 22, 19),
+(5, 3, 4, 4, 4, 'Great interpretation but the sound system had some issues.', '2021-06-29 08:30:15', 23, 21),
+(3, 4, 3, 5, 4, 'Well organized event, but the performance was just average.', '2021-06-29 15:20:45', 24, 24),
+(4, 5, 4, 3, 4, 'Amazing sound and lighting, but crowd management was poor.', '2021-06-30 11:10:33', 25, 26),
+(5, 4, 5, 4, 5, 'Incredible energy from the artist! Truly memorable.', '2021-06-30 14:25:18', 26, 29),
+(4, 3, 4, 4, 4, 'Good performance overall, though the lighting could be improved.', '2021-07-01 09:45:20', 27, 31),
+(3, 5, 3, 5, 4, 'Excellent production value, but the artist seemed a bit off.', '2021-07-01 16:30:42', 28, 34),
+(5, 4, 5, 3, 4, 'Fantastic performance marred only by poor venue organization.', '2021-07-02 12:15:55', 29, 36),
+(4, 5, 4, 5, 5, 'One of the highlights of the festival! Everything was perfect.', '2021-07-02 17:35:28', 30, 39);
 
 -- Ratings for Lollapalooza 2021 performances (festival_id = 3)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(4, 4, 5, 4, 4, 'Great energy and stage presence! Really enjoyed it.', '2021-08-01 10:15:30', 41, 21),
-(5, 3, 4, 4, 4, 'The artist was amazing but the sound quality was inconsistent.', '2021-08-01 14:25:22', 42, 22),
-(3, 5, 3, 5, 4, 'Spectacular light show! The performance itself was decent.', '2021-08-02 09:30:15', 43, 23),
-(4, 4, 4, 3, 4, 'Solid performance overall, but the venue was too crowded.', '2021-08-02 16:20:45', 44, 24),
-(5, 5, 5, 4, 5, 'Absolutely incredible! Best performance of the festival.', '2021-08-03 12:10:33', 45, 25),
-(4, 5, 4, 5, 5, 'Excellent sound quality and very well organized.', '2021-08-03 15:25:18', 46, 26),
-(3, 4, 5, 4, 4, 'Amazing stage presence, though the sound was a bit off.', '2021-08-04 08:45:20', 47, 27),
-(5, 3, 4, 3, 4, 'The artist was brilliant but the lighting could have been better.', '2021-08-04 17:30:42', 48, 28),
-(4, 4, 3, 5, 4, 'Very well organized, but the performance lacked energy at times.', '2021-08-05 13:15:55', 49, 29),
-(5, 5, 4, 4, 5, 'Fantastic performance! Would definitely see them again.', '2021-08-05 18:35:28', 50, 30);
+(4, 4, 5, 4, 4, 'Great energy and stage presence! Really enjoyed it.', '2021-08-01 10:15:30', 41, 41),
+(5, 3, 4, 4, 4, 'The artist was amazing but the sound quality was inconsistent.', '2021-08-01 14:25:22', 42, 44),
+(3, 5, 3, 5, 4, 'Spectacular light show! The performance itself was decent.', '2021-08-02 09:30:15', 43, 46),
+(4, 4, 4, 3, 4, 'Solid performance overall, but the venue was too crowded.', '2021-08-02 16:20:45', 44, 49),
+(5, 5, 5, 4, 5, 'Absolutely incredible! Best performance of the festival.', '2021-08-03 12:10:33', 45, 51),
+(4, 5, 4, 5, 5, 'Excellent sound quality and very well organized.', '2021-08-03 15:25:18', 46, 54),
+(3, 4, 5, 4, 4, 'Amazing stage presence, though the sound was a bit off.', '2021-08-04 08:45:20', 47, 56),
+(5, 3, 4, 3, 4, 'The artist was brilliant but the lighting could have been better.', '2021-08-04 17:30:42', 48, 59),
+(4, 4, 3, 5, 4, 'Very well organized, but the performance lacked energy at times.', '2021-08-05 13:15:55', 49, 42),
+(5, 5, 4, 4, 5, 'Fantastic performance! Would definitely see them again.', '2021-08-05 18:35:28', 50, 45);
 
 -- Ratings for Fuji Rock 2022 performances (festival_id = 4)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 4, 5, 5, 5, 'Perfect in every way! The artist was incredible and the organization flawless.', '2022-07-30 09:15:30', 61, 31),
-(4, 5, 4, 4, 4, 'Great sound and lighting effects. Very enjoyable performance.', '2022-07-30 13:25:22', 62, 32),
-(3, 3, 4, 5, 4, 'Well organized event, but the performance was just average.', '2022-07-31 08:30:15', 63, 33),
-(5, 4, 3, 4, 4, 'Excellent interpretation, though stage presence could be improved.', '2022-07-31 15:20:45', 64, 34),
-(4, 5, 5, 3, 4, 'Amazing performance, but there were some organizational issues.', '2022-08-01 11:10:33', 65, 35),
-(5, 5, 4, 5, 5, 'One of the best concerts Ive ever attended! Everything was perfect.', '2022-08-01 14:25:18', 66, 36),
-(3, 4, 5, 4, 4, 'Great stage presence and energy, but sound quality was inconsistent.', '2022-08-02 09:45:20', 67, 37),
-(4, 3, 4, 5, 4, 'Very well organized, but the lighting could have been better.', '2022-08-02 16:30:42', 68, 38),
-(5, 5, 3, 4, 4, 'Brilliant sound and artist interpretation, though lacking in stage presence.', '2022-08-03 12:15:55', 69, 39),
-(4, 4, 5, 5, 5, 'Fantastic all around! A truly memorable experience.', '2022-08-03 17:35:28', 70, 40);
+(5, 4, 5, 5, 5, 'Perfect in every way! The artist was incredible and the organization flawless.', '2022-07-30 09:15:30', 61, 61),
+(4, 5, 4, 4, 4, 'Great sound and lighting effects. Very enjoyable performance.', '2022-07-30 13:25:22', 62, 64),
+(3, 3, 4, 5, 4, 'Well organized event, but the performance was just average.', '2022-07-31 08:30:15', 63, 66),
+(5, 4, 3, 4, 4, 'Excellent interpretation, though stage presence could be improved.', '2022-07-31 15:20:45', 64, 69),
+(4, 5, 5, 3, 4, 'Amazing performance, but there were some organizational issues.', '2022-08-01 11:10:33', 65, 71),
+(5, 5, 4, 5, 5, 'One of the best concerts Ive ever attended! Everything was perfect.', '2022-08-01 14:25:18', 66, 74),
+(3, 4, 5, 4, 4, 'Great stage presence and energy, but sound quality was inconsistent.', '2022-08-02 09:45:20', 67, 62),
+(4, 3, 4, 5, 4, 'Very well organized, but the lighting could have been better.', '2022-08-02 16:30:42', 68, 65),
+(5, 5, 3, 4, 4, 'Brilliant sound and artist interpretation, though lacking in stage presence.', '2022-08-03 12:15:55', 69, 67),
+(4, 4, 5, 5, 5, 'Fantastic all around! A truly memorable experience.', '2022-08-03 17:35:28', 70, 70);
 
 -- Ratings for Primavera Sound 2022 performances (festival_id = 5)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(4, 5, 4, 4, 4, 'Great performance with excellent sound quality.', '2022-06-03 10:15:30', 81, 41),
-(5, 4, 5, 3, 4, 'The artist was amazing but the organization was a bit chaotic.', '2022-06-03 14:25:22', 82, 42),
-(3, 3, 4, 5, 4, 'Well organized but the performance was somewhat underwhelming.', '2022-06-04 09:30:15', 83, 43),
-(4, 5, 3, 4, 4, 'Excellent sound and lighting, though stage presence was lacking.', '2022-06-04 16:20:45', 84, 44),
-(5, 4, 5, 5, 5, 'Absolutely perfect! One of the highlights of the festival.', '2022-06-05 12:10:33', 85, 45),
-(4, 3, 4, 4, 4, 'Good performance overall, but the sound system had some issues.', '2022-06-05 15:25:18', 86, 46),
-(5, 5, 3, 3, 4, 'Amazing sound and artist interpretation, but poor organization.', '2022-06-06 08:45:20', 87, 47),
-(3, 4, 5, 5, 4, 'Incredible stage presence and energy! Very well organized too.', '2022-06-06 17:30:42', 88, 48),
-(4, 5, 4, 4, 4, 'Great sound quality and solid performance throughout.', '2022-06-07 13:15:55', 89, 49),
-(5, 4, 5, 3, 4, 'Brilliant artist, though the venue management could be improved.', '2022-06-07 18:35:28', 90, 50);
+(4, 5, 4, 4, 4, 'Great performance with excellent sound quality.', '2022-07-31 16:50:00', 81, 76),
+(5, 4, 5, 3, 4, 'The artist was amazing but the organization was a bit chaotic.', '2022-06-03 14:25:22', 82, 79),
+(3, 3, 4, 5, 4, 'Well organized but the performance was somewhat underwhelming.', '2022-06-04 09:30:15', 83, 81),
+(4, 5, 3, 4, 4, 'Excellent sound and lighting, though stage presence was lacking.', '2022-06-04 16:20:45', 84, 84),
+(5, 4, 5, 5, 5, 'Absolutely perfect! One of the highlights of the festival.', '2022-06-05 12:10:33', 85, 86),
+(4, 3, 4, 4, 4, 'Good performance overall, but the sound system had some issues.', '2022-06-05 15:25:18', 86, 89),
+(5, 5, 3, 3, 4, 'Amazing sound and artist interpretation, but poor organization.', '2022-06-06 08:45:20', 87, 77),
+(3, 4, 5, 5, 4, 'Incredible stage presence and energy! Very well organized too.', '2022-06-06 17:30:42', 88, 80),
+(4, 5, 4, 4, 4, 'Great sound quality and solid performance throughout.', '2022-06-07 13:15:55', 89, 82),
+(5, 4, 5, 3, 4, 'Brilliant artist, though the venue management could be improved.', '2022-06-07 18:35:28', 90, 85);
 
 -- Ratings for Rock am Ring 2023 performances (festival_id = 6)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 5, 5, 4, 5, 'Absolutely phenomenal performance! The energy was electric.', '2023-06-04 09:15:30', 101, 51),
-(4, 3, 4, 5, 4, 'Well organized event with a good performance, though sound was mediocre.', '2023-06-04 13:25:22', 102, 52),
-(3, 4, 5, 4, 4, 'Amazing stage presence, but the artists interpretation was just okay.', '2023-06-05 08:30:15', 103, 53),
-(5, 5, 3, 3, 4, 'Excellent sound and artist, but stage presence and organization were lacking.', '2023-06-05 15:20:45', 104, 54),
-(4, 4, 4, 5, 4, 'Solid performance all around. Very well organized event.', '2023-06-06 11:10:33', 105, 55),
-(5, 3, 5, 4, 4, 'Incredible artist and stage presence, but sound quality issues.', '2023-06-06 14:25:18', 106, 56),
-(3, 5, 4, 5, 4, 'Excellent sound and lighting effects. Well organized but the artist was average.', '2023-06-07 09:45:20', 107, 57),
-(4, 4, 3, 4, 4, 'Good performance overall, though lacking in stage presence.', '2023-06-07 16:30:42', 108, 58),
-(5, 5, 5, 3, 5, 'One of the best performances Ive seen, despite organizational issues.', '2023-06-08 12:15:55', 109, 59),
-(4, 5, 4, 5, 5, 'Fantastic experience! Great sound and very well organized.', '2023-06-08 17:35:28', 110, 60);
+(5, 5, 5, 4, 5, 'Absolutely phenomenal performance! The energy was electric.', '2023-06-04 09:15:30', 101, 91),
+(4, 3, 4, 5, 4, 'Well organized event with a good performance, though sound was mediocre.', '2023-06-04 13:25:22', 102, 94),
+(3, 4, 5, 4, 4, 'Amazing stage presence, but the artists interpretation was just okay.', '2023-06-05 08:30:15', 103, 96),
+(5, 5, 3, 3, 4, 'Excellent sound and artist, but stage presence and organization were lacking.', '2023-06-05 15:20:45', 104, 99),
+(4, 4, 4, 5, 4, 'Solid performance all around. Very well organized event.', '2023-06-06 11:10:33', 105, 101),
+(5, 3, 5, 4, 4, 'Incredible artist and stage presence, but sound quality issues.', '2023-06-06 14:25:18', 106, 104),
+(3, 5, 4, 5, 4, 'Excellent sound and lighting effects. Well organized but the artist was average.', '2023-06-07 09:45:20', 107, 92),
+(4, 4, 3, 4, 4, 'Good performance overall, though lacking in stage presence.', '2023-06-07 16:30:42', 108, 95),
+(5, 5, 5, 3, 5, 'One of the best performances Ive seen, despite organizational issues.', '2023-06-08 12:15:55', 109, 97),
+(4, 5, 4, 5, 5, 'Fantastic experience! Great sound and very well organized.', '2023-06-08 17:35:28', 110, 100);
 
 -- Ratings for Woodstock Revival 2023 performances (festival_id = 7)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(4, 4, 5, 4, 4, 'Great energy and stage presence! Really enjoyed the show.', '2023-08-20 10:15:30', 121, 61),
-(5, 5, 4, 3, 4, 'Brilliant artist and sound, but the venue was too crowded.', '2023-08-20 14:25:22', 122, 62),
-(3, 4, 3, 5, 4, 'Very well organized, but the performance was somewhat mediocre.', '2023-08-21 09:30:15', 123, 63),
-(4, 3, 5, 4, 4, 'Amazing stage presence, though the sound quality could be better.', '2023-08-21 16:20:45', 124, 64),
-(5, 5, 4, 5, 5, 'Perfect in every way! One of the highlights of the festival.', '2023-08-22 12:10:33', 125, 65),
-(4, 4, 3, 4, 4, 'Solid performance, but I expected more stage presence.', '2023-08-22 15:25:18', 126, 66),
-(3, 5, 5, 3, 4, 'Incredible stage presence and lighting, but poor organization.', '2023-08-23 08:45:20', 127, 67),
-(5, 3, 4, 5, 4, 'The artist was amazing and the event was well organized, but sound issues.', '2023-08-23 17:30:42', 128, 68),
-(4, 4, 5, 4, 4, 'Great performance with lots of energy and good organization.', '2023-08-24 13:15:55', 129, 69),
-(5, 5, 3, 3, 4, 'Excellent artist and sound, but lacking in stage presence and organization.', '2023-08-24 18:35:28', 130, 70);
+(4, 4, 5, 4, 4, 'Great energy and stage presence! Really enjoyed the show.', '2023-08-20 10:15:30', 121, 106),
+(5, 5, 4, 3, 4, 'Brilliant artist and sound, but the venue was too crowded.', '2023-08-20 14:25:22', 122, 109),
+(3, 4, 3, 5, 4, 'Very well organized, but the performance was somewhat mediocre.', '2023-08-21 09:30:15', 123, 111),
+(4, 3, 5, 4, 4, 'Amazing stage presence, though the sound quality could be better.', '2023-08-21 16:20:45', 124, 114),
+(5, 5, 4, 5, 5, 'Perfect in every way! One of the highlights of the festival.', '2023-08-22 12:10:33', 125, 116),
+(4, 4, 3, 4, 4, 'Solid performance, but I expected more stage presence.', '2023-08-22 15:25:18', 126, 119),
+(3, 5, 5, 3, 4, 'Incredible stage presence and lighting, but poor organization.', '2023-08-23 08:45:20', 127, 121),
+(5, 3, 4, 5, 4, 'The artist was amazing and the event was well organized, but sound issues.', '2023-08-23 17:30:42', 128, 124),
+(4, 4, 5, 4, 4, 'Great performance with lots of energy and good organization.', '2023-08-24 13:15:55', 129, 107),
+(5, 5, 3, 3, 4, 'Excellent artist and sound, but lacking in stage presence and organization.', '2023-08-24 18:35:28', 130, 110);
 
 -- Ratings for Boom Festival 2024 performances (festival_id = 8)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 4, 5, 5, 5, 'Absolutely incredible! The perfect festival experience.', '2024-07-25 09:15:30', 1, 71),
-(4, 5, 4, 4, 4, 'Great sound and lighting with a solid performance.', '2024-07-25 13:25:22', 2, 72),
-(3, 3, 5, 4, 4, 'Amazing stage presence, but the sound and interpretation were average.', '2024-07-26 08:30:15', 3, 73),
-(5, 4, 3, 3, 4, 'Excellent artist, but stage presence and organization could be improved.', '2024-07-26 15:20:45', 4, 74),
-(4, 5, 4, 5, 5, 'Fantastic experience! Great sound and very well organized.', '2024-07-27 11:10:33', 5, 75),
-(5, 3, 5, 4, 4, 'Incredible artist and stage presence, though sound quality was inconsistent.', '2024-07-27 14:25:18', 6, 76),
-(3, 4, 4, 5, 4, 'Well organized with good performance, but nothing exceptional.', '2024-07-28 09:45:20', 7, 77),
-(4, 5, 3, 4, 4, 'Excellent sound and lighting, though lacking in stage presence.', '2024-07-28 16:30:42', 8, 78),
-(5, 4, 5, 3, 4, 'Amazing artist and stage presence, but organizational issues.', '2024-07-29 12:15:55', 9, 79),
-(4, 5, 4, 5, 5, 'One of the best performances of the festival! Everything was great.', '2024-07-29 17:35:28', 10, 80);
+(5, 4, 5, 5, 5, 'Absolutely incredible! The perfect festival experience.', '2024-07-25 09:15:30', 131, 112),
+(4, 5, 4, 4, 4, 'Great sound and lighting with a solid performance.', '2024-07-25 13:25:22', 132, 114),
+(3, 3, 5, 4, 4, 'Amazing stage presence, but the sound and interpretation were average.', '2024-07-26 08:30:15', 133, 118),
+(5, 4, 3, 3, 4, 'Excellent artist, but stage presence and organization could be improved.', '2024-07-26 15:20:45', 134, 120),
+(4, 5, 4, 5, 5, 'Fantastic experience! Great sound and very well organized.', '2024-07-27 11:10:33', 135, 122),
+(5, 3, 5, 4, 4, 'Incredible artist and stage presence, though sound quality was inconsistent.', '2024-07-27 14:25:18', 136, 125),
+(3, 4, 4, 5, 4, 'Well organized with good performance, but nothing exceptional.', '2024-07-28 09:45:20', 137, 108),
+(4, 5, 3, 4, 4, 'Excellent sound and lighting, though lacking in stage presence.', '2024-07-28 16:30:42', 138, 109),
+(5, 4, 5, 3, 4, 'Amazing artist and stage presence, but organizational issues.', '2024-07-29 12:15:55', 139, 113),
+(4, 5, 4, 5, 5, 'One of the best performances of the festival! Everything was great.', '2024-07-29 17:35:28', 140, 115);
 
--- Ratings for Ultra Music Festival 2025 performances (festival_id = 9)
--- Note: These are future performances, so ratings would be added after the events
-INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 5, 5, 4, 5, 'Mind-blowing performance! The artist was incredible.', '2025-03-30 10:15:30', 21, 81),
-(4, 5, 4, 5, 5, 'Excellent sound and very well organized. Great experience!', '2025-03-30 14:25:22', 22, 82),
-(5, 3, 5, 4, 4, 'Amazing artist and stage presence, but sound issues.', '2025-03-31 09:30:15', 23, 83),
-(3, 4, 4, 3, 3, 'Decent performance, but both sound and organization could be better.', '2025-03-31 16:20:45', 24, 84),
-(4, 5, 3, 5, 4, 'Great sound and organization, though stage presence was lacking.', '2025-04-01 12:10:33', 25, 85),
-(5, 4, 5, 4, 5, 'Fantastic performance with amazing energy! Really enjoyed it.', '2025-04-01 15:25:18', 26, 86),
-(4, 3, 4, 5, 4, 'Well organized with good artist interpretation, but sound issues.', '2025-04-02 08:45:20', 27, 87),
-(3, 5, 5, 4, 4, 'Incredible stage presence and lighting, but the artist was just okay.', '2025-04-02 17:30:42', 28, 88),
-(5, 4, 3, 3, 4, 'Brilliant artist, but lacking in stage presence and organization.', '2025-04-03 13:15:55', 29, 89),
-(4, 5, 4, 5, 5, 'One of the highlights of the festival! Everything was perfect.', '2025-04-03 18:35:28', 30, 90);
 
--- Ratings for Creamfields 2025 performances (festival_id = 10)
--- Note: These are future performances, so ratings would be added after the events
-INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(4, 4, 5, 4, 4, 'Great energy and stage presence! Really enjoyed the show.', '2025-08-25 10:15:30', 41, 91),
-(5, 5, 4, 5, 5, 'Absolutely perfect! One of the best performances Ive seen.', '2025-08-25 14:25:22', 42, 92),
-(3, 4, 3, 4, 3, 'Decent performance, but nothing special.', '2025-08-26 09:30:15', 43, 93),
-(4, 3, 5, 3, 4, 'Amazing stage presence, but sound quality and organization were poor.', '2025-08-26 16:20:45', 44, 94),
-(5, 5, 4, 5, 5, 'Incredible performance and flawless organization! Loved every minute.', '2025-08-27 12:10:33', 45, 95),
-(4, 4, 3, 4, 4, 'Solid performance overall, though lacking in stage presence.', '2025-08-27 15:25:18', 46, 96),
-(3, 5, 5, 5, 4, 'Excellent stage presence and organization. Sound was amazing too.', '2025-08-28 08:45:20', 47, 97),
-(5, 3, 4, 4, 4, 'Great artist, but the sound system had some issues.', '2025-08-28 17:30:42', 48, 98),
-(4, 4, 5, 3, 4, 'Amazing energy and stage presence, but organizational problems.', '2025-08-29 13:15:55', 49, 99),
-(5, 5, 4, 5, 5, 'Perfect end to the festival! Everything was exceptional.', '2025-08-29 18:35:28', 50, 100);
 
--- Additional ratings
-INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(4, 5, 4, 3, 4, 'Great sound but the venue was too crowded.', '2020-04-16 18:23:45', 11, 1),
-(5, 4, 5, 4, 5, 'One of the best performances Ive ever seen!', '2020-04-17 11:35:12', 12, 2),
-(3, 3, 4, 5, 4, 'Well organized but the artist was just okay.', '2020-04-15 23:12:33', 13, 3),
-(4, 5, 3, 4, 4, 'Great sound and lighting, but lacking stage presence.', '2020-04-16 17:45:22', 14, 4),
-(5, 4, 5, 3, 4, 'Amazing performance despite organizational issues.', '2020-04-17 12:30:45', 15, 5),
-(4, 3, 4, 5, 4, 'Good overall, very well organized event.', '2020-04-17 21:22:18', 16, 6),
-(3, 5, 5, 4, 4, 'Incredible stage presence and lighting effects!', '2020-04-18 09:45:30', 17, 7),
-(5, 4, 3, 3, 4, 'Great artist but poor organization and stage presence.', '2020-04-18 16:15:40', 18, 8),
-(4, 5, 4, 5, 5, 'Fantastic all around! A truly memorable experience.', '2020-04-19 13:10:55', 19, 9),
-(3, 4, 5, 4, 4, 'Amazing energy but sound quality was inconsistent.', '2020-04-19 18:05:23', 20, 10),
-(5, 3, 4, 3, 4, 'Great interpretation but poor sound and organization.', '2021-06-28 10:15:30', 31, 11),
-(4, 5, 3, 5, 4, 'Excellent sound and organization, though stage presence was lacking.', '2021-06-28 14:40:22', 32, 12),
-(3, 4, 5, 4, 4, 'Amazing stage presence but the artists interpretation was average.', '2021-06-29 09:30:15', 33, 13),
-(5, 5, 4, 3, 4, 'Brilliant sound and artist, but organizational issues.', '2021-06-29 16:20:45', 34, 14),
-(4, 3, 3, 5, 4, 'Well organized but both sound and stage presence were mediocre.', '2021-06-30 12:10:33', 35, 15),
-(3, 4, 5, 4, 4, 'Great energy and stage presence, but sound quality issues.', '2021-06-30 15:25:18', 36, 16),
-(5, 5, 4, 3, 4, 'Excellent artist and sound, but poor organization.', '2021-07-01 10:45:20', 37, 17),
-(4, 3, 3, 5, 4, 'Well organized but the performance was somewhat underwhelming.', '2021-07-01 17:30:42', 38, 18),
-(3, 4, 5, 4, 4, 'Amazing stage presence and energy, but average sound quality.', '2021-07-02 13:15:55', 39, 19),
-(5, 5, 4, 3, 4, 'Brilliant sound and artist, but organizational issues.', '2021-07-02 18:35:28', 40, 20);
 
--- Inserting data into RESALE_BUYER_QUEUE
--- These are visitors interested in buying resale tickets for specific categories
+-- Inserting data into RESALE_BUYER_QUEUE table
+-- Includes both cases: 
+-- 1. Interest in a specific performance and ticket category
+-- 2. Interest in a specific ticket that is available for sale
 
-INSERT INTO RESALE_BUYER_QUEUE (interest_date, ticket_category, visitor_id) VALUES
--- Buyers interested in VIP tickets
-('2024-02-15 09:23:45', 'VIP', 61),
-('2024-02-16 14:35:12', 'VIP', 62),
-('2024-02-18 10:12:33', 'VIP', 63),
-('2024-02-20 16:45:22', 'VIP', 64),
-('2024-02-22 11:30:45', 'VIP', 65),
+-- Case 1: Buyers interested in a specific performance and ticket category
+-- Only for future festivals (Ultra Music Festival 2025 and Creamfields 2025)
 
--- Buyers interested in General Admission tickets
-('2024-02-14 13:22:18', 'General Admission', 66),
-('2024-02-17 08:45:30', 'General Admission', 67),
-('2024-02-19 15:15:40', 'General Admission', 68),
-('2024-02-21 12:10:55', 'General Admission', 69),
-('2024-02-23 17:05:23', 'General Admission', 70),
+INSERT INTO RESALE_BUYER_QUEUE (interest_date, ticket_category, event_id, ticket_id, visitor_id, is_processed) VALUES
+-- Buyers interested in VIP tickets for specific performances
+('2024-12-15 09:23:45', 'VIP', 64, NULL, 61, FALSE),
+('2024-12-16 14:35:12', 'VIP', 64, NULL, 62, FALSE),
+('2024-12-18 10:12:33', 'VIP', 61, NULL, 63, FALSE),
+('2024-12-20 16:45:22', 'VIP', 62, NULL, 64, FALSE),
+('2025-01-22 11:30:45', 'VIP', 62, NULL, 65, FALSE),
 
--- Buyers interested in Premium tickets
-('2024-02-15 10:33:42', 'Premium', 71),
-('2024-02-17 09:25:18', 'Premium', 72),
-('2024-02-19 14:40:33', 'Premium', 73),
-('2024-02-21 16:20:15', 'Premium', 74),
-('2024-02-23 11:15:50', 'Premium', 75),
+-- Buyers interested in General Admission tickets for specific performances
+('2024-12-14 13:22:18', 'General Admission', 60, NULL, 66, FALSE),
+('2024-12-17 08:45:30', 'General Admission', 66, NULL, 67, FALSE),
+('2024-12-19 15:15:40', 'General Admission', 66, NULL, 68, FALSE),
+('2025-01-21 12:10:55', 'General Admission', 67, NULL, 69, FALSE),
+('2025-01-23 17:05:23', 'General Admission', 68, NULL, 70, FALSE),
 
--- Buyers interested in Early Bird tickets
-('2024-02-14 08:55:25', 'Early Bird', 76),
-('2024-02-16 15:30:10', 'Early Bird', 77),
-('2024-02-18 13:45:38', 'Early Bird', 78),
-('2024-02-20 17:25:12', 'Early Bird', 79),
-('2024-02-22 12:50:30', 'Early Bird', 80),
+-- Buyers interested in Premium tickets for specific performances
+('2024-12-15 10:33:42', 'Premium', 59, NULL, 71, FALSE),
+('2024-12-17 09:25:18', 'Premium', 62, NULL, 72, FALSE),
+('2025-01-19 14:40:33', 'Premium', 62, NULL, 73, FALSE),
+('2025-01-21 16:20:15', 'Premium', 70, NULL, 74, FALSE),
+('2025-01-23 11:15:50', 'Premium', 62, NULL, 75, FALSE),
 
--- Buyers interested in Backstage tickets
-('2024-02-15 09:15:30', 'Backstage', 81),
-('2024-02-17 13:40:22', 'Backstage', 82),
-('2024-02-19 08:30:15', 'Backstage', 83),
-('2024-02-21 15:20:45', 'Backstage', 84),
-('2024-02-23 11:10:33', 'Backstage', 85),
+-- Buyers interested in Early Bird tickets for specific performances
+('2024-12-14 08:55:25', 'Early Bird', 60, NULL, 76, FALSE),
+('2024-12-16 15:30:10', 'Early Bird', 62, NULL, 77, FALSE),
+('2024-12-18 13:45:38', 'Early Bird', 64, NULL, 78, FALSE),
+('2025-01-20 17:25:12', 'Early Bird', 65, NULL, 79, FALSE),
+('2025-01-22 12:50:30', 'Early Bird', 70, NULL, 80, FALSE);
 
--- Buyers for Ultra Music Festival 2025 (future festival)
-('2025-01-10 14:25:18', 'VIP', 86),
-('2025-01-12 09:45:20', 'General Admission', 87),
-('2025-01-14 16:30:42', 'Premium', 88),
-('2025-01-16 12:15:55', 'Early Bird', 89),
-('2025-01-18 17:35:28', 'Backstage', 90),
 
--- Buyers for Creamfields 2025 (future festival)
-('2025-03-05 10:50:15', 'VIP', 91),
-('2025-03-07 08:40:30', 'General Admission', 92),
-('2025-03-09 13:55:22', 'Premium', 93),
-('2025-03-11 15:45:10', 'Early Bird', 94),
-('2025-03-13 11:25:40', 'Backstage', 95),
-
--- Additional buyers with various interests
-('2024-02-24 09:20:15', 'VIP', 96),
-('2024-02-25 16:10:33', 'General Admission', 97),
-('2024-02-26 12:35:45', 'Premium', 98),
-('2024-02-27 17:50:20', 'Early Bird', 99),
-('2024-02-28 11:05:38', 'Backstage', 100);
 
 -- Inserting data into RESALE_SELLER_QUEUE
--- These are visitors who want to sell their tickets
--- Note: We're assuming some tickets have is_activated = 0 for this purpose
+-- These are visitors who want to sell their tickets for future festivals
+-- Only non-activated tickets (is_activated = 0) can be resold
 
--- First, let's update some tickets to be non-activated for resale purposes
-UPDATE TICKET SET is_activated = 0 WHERE ticket_id IN (
-  101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
-  111, 112, 113, 114, 115, 116, 117, 118, 119, 120,
-  121, 122, 123, 124, 125, 126, 127, 128, 129, 130,
-  131, 132, 133, 134, 135, 136, 137, 138, 139, 140
-);
 
--- Now insert the resale listings
-INSERT INTO RESALE_SELLER_QUEUE (listing_date, visitor_id, ticket_id) VALUES
--- Sellers for Boom Festival 2024 tickets
-('2024-05-10 09:23:45', 1, 101),
-('2024-05-12 14:35:12', 2, 102),
-('2024-05-14 10:12:33', 3, 103),
-('2024-05-16 16:45:22', 4, 104),
-('2024-05-18 11:30:45', 5, 105),
+-- Sellers for Ultra Music Festival 2025 (festival_id = 9)
+INSERT INTO RESALE_SELLER_QUEUE (listing_date, visitor_id, ticket_id, is_processed) VALUES
+('2025-01-15 13:22:18', 21, 161, FALSE), -- Ticket for event_id 59, VIP
+('2025-01-29 14:40:33', 28, 168, FALSE), -- Ticket for event_id 60, General Admission
+('2025-01-19 15:15:40', 23, 163, FALSE), -- Ticket for event_id 61, Early Bird
+('2025-01-21 12:10:55', 24, 164, FALSE), -- Ticket for event_id 62, Premium
+('2025-01-23 17:05:23', 25, 165, FALSE), -- Ticket for event_id 63, General Admission
+('2025-01-25 10:33:42', 26, 166, FALSE), -- Ticket for event_id 64, VIP
+('2025-01-27 09:25:18', 27, 167, FALSE), -- Ticket for event_id 59, Early Bird
+('2025-01-17 08:45:30', 22, 162, FALSE), -- Ticket for event_id 60, General Admission
+('2025-01-31 16:20:15', 29, 169, FALSE), -- Ticket for event_id 61, Premium
+('2025-02-02 11:15:50', 30, 170, FALSE); -- Ticket for event_id 62, VIP
 
--- Sellers for Ultra Music Festival 2025 tickets
-('2025-01-15 13:22:18', 21, 106),
-('2025-01-17 08:45:30', 22, 107),
-('2025-01-19 15:15:40', 23, 108),
-('2025-01-21 12:10:55', 24, 109),
-('2025-01-23 17:05:23', 25, 110),
+-- Sellers for Creamfields 2025 (festival_id = 10)
+INSERT INTO RESALE_SELLER_QUEUE (listing_date, visitor_id, ticket_id, is_processed) VALUES
+('2025-04-05 10:33:42', 41, 181, FALSE), -- Ticket for event_id 65, VIP
+('2025-04-07 09:25:18', 42, 182, FALSE), -- Ticket for event_id 66, General Admission
+('2025-04-09 14:40:33', 43, 183, FALSE), -- Ticket for event_id 67, Early Bird
+('2025-04-11 16:20:15', 44, 184, FALSE), -- Ticket for event_id 68, Premium
+('2025-04-13 11:15:50', 45, 185, FALSE), -- Ticket for event_id 69, General Admission
+('2025-04-15 09:20:15', 46, 186, FALSE), -- Ticket for event_id 70, VIP
+('2025-04-17 16:10:33', 47, 187, FALSE), -- Ticket for event_id 70, Early Bird
+('2025-04-19 12:35:45', 48, 188, FALSE), -- Ticket for event_id 65, General Admission
+('2025-04-21 17:50:20', 49, 189, FALSE), -- Ticket for event_id 66, Premium
+('2025-04-23 11:05:38', 50, 190, FALSE); -- Ticket for event_id 67, VIP
 
--- Sellers for Creamfields 2025 tickets
-('2025-04-05 10:33:42', 41, 111),
-('2025-04-07 09:25:18', 42, 112),
-('2025-04-09 14:40:33', 43, 113),
-('2025-04-11 16:20:15', 44, 114),
-('2025-04-13 11:15:50', 45, 115),
 
--- Sellers for Rock am Ring 2023 tickets (past festival)
-('2023-04-14 08:55:25', 101, 116),
-('2023-04-16 15:30:10', 102, 117),
-('2023-04-18 13:45:38', 103, 118),
-('2023-04-20 17:25:12', 104, 119),
-('2023-04-22 12:50:30', 105, 120),
 
--- Sellers for Woodstock Revival 2023 tickets (past festival)
-('2023-06-15 09:15:30', 121, 121),
-('2023-06-17 13:40:22', 122, 122),
-('2023-06-19 08:30:15', 123, 123),
-('2023-06-21 15:20:45', 124, 124),
-('2023-06-23 11:10:33', 125, 125),
+-- Case 2: Buyers interested in specific tickets that are available for resale
+-- These tickets must already be in the resale queue (RESALE_SELLER_QUEUE)
 
--- Additional sellers for various festivals
-('2024-05-20 14:25:18', 6, 126),
-('2024-05-22 09:45:20', 7, 127),
-('2024-05-24 16:30:42', 8, 128),
-('2024-05-26 12:15:55', 9, 129),
-('2024-05-28 17:35:28', 10, 130),
+INSERT INTO RESALE_BUYER_QUEUE (interest_date, ticket_category, event_id, ticket_id, visitor_id, is_processed) VALUES
+-- Buyers interested in specific tickets for Ultra Music Festival 2025
+('2025-01-10 14:25:18', NULL, NULL, 161, 81, FALSE), -- Interest in the specific VIP ticket for event_id 59
+('2025-01-12 09:45:20', NULL, NULL, 163, 82, FALSE), -- Interest in the specific Early Bird ticket for event_id 61
+('2025-01-14 16:30:42', NULL, NULL, 165, 83, FALSE), -- Interest in the specific General Admission ticket for event_id 63
+('2025-01-16 12:15:55', NULL, NULL, 167, 84, FALSE), -- Interest in the specific Early Bird ticket for event_id 59
+('2025-01-18 17:35:28', NULL, NULL, 169, 85, FALSE), -- Interest in the specific Premium ticket for event_id 61
 
-('2025-01-25 10:50:15', 26, 131),
-('2025-01-27 08:40:30', 27, 132),
-('2025-01-29 13:55:22', 28, 133),
-('2025-01-31 15:45:10', 29, 134),
-('2025-02-02 11:25:40', 30, 135),
-
-('2025-04-15 09:20:15', 46, 136),
-('2025-04-17 16:10:33', 47, 137),
-('2025-04-19 12:35:45', 48, 138),
-('2025-04-21 17:50:20', 49, 139),
-('2025-04-23 11:05:38', 50, 140);
+-- Buyers interested in specific tickets for Creamfields 2025
+('2025-03-05 10:50:15', NULL, NULL, 181, 86, FALSE), -- Interest in the specific VIP ticket for event_id 65
+('2025-03-07 08:40:30', NULL, NULL, 183, 87, FALSE), -- Interest in the specific Early Bird ticket for event_id 67
+('2025-03-09 13:55:22', NULL, NULL, 185, 88, FALSE), -- Interest in the specific General Admission ticket for event_id 69
+('2025-03-11 15:45:10', NULL, NULL, 187, 89, FALSE), -- Interest in the specific Early Bird ticket for event_id 70
+('2025-03-13 11:25:40', NULL, NULL, 189, 90, FALSE); -- Interest in the specific Premium ticket for event_id 66

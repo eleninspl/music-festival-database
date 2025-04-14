@@ -291,6 +291,8 @@ CREATE TABLE IF NOT EXISTS `TICKET` (
   `is_activated` TINYINT NOT NULL,
   `visitor_id` INT NOT NULL,
   `event_id` INT NOT NULL,
+  `resale_buyer_queue_id` INT NULL,
+  `resale_seller_queue_id` INT NULL,
   PRIMARY KEY (`ticket_id`),
   CONSTRAINT `fk_ticket_visitor`
     FOREIGN KEY (`visitor_id`)
@@ -310,7 +312,7 @@ CREATE INDEX `event_id_idx` ON `TICKET` (`event_id` ASC) VISIBLE;
 
 CREATE UNIQUE INDEX `EAN_code_UNIQUE` ON `TICKET` (`EAN_code` ASC) VISIBLE;
 
-CREATE UNIQUE INDEX `unique_visitor_event` USING BTREE ON `TICKET` (`visitor_id`, `event_id`) VISIBLE;
+--CREATE UNIQUE INDEX `unique_visitor_event` USING BTREE ON `TICKET` (`visitor_id`, `event_id`) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -357,17 +359,32 @@ DROP TABLE IF EXISTS `RESALE_BUYER_QUEUE` ;
 CREATE TABLE IF NOT EXISTS `RESALE_BUYER_QUEUE` (
   `queue_id` INT NOT NULL AUTO_INCREMENT,
   `interest_date` DATETIME NOT NULL,
-  `ticket_category` VARCHAR(50) NOT NULL,
+  `ticket_category` VARCHAR(50) NULL,
+  `event_id` INT NULL,
+  `ticket_id` INT NULL,
   `visitor_id` INT NOT NULL,
   PRIMARY KEY (`queue_id`),
   CONSTRAINT `fk_resale_buyer_queue_visitor`
     FOREIGN KEY (`visitor_id`)
     REFERENCES `VISITOR` (`visitor_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_resale_buyer_queue_event`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `EVENT` (`event_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_resale_buyer_queue_ticket`
+    FOREIGN KEY (`ticket_id`)
+    REFERENCES `TICKET` (`ticket_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 CREATE INDEX `visitor_id_idx` ON `RESALE_BUYER_QUEUE` (`visitor_id` ASC) VISIBLE;
+CREATE INDEX `event_id_idx` ON `RESALE_BUYER_QUEUE` (`event_id` ASC) VISIBLE;
+CREATE INDEX `ticket_id_idx` ON `RESALE_BUYER_QUEUE` (`ticket_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -399,6 +416,8 @@ CREATE INDEX `ticket_id_idx` ON `RESALE_SELLER_QUEUE` (`ticket_id` ASC) VISIBLE;
 
 CREATE UNIQUE INDEX `ticket_id_UNIQUE` ON `RESALE_SELLER_QUEUE` (`ticket_id` ASC) VISIBLE;
 
+ALTER TABLE RESALE_SELLER_QUEUE ADD COLUMN is_processed BOOLEAN DEFAULT FALSE;
+ALTER TABLE RESALE_BUYER_QUEUE ADD COLUMN is_processed BOOLEAN DEFAULT FALSE;
 
 -- -----------------------------------------------------
 -- Table `EVENT_STAFF`
@@ -496,6 +515,26 @@ CREATE TABLE IF NOT EXISTS `ARTIST_BAND` (
 ENGINE = InnoDB;
 
 CREATE INDEX `band_id_idx` ON `ARTIST_BAND` (`band_id` ASC) VISIBLE;
+
+
+
+
+-- Table `COMPLETED_RESALE_TRANSACTIONS`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `COMPLETED_RESALE_TRANSACTIONS` ;
+
+CREATE TABLE IF NOT EXISTS `COMPLETED_RESALE_TRANSACTIONS` (
+  `transaction_id` INT NOT NULL AUTO_INCREMENT,
+  `buyer_queue_id` INT NOT NULL,
+  `seller_queue_id` INT NOT NULL,
+  `ticket_id` INT NOT NULL,
+  `transaction_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `buyer_id` INT NOT NULL,
+  `seller_id` INT NOT NULL,
+  PRIMARY KEY (`transaction_id`))
+ENGINE = InnoDB;
+
+CREATE INDEX `idx_transaction_date` ON `COMPLETED_RESALE_TRANSACTIONS` (`transaction_date` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -965,15 +1004,15 @@ BEGIN
     END IF;
 
     -- 3. Validate ticket category
-    IF NEW.category NOT IN ('general', 'vip', 'backstage', 'day_pass') THEN
+    IF NEW.category NOT IN ('General Admission', 'VIP', 'Early Bird', 'Premium') THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Category must be one of: general, vip, backstage, day_pass';
+        SET MESSAGE_TEXT = 'Category must be one of: General Admission, VIP, Early Bird, Premium';
     END IF;
 
     -- 4. Validate payment method
-    IF NEW.payment_method NOT IN ('credit_card', 'debit_card', 'bank_account') THEN
+    IF NEW.payment_method NOT IN ('Credit Card', 'Debit Card', 'Bank Transfer') THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Payment method must be one of: credit_card, debit_card, bank_account';
+        SET MESSAGE_TEXT = 'Payment method must be one of: Credit Card, Debit Card, Bank Transfer';
     END IF;
 
     -- 5. Allow activation (from 0 to 1)
@@ -988,6 +1027,8 @@ BEGIN
 END;$$
 
 
+
+
 USE `festival`$$
 DROP TRIGGER IF EXISTS `trg_rating_validate_before_insert` $$
 USE `festival`$$
@@ -998,6 +1039,13 @@ BEGIN
     DECLARE perf_date DATETIME;
     DECLARE has_ticket BOOLEAN;
     DECLARE existing_rating INT;
+    DECLARE event_id_for_perf INT;
+    DECLARE error_message VARCHAR(255);
+
+    -- Get the event_id for this performance
+    SELECT p.event_id INTO event_id_for_perf
+    FROM PERFORMANCE p
+    WHERE p.performance_id = NEW.performance_id;
 
     -- 1. Get the end time of the performance
     SELECT p.end_time INTO perf_date
@@ -1006,8 +1054,11 @@ BEGIN
 
     -- 2. Ensure the rating is submitted after the performance ends
     IF NEW.rating_date < perf_date THEN
+        SET error_message = CONCAT('Rating cannot be submitted before the performance ends. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id, 
+                                  ', Rating date: ', NEW.rating_date, ', Performance end: ', perf_date);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Rating cannot be submitted before the performance ends';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
     -- 3. Ensure the visitor has a ticket for the event of the performance
@@ -1019,8 +1070,11 @@ BEGIN
       AND p.performance_id = NEW.performance_id;
 
     IF NOT has_ticket THEN
+        SET error_message = CONCAT('Visitor must have a ticket to rate a performance. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id, 
+                                  ', Event ID: ', event_id_for_perf);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Visitor must have a ticket to rate a performance';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
     -- 4. Ensure each rating score is between 1 and 5
@@ -1029,8 +1083,10 @@ BEGIN
        NEW.stage_presence < 1 OR NEW.stage_presence > 5 OR
        NEW.organization < 1 OR NEW.organization > 5 OR
        NEW.overall_impression < 1 OR NEW.overall_impression > 5 THEN
+        SET error_message = CONCAT('Ratings must be between 1 and 5. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Ratings must be between 1 and 5';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
     -- 5. Prevent duplicate rating for the same performance by the same visitor
@@ -1040,8 +1096,10 @@ BEGIN
       AND performance_id = NEW.performance_id;
 
     IF existing_rating > 0 THEN
+        SET error_message = CONCAT('Visitor has already rated this performance. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Visitor has already rated this performance';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 END;$$
 
@@ -1053,50 +1111,116 @@ CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_rating_validate_values_bef
 BEFORE UPDATE ON `RATING`
 FOR EACH ROW
 BEGIN
-    -- 1. Validate artist_interpretation rating (1 to 5)
-    IF NEW.artist_interpretation < 1 OR NEW.artist_interpretation > 5 THEN
+    DECLARE perf_date DATETIME;
+    DECLARE has_ticket BOOLEAN;
+    DECLARE existing_rating INT;
+    DECLARE event_id_for_perf INT;
+    DECLARE error_message VARCHAR(255);
+
+    -- Get the event_id for this performance
+    SELECT p.event_id INTO event_id_for_perf
+    FROM PERFORMANCE p
+    WHERE p.performance_id = NEW.performance_id;
+
+    -- 1. Get the end time of the performance
+    SELECT p.end_time INTO perf_date
+    FROM PERFORMANCE p
+    WHERE p.performance_id = NEW.performance_id;
+
+    -- 2. Ensure the rating is submitted after the performance ends
+    IF NEW.rating_date < perf_date THEN
+        SET error_message = CONCAT('Rating cannot be submitted before the performance ends. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id, 
+                                  ', Rating date: ', NEW.rating_date, ', Performance end: ', perf_date);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Artist interpretation must be between 1 and 5';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
-    -- 2. Validate sound_lighting rating (1 to 5)
-    IF NEW.sound_lighting < 1 OR NEW.sound_lighting > 5 THEN
+    -- 3. Ensure the visitor has a ticket for the event of the performance
+    SELECT COUNT(*) > 0 INTO has_ticket
+    FROM TICKET t
+    JOIN EVENT e ON t.event_id = e.event_id
+    JOIN PERFORMANCE p ON e.event_id = p.event_id
+    WHERE t.visitor_id = NEW.visitor_id
+      AND p.performance_id = NEW.performance_id;
+
+    IF NOT has_ticket THEN
+        SET error_message = CONCAT('Visitor must have a ticket to rate a performance. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id, 
+                                  ', Event ID: ', event_id_for_perf);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Sound lighting must be between 1 and 5';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
-    -- 3. Validate stage_presence rating (1 to 5)
-    IF NEW.stage_presence < 1 OR NEW.stage_presence > 5 THEN
+    -- 4. Ensure each rating score is between 1 and 5
+    IF NEW.artist_interpretation < 1 OR NEW.artist_interpretation > 5 OR
+       NEW.sound_lighting < 1 OR NEW.sound_lighting > 5 OR
+       NEW.stage_presence < 1 OR NEW.stage_presence > 5 OR
+       NEW.organization < 1 OR NEW.organization > 5 OR
+       NEW.overall_impression < 1 OR NEW.overall_impression > 5 THEN
+        SET error_message = CONCAT('Ratings must be between 1 and 5. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Stage presence must be between 1 and 5';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 
-    -- 4. Validate organization rating (1 to 5)
-    IF NEW.organization < 1 OR NEW.organization > 5 THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Organization must be between 1 and 5';
-    END IF;
+    -- 5. Prevent duplicate rating for the same performance by the same visitor
+    SELECT COUNT(*) INTO existing_rating
+    FROM RATING
+    WHERE visitor_id = NEW.visitor_id
+      AND performance_id = NEW.performance_id;
 
-    -- 5. Validate overall_impresion rating (1 to 5)
-    IF NEW.overall_impression < 1 OR NEW.overall_impression > 5 THEN
+    IF existing_rating > 0 THEN
+        SET error_message = CONCAT('Visitor has already rated this performance. Visitor ID: ', 
+                                  NEW.visitor_id, ', Performance ID: ', NEW.performance_id);
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Overall impression must be between 1 and 5';
+        SET MESSAGE_TEXT = error_message;
     END IF;
 END;$$
 
 
 USE `festival`$$
+DROP TRIGGER IF EXISTS `trg_resale_validate_buyer_before_insert` $$
+USE `festival`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_validate_buyer_before_insert` BEFORE INSERT ON `RESALE_BUYER_QUEUE` FOR EACH ROW
+BEGIN
+ -- Έλεγχος αν ο αγοραστής εκδηλώνει ενδιαφέρον είτε για συγκεκριμένη παράσταση και κατηγορία εισιτηρίου,
+    -- είτε για συγκεκριμένο εισιτήριο, αλλά όχι και για τα δύο ταυτόχρονα
+    DECLARE ticket_available INT;
+    IF NOT (
+        (NEW.event_id IS NOT NULL AND NEW.ticket_category IS NOT NULL AND NEW.ticket_id IS NULL) OR
+        (NEW.event_id IS NULL AND NEW.ticket_category IS NULL AND NEW.ticket_id IS NOT NULL)
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Ο αγοραστής πρέπει να εκδηλώνει ενδιαφέρον είτε για συγκεκριμένη παράσταση και κατηγορία εισιτηρίου, είτε για συγκεκριμένο εισιτήριο, αλλά όχι και για τα δύο ταυτόχρονα.';
+    END IF;
+    
+    -- Αν ο αγοραστής ενδιαφέρεται για συγκεκριμένο εισιτήριο, έλεγχος αν αυτό είναι διαθέσιμο προς πώληση
+    IF NEW.ticket_id IS NOT NULL THEN
+        SELECT COUNT(*) INTO ticket_available
+        FROM RESALE_SELLER_QUEUE
+        WHERE ticket_id = NEW.ticket_id
+          AND is_processed = FALSE;  
+        
+        IF ticket_available = 0 THEN
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Το συγκεκριμένο εισιτήριο δεν είναι διαθέσιμο προς πώληση.';
+        END IF;
+    END IF;
+END$$
+
+
+
+USE `festival`$$
 DROP TRIGGER IF EXISTS `trg_resale_validate_seller_before_insert` $$
 USE `festival`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_validate_seller_before_insert`
-BEFORE INSERT ON `RESALE_SELLER_QUEUE`
-FOR EACH ROW
+CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_validate_seller_before_insert` BEFORE INSERT ON `RESALE_SELLER_QUEUE` FOR EACH ROW
 BEGIN
-    DECLARE ticket_owner INT;
+DECLARE ticket_owner INT;
     DECLARE is_activated BOOLEAN;
     DECLARE already_listed BOOLEAN;
 
-    -- 1. Check that the seller is the owner of the ticket
+    -- 1. Έλεγχος ότι ο πωλητής είναι ο ιδιοκτήτης του εισιτηρίου
     SELECT visitor_id, is_activated
     INTO ticket_owner, is_activated
     FROM TICKET
@@ -1104,89 +1228,26 @@ BEGIN
 
     IF ticket_owner != NEW.visitor_id THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Only the ticket owner can resell a ticket';
+        SET MESSAGE_TEXT = 'Μόνο ο ιδιοκτήτης του εισιτηρίου μπορεί να το μεταπωλήσει';
     END IF;
 
-    -- 2. Check that the ticket has not been activated
+    -- 2. Έλεγχος ότι το εισιτήριο δεν έχει ενεργοποιηθεί
     IF is_activated = 1 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Activated tickets cannot be resold';
+        SET MESSAGE_TEXT = 'Τα ενεργοποιημένα εισιτήρια δεν μπορούν να μεταπωληθούν';
     END IF;
 
-    -- 3. Check that the ticket is not already listed for resale
+    -- 3. Έλεγχος ότι το εισιτήριο δεν είναι ήδη καταχωρημένο προς πώληση
     SELECT COUNT(*) > 0 INTO already_listed
     FROM RESALE_SELLER_QUEUE
     WHERE ticket_id = NEW.ticket_id;
 
     IF already_listed THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Ticket is already listed for resale';
+        SET MESSAGE_TEXT = 'Το εισιτήριο είναι ήδη καταχωρημένο προς πώληση';
     END IF;
-END;$$
+END$$
 
-
-USE `festival`$$
-DROP TRIGGER IF EXISTS `trg_resale_auto_transaction_after_insert` $$
-USE `festival`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_auto_transaction_after_insert`
-AFTER INSERT ON `RESALE_SELLER_QUEUE`
-FOR EACH ROW
-BEGIN
-    DECLARE buyer_id INT;
-    DECLARE buyer_queue_id INT;
-    DECLARE v_ticket_category VARCHAR(45);
-
-    -- 1. Get the category of the listed ticket
-    SELECT category INTO v_ticket_category
-    FROM TICKET
-    WHERE ticket_id = NEW.ticket_id;
-
-    -- 2. Find the earliest interested buyer in the queue for that category
-    SELECT visitor_id, queue_id INTO buyer_id, buyer_queue_id
-    FROM RESALE_BUYER_QUEUE
-    WHERE ticket_category = v_ticket_category
-    ORDER BY interest_date ASC
-    LIMIT 1;
-
-    -- 3. If a buyer exists, complete the resale transaction
-    IF buyer_id IS NOT NULL THEN
-        -- a. Assign ticket to the buyer
-        UPDATE TICKET
-        SET visitor_id = buyer_id
-        WHERE ticket_id = NEW.ticket_id;
-
-        -- b. Remove buyer from the queue
-        DELETE FROM RESALE_BUYER_QUEUE
-        WHERE queue_id = buyer_queue_id;
-
-        -- c. Remove seller from the queue
-        DELETE FROM RESALE_SELLER_QUEUE
-        WHERE queue_id = NEW.queue_id;
-    END IF;
-END;$$
-
-
-USE `festival`$$
-DROP TRIGGER IF EXISTS `trg_resale_enforce_fifo_before_delete` $$
-USE `festival`$$
-CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_enforce_fifo_before_delete`
-BEFORE DELETE ON `RESALE_SELLER_QUEUE`
-FOR EACH ROW
-BEGIN
-    DECLARE oldest_listing_id INT;
-
-    -- 1. Get the queue_id of the oldest ticket listing (FIFO)
-    SELECT queue_id INTO oldest_listing_id
-    FROM RESALE_SELLER_QUEUE
-    ORDER BY listing_date ASC
-    LIMIT 1;
-
-    -- 2. Ensure only the oldest listing is being deleted
-    IF OLD.queue_id != oldest_listing_id THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Tickets must be sold in FIFO order';
-    END IF;
-END;$$
 
 
 USE `festival`$$
@@ -1333,3 +1394,346 @@ END$$
 
 
 DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+-- 2. Δημιουργία του πίνακα RESALE_MATCHES για την καταγραφή των πιθανών αντιστοιχίσεων
+CREATE TABLE IF NOT EXISTS RESALE_MATCHES (
+  match_id INT NOT NULL AUTO_INCREMENT,
+  buyer_queue_id INT,
+  seller_queue_id INT,
+  ticket_id INT NULL,
+  match_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_processed BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (match_id)
+);
+
+-- 3. Δημιουργία του πίνακα COMPLETED_RESALE_TRANSACTIONS
+CREATE TABLE IF NOT EXISTS COMPLETED_RESALE_TRANSACTIONS (
+  transaction_id INT NOT NULL AUTO_INCREMENT,
+  buyer_queue_id INT NOT NULL,
+  seller_queue_id INT NOT NULL,
+  ticket_id INT NOT NULL,
+  transaction_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  buyer_id INT NOT NULL,
+  seller_id INT NOT NULL,
+  PRIMARY KEY (transaction_id)
+)
+ENGINE = InnoDB;
+
+CREATE INDEX idx_resale_transaction_date ON COMPLETED_RESALE_TRANSACTIONS (transaction_date ASC) VISIBLE;
+
+-- 4. Δημιουργία απλοποιημένων triggers που απλώς καταγράφουν τις πιθανές αντιστοιχίσεις
+DELIMITER //
+
+-- Trigger για την καταγραφή πιθανών αντιστοιχίσεων όταν προστίθεται ένας πωλητής
+CREATE TRIGGER trg_resale_seller_match
+AFTER INSERT ON RESALE_SELLER_QUEUE
+FOR EACH ROW
+BEGIN
+    -- Καταγραφή της πιθανής αντιστοίχισης
+    INSERT INTO RESALE_MATCHES (seller_queue_id, ticket_id)
+    VALUES (NEW.queue_id, NEW.ticket_id);
+END //
+
+-- 1. Διόρθωση του trigger για τους αγοραστές
+DELIMITER //
+
+DROP TRIGGER IF EXISTS trg_resale_buyer_match //
+
+CREATE TRIGGER trg_resale_buyer_match
+AFTER INSERT ON RESALE_BUYER_QUEUE
+FOR EACH ROW
+BEGIN
+    -- Καταγραφή της πιθανής αντιστοίχισης
+    INSERT INTO RESALE_MATCHES (buyer_queue_id, ticket_id)
+    VALUES (NEW.queue_id, NEW.ticket_id);
+END //
+
+DELIMITER ;
+
+
+
+
+-- Διαγραφή της υπάρχουσας stored procedure
+DROP PROCEDURE IF EXISTS process_resale_matches;
+
+-- Δημιουργία stored procedure
+DELIMITER //
+
+CREATE PROCEDURE process_resale_matches()
+BEGIN
+
+
+-- Βήμα 1: Δημιουργία προσωρινού πίνακα για τους διαθέσιμους πωλητές
+CREATE TEMPORARY TABLE IF NOT EXISTS available_sellers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    queue_id INT,
+    visitor_id INT,
+    ticket_id INT,
+    category VARCHAR(45),
+    event_id INT,
+    listing_date TIMESTAMP,
+    rank_in_category INT
+);
+
+-- Εισαγωγή των διαθέσιμων πωλητών με rank για FIFO
+-- Μόνο όσοι δεν έχουν ήδη επεξεργαστεί (is_processed = FALSE)
+INSERT INTO available_sellers (queue_id, visitor_id, ticket_id, category, event_id, listing_date, rank_in_category)
+SELECT 
+    rsq.queue_id,
+    rsq.visitor_id,
+    rsq.ticket_id,
+    t.category,
+    t.event_id,
+    rsq.listing_date,
+    RANK() OVER (
+        PARTITION BY t.category, t.event_id
+        ORDER BY rsq.listing_date ASC
+    ) AS rank_in_category
+FROM RESALE_SELLER_QUEUE rsq
+JOIN TICKET t ON rsq.ticket_id = t.ticket_id
+WHERE rsq.is_processed = FALSE
+ORDER BY rsq.listing_date ASC;
+
+-- Βήμα 2: Δημιουργία προσωρινού πίνακα για τους αγοραστές συγκεκριμένων εισιτηρίων
+CREATE TEMPORARY TABLE IF NOT EXISTS specific_ticket_buyers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    queue_id INT,
+    visitor_id INT,
+    ticket_id INT,
+    interest_date TIMESTAMP
+);
+
+-- Εισαγωγή των αγοραστών συγκεκριμένων εισιτηρίων
+-- Μόνο όσοι δεν έχουν ήδη επεξεργαστεί (is_processed = FALSE)
+INSERT INTO specific_ticket_buyers (queue_id, visitor_id, ticket_id, interest_date)
+SELECT 
+    queue_id,
+    visitor_id,
+    ticket_id,
+    interest_date
+FROM RESALE_BUYER_QUEUE
+WHERE ticket_id IS NOT NULL
+AND is_processed = FALSE
+ORDER BY interest_date ASC;
+
+-- Βήμα 3: Δημιουργία προσωρινού πίνακα για τους αγοραστές κατηγορίας/παράστασης
+CREATE TEMPORARY TABLE IF NOT EXISTS category_event_buyers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    queue_id INT,
+    visitor_id INT,
+    category VARCHAR(45),
+    event_id INT,
+    interest_date TIMESTAMP,
+    rank_in_category INT
+);
+
+-- Εισαγωγή των αγοραστών κατηγορίας/παράστασης με rank
+-- Μόνο όσοι δεν έχουν ήδη επεξεργαστεί (is_processed = FALSE)
+INSERT INTO category_event_buyers (queue_id, visitor_id, category, event_id, interest_date, rank_in_category)
+SELECT 
+    queue_id,
+    visitor_id,
+    ticket_category,
+    event_id,
+    interest_date,
+    RANK() OVER (
+        PARTITION BY ticket_category, event_id
+        ORDER BY interest_date ASC
+    ) AS rank_in_category
+FROM RESALE_BUYER_QUEUE
+WHERE ticket_id IS NULL
+AND is_processed = FALSE
+ORDER BY interest_date ASC;
+
+-- Βήμα 4: Δημιουργία προσωρινού πίνακα για τις τελικές συναλλαγές
+CREATE TEMPORARY TABLE IF NOT EXISTS final_transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    buyer_queue_id INT,
+    seller_queue_id INT,
+    ticket_id INT,
+    buyer_id INT,
+    seller_id INT,
+    transaction_type VARCHAR(20)
+);
+
+-- Βήμα 5: Εισαγωγή των συναλλαγών για συγκεκριμένα εισιτήρια
+INSERT INTO final_transactions (
+    buyer_queue_id,
+    seller_queue_id,
+    ticket_id,
+    buyer_id,
+    seller_id,
+    transaction_type
+)
+SELECT 
+    stb.queue_id,
+    s.queue_id,
+    stb.ticket_id,
+    stb.visitor_id,
+    s.visitor_id,
+    'specific'
+FROM specific_ticket_buyers stb
+JOIN available_sellers s ON stb.ticket_id = s.ticket_id
+-- Έλεγχος αν ο αγοραστής έχει ήδη εισιτήριο για την παράσταση
+WHERE NOT EXISTS (
+    SELECT 1 FROM TICKET t
+    WHERE t.visitor_id = stb.visitor_id
+    AND t.event_id = (SELECT event_id FROM TICKET WHERE ticket_id = stb.ticket_id)
+)
+AND s.queue_id NOT IN (
+    SELECT seller_queue_id FROM final_transactions
+)
+ORDER BY stb.interest_date ASC, s.listing_date ASC;
+
+-- Ενημέρωση των διαθέσιμων πωλητών
+DELETE FROM available_sellers
+WHERE queue_id IN (
+    SELECT seller_queue_id FROM final_transactions
+);
+
+-- Βήμα 6: Εισαγωγή των συναλλαγών για κατηγορία/παράσταση
+-- Επιλέγουμε ΜΟΝΟ τους αγοραστές με rank_in_category = 1 και τους πωλητές με rank_in_category = 1
+INSERT INTO final_transactions (
+    buyer_queue_id,
+    seller_queue_id,
+    ticket_id,
+    buyer_id,
+    seller_id,
+    transaction_type
+)
+SELECT 
+    ceb.queue_id,
+    s.queue_id,
+    s.ticket_id,
+    ceb.visitor_id,
+    s.visitor_id,
+    'category'
+FROM category_event_buyers ceb
+JOIN available_sellers s ON ceb.category = s.category AND ceb.event_id = s.event_id
+-- Έλεγχος αν ο αγοραστής έχει ήδη εισιτήριο για την παράσταση
+WHERE NOT EXISTS (
+    SELECT 1 FROM TICKET t
+    WHERE t.visitor_id = ceb.visitor_id
+    AND t.event_id = ceb.event_id
+)
+AND ceb.rank_in_category = 1
+AND s.rank_in_category = 1  -- Επιλογή του πρώτου πωλητή για κάθε κατηγορία-παράσταση (FIFO)
+AND ceb.queue_id NOT IN (
+    SELECT buyer_queue_id FROM final_transactions
+)
+AND s.queue_id NOT IN (
+    SELECT seller_queue_id FROM final_transactions
+)
+ORDER BY ceb.interest_date ASC, s.listing_date ASC;
+
+-- Αν δεν βρέθηκε αντιστοίχιση με τον πρώτο πωλητή, προχωράμε στους επόμενους
+INSERT INTO final_transactions (
+    buyer_queue_id,
+    seller_queue_id,
+    ticket_id,
+    buyer_id,
+    seller_id,
+    transaction_type
+)
+SELECT 
+    ceb.queue_id,
+    s.queue_id,
+    s.ticket_id,
+    ceb.visitor_id,
+    s.visitor_id,
+    'category_next'
+FROM category_event_buyers ceb
+JOIN available_sellers s ON ceb.category = s.category AND ceb.event_id = s.event_id
+-- Έλεγχος αν ο αγοραστής έχει ήδη εισιτήριο για την παράσταση
+WHERE NOT EXISTS (
+    SELECT 1 FROM TICKET t
+    WHERE t.visitor_id = ceb.visitor_id
+    AND t.event_id = ceb.event_id
+)
+AND ceb.rank_in_category = 1
+AND s.rank_in_category > 1  -- Επιλογή των επόμενων πωλητών αν ο πρώτος δεν ταιριάζει
+AND ceb.queue_id NOT IN (
+    SELECT buyer_queue_id FROM final_transactions
+)
+AND s.queue_id NOT IN (
+    SELECT seller_queue_id FROM final_transactions
+)
+AND NOT EXISTS (
+    -- Έλεγχος αν υπάρχει ήδη αντιστοίχιση για αυτή την κατηγορία-παράσταση
+    SELECT 1 FROM final_transactions ft
+    JOIN available_sellers s2 ON ft.seller_queue_id = s2.queue_id
+    WHERE s2.category = s.category AND s2.event_id = s.event_id
+)
+ORDER BY ceb.interest_date ASC, s.listing_date ASC;
+
+-- Βήμα 7: Εισαγωγή των νέων συναλλαγών στον πίνακα COMPLETED_RESALE_TRANSACTIONS
+-- Προσθέτουμε μόνο τις νέες συναλλαγές, δεν διαγράφουμε τις παλιές
+INSERT INTO COMPLETED_RESALE_TRANSACTIONS (
+    buyer_queue_id,
+    seller_queue_id,
+    ticket_id,
+    buyer_id,
+    seller_id
+)
+SELECT 
+    buyer_queue_id,
+    seller_queue_id,
+    ticket_id,
+    buyer_id,
+    seller_id
+FROM final_transactions
+ORDER BY id ASC;
+
+-- Βήμα 8: Ενημέρωση των εισιτηρίων
+UPDATE TICKET t
+JOIN final_transactions ft ON t.ticket_id = ft.ticket_id
+SET t.visitor_id = ft.buyer_id;
+
+-- Βήμα 9: Σήμανση των εγγραφών ως επεξεργασμένες
+UPDATE RESALE_BUYER_QUEUE rbq
+JOIN final_transactions ft ON rbq.queue_id = ft.buyer_queue_id
+SET rbq.is_processed = TRUE;
+
+UPDATE RESALE_SELLER_QUEUE rsq
+JOIN final_transactions ft ON rsq.queue_id = ft.seller_queue_id
+SET rsq.is_processed = TRUE;
+
+-- Καθαρισμός των προσωρινών πινάκων
+DROP TEMPORARY TABLE IF EXISTS available_sellers;
+DROP TEMPORARY TABLE IF EXISTS specific_ticket_buyers;
+DROP TEMPORARY TABLE IF EXISTS category_event_buyers;
+DROP TEMPORARY TABLE IF EXISTS final_transactions;
+
+-- Εμφάνιση των αποτελεσμάτων
+SELECT CONCAT('Η διαδικασία ολοκληρώθηκε με επιτυχία. Βρέθηκαν ', 
+             (SELECT COUNT(*) FROM COMPLETED_RESALE_TRANSACTIONS) - 
+             (SELECT @prev_count := COUNT(*) FROM COMPLETED_RESALE_TRANSACTIONS WHERE transaction_date < NOW() - INTERVAL 1 SECOND), 
+             ' νέες αντιστοιχίσεις.') AS result;
+
+-- Επιστροφή των αποτελεσμάτων μόνο για τις νέες συναλλαγές
+SELECT * FROM COMPLETED_RESALE_TRANSACTIONS 
+WHERE transaction_date > NOW() - INTERVAL 1 SECOND;
+
+SELECT COUNT(*) AS total_new_transactions FROM COMPLETED_RESALE_TRANSACTIONS 
+WHERE transaction_date > NOW() - INTERVAL 1 SECOND;
+
+-- Εμφάνιση των επεξεργασμένων πωλητών και αγοραστών
+SELECT * FROM RESALE_SELLER_QUEUE WHERE is_processed = TRUE;
+SELECT COUNT(*) AS processed_sellers FROM RESALE_SELLER_QUEUE WHERE is_processed = TRUE;
+SELECT * FROM RESALE_BUYER_QUEUE WHERE is_processed = TRUE;
+SELECT COUNT(*) AS processed_buyers FROM RESALE_BUYER_QUEUE WHERE is_processed = TRUE;
+END //
+
+DELIMITER ;
+
+-- Εκτέλεση της διορθωμένης stored procedure
+CALL process_resale_matches();
