@@ -1,0 +1,47 @@
+LOAD DATABASE
+mysql -u $(whoami) -p < sql/install.sql
+mysql -u $(whoami) -p festival < sql/load.sql
+
+QUERY 1
+mysql -u $(whoami) -p -t festival < sql/Q01.sql > sql/Q01_out.txt
+
+QUERY 2
+mysql -u $(whoami) -p -t festival -e "SET @genre_name = 'Rock'; SET @festival_year = 2023; SOURCE sql/Q02.sql;" > sql/Q02_out.txt
+
+QUERY 3
+mysql -u $(whoami) -p -t festival < sql/Q03.sql > sql/Q03_out.txt
+
+QUERY 4
+ mysql -u $(whoami) -p -t festival -e "SET @artist_name = 'Beyoncé'; SOURCE sql/Q04.sql;" > sql/Q04_out.txt
+
+QUERY 5
+mysql -u $(whoami) -p -t festival < sql/Q05.sql > sql/Q05_out.txt
+
+QUERY 6
+ mysql -u $(whoami) -p -t festival -e "SET @visitor_email = 'stella.campbell@example.com'; SOURCE sql/Q06.sql;" > sql/Q06_out.txt
+
+QUERY 7
+mysql -u $(whoami) -p -t festival < sql/Q07.sql > sql/Q07_out.txt
+
+QUERY 8
+
+
+QUERY 9
+
+
+QUERY 10
+
+
+QUERY 11
+
+
+QUERY 12
+
+
+QUERY 13
+
+
+QUERY 14
+
+
+QUERY 15

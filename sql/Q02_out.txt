@@ -1,0 +1,27 @@
++------------------------+-------+------+--------------------------+
+| Performer Name         | Genre | Year | Participated in Festival |
++------------------------+-------+------+--------------------------+
+| Adele                  | Pop   | 2024 | Yes                      |
+| Ed Sheeran             | Pop   | 2024 | No                       |
+| Beyoncé                | Pop   | 2024 | No                       |
+| The Weeknd             | Pop   | 2024 | No                       |
+| Dua Lipa               | Pop   | 2024 | Yes                      |
+| Billie Eilish          | Pop   | 2024 | No                       |
+| Post Malone            | Pop   | 2024 | No                       |
+| Taylor Swift           | Pop   | 2024 | No                       |
+| Bruno Mars             | Pop   | 2024 | No                       |
+| Ariana Grande          | Pop   | 2024 | No                       |
+| Lady Gaga              | Pop   | 2024 | No                       |
+| Justin Bieber          | Pop   | 2024 | No                       |
+| Rihanna                | Pop   | 2024 | Yes                      |
+| Harry Styles           | Pop   | 2024 | No                       |
+| Lizzo                  | Pop   | 2024 | No                       |
+| Bad Bunny              | Pop   | 2024 | No                       |
+| Lorde                  | Pop   | 2024 | Yes                      |
+| Frank Ocean            | Pop   | 2024 | No                       |
+| Imagine Dragons        | Pop   | 2024 | No                       |
+| Maroon 5               | Pop   | 2024 | No                       |
+| The 1975               | Pop   | 2024 | No                       |
+| Florence + The Machine | Pop   | 2024 | No                       |
+| Paramore               | Pop   | 2024 | Yes                      |
++------------------------+-------+------+--------------------------+

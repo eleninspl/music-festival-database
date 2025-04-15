@@ -764,14 +764,14 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('warm up', '2021-06-24 17:30:00', '2021-06-24 19:00:00', 44, 10), -- Arcade Fire at Glastonbury West Holts Day 2
 ('headline', '2021-06-25 20:00:00', '2021-06-25 22:00:00', 5, 11), -- Dua Lipa at Glastonbury Pyramid Stage Day 3
 ('special guest', '2021-06-25 18:00:00', '2021-06-25 19:30:00', 15, 11), -- Rihanna at Glastonbury Pyramid Stage Day 3
-('warm up', '2021-06-25 16:00:00', '2021-06-25 17:30:00', 27, 11), -- Imagine Dragons at Glastonbury Pyramid Stage Day 3
+('warm up', '2021-06-25 16:00:00', '2021-06-25 17:30:00', 20, 11), -- Frank Ocean at Glastonbury Pyramid Stage Day 3
 ('headline', '2021-06-25 19:30:00', '2021-06-25 21:30:00', 36, 12), -- The Killers at Glastonbury Park Stage Day 3
 ('warm up', '2021-06-25 17:30:00', '2021-06-25 19:00:00', 45, 12), -- The Black Keys at Glastonbury Park Stage Day 3
 ('headline', '2021-06-26 20:00:00', '2021-06-26 22:00:00', 6, 13), -- Kendrick Lamar at Glastonbury Pyramid Stage Day 4
 ('special guest', '2021-06-26 18:00:00', '2021-06-26 19:30:00', 12, 13), -- Drake at Glastonbury Pyramid Stage Day 4
 ('warm up', '2021-06-26 16:00:00', '2021-06-26 17:30:00', 28, 13), -- Maroon 5 at Glastonbury Pyramid Stage Day 4
 ('headline', '2021-06-26 19:00:00', '2021-06-26 21:00:00', 7, 14), -- Billie Eilish at Glastonbury Acoustic Stage Day 4
-('warm up', '2021-06-26 17:00:00', '2021-06-26 18:30:00', 29, 14), -- Twenty One Pilots at Glastonbury Acoustic Stage Day 4
+('warm up', '2021-06-26 17:00:00', '2021-06-26 18:30:00', 20, 14), -- Frank Ocean at Glastonbury Acoustic Stage Day 4
 ('headline', '2021-06-27 20:00:00', '2021-06-27 22:00:00', 8, 15), -- Post Malone at Glastonbury Pyramid Stage Day 5
 ('special guest', '2021-06-27 18:00:00', '2021-06-27 19:30:00', 16, 15), -- Harry Styles at Glastonbury Pyramid Stage Day 5
 ('warm up', '2021-06-27 16:00:00', '2021-06-27 17:30:00', 30, 15), -- The 1975 at Glastonbury Pyramid Stage Day 5
