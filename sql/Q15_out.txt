@@ -1,0 +1,9 @@
++------------+------------+-------------------+-------------+
+| first_name | last_name  | artist_name       | total_score |
++------------+------------+-------------------+-------------+
+| Levi       | Richardson | Will Champion     |           5 |
+| Sophia     | Wilson     | Melissa Jefferson |           5 |
+| James      | Wilson     | Beyoncé Knowles   |           5 |
+| Brooklyn   | Payne      | Adam Levine       |           5 |
+| Gabriel    | Parker     | Ariana Grande     |           5 |
++------------+------------+-------------------+-------------+

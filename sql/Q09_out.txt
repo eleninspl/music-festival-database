@@ -1,0 +1,14 @@
++-------------------------------+------+--------------+
+| email                         | year | performances |
++-------------------------------+------+--------------+
+| autumn.stone@example.com      | 2023 |            1 |
+| ellie.collins@example.com     | 2021 |            1 |
+| olivia.davis@example.com      | 2024 |            1 |
+| evelyn.ward@example.com       | 2022 |            1 |
+| sofia.rodriguez@example.com   | 2024 |            1 |
+| hazel.coleman@example.com     | 2022 |            1 |
+| scarlett.gonzalez@example.com | 2025 |            1 |
+| aaliyah.griffin@example.com   | 2022 |            1 |
+| elizabeth.garcia@example.com  | 2020 |            1 |
+| bella.rogers@example.com      | 2025 |            1 |
++-------------------------------+------+--------------+

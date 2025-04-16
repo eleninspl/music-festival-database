@@ -1,0 +1,53 @@
++------------------------+----------------+-----------+
+| stage_name             | festival_count | max_count |
++------------------------+----------------+-----------+
+| Adele                  |              3 |         5 |
+| Ed Sheeran             |              2 |         5 |
+| Beyoncé                |              2 |         5 |
+| The Weeknd             |              2 |         5 |
+| Dua Lipa               |              3 |         5 |
+| Kendrick Lamar         |              2 |         5 |
+| Billie Eilish          |              2 |         5 |
+| Post Malone            |              2 |         5 |
+| Taylor Swift           |              3 |         5 |
+| Bruno Mars             |              3 |         5 |
+| Ariana Grande          |              3 |         5 |
+| Drake                  |              3 |         5 |
+| Lady Gaga              |              3 |         5 |
+| Justin Bieber          |              2 |         5 |
+| Rihanna                |              3 |         5 |
+| Harry Styles           |              3 |         5 |
+| Lizzo                  |              3 |         5 |
+| Bad Bunny              |              2 |         5 |
+| Lorde                  |              4 |         5 |
+| Frank Ocean            |              3 |         5 |
+| Skrillex               |              4 |         5 |
+| Deadmau5               |              3 |         5 |
+| Calvin Harris          |              4 |         5 |
+| Coldplay               |              2 |         5 |
+| Imagine Dragons        |              1 |         5 |
+| Maroon 5               |              3 |         5 |
+| Twenty One Pilots      |              2 |         5 |
+| The 1975               |              3 |         5 |
+| Arctic Monkeys         |              3 |         5 |
+| Foo Fighters           |              2 |         5 |
+| Red Hot Chili Peppers  |              3 |         5 |
+| Metallica              |              2 |         5 |
+| Radiohead              |              3 |         5 |
+| The Killers            |              3 |         5 |
+| Muse                   |              3 |         5 |
+| Linkin Park            |              3 |         5 |
+| Green Day              |              3 |         5 |
+| Tame Impala            |              3 |         5 |
+| The Strokes            |              3 |         5 |
+| Gorillaz               |              3 |         5 |
+| Florence + The Machine |              3 |         5 |
+| Arcade Fire            |              3 |         5 |
+| The Black Keys         |              3 |         5 |
+| Kings of Leon          |              4 |         5 |
+| Vampire Weekend        |              4 |         5 |
+| The xx                 |              3 |         5 |
+| MGMT                   |              3 |         5 |
+| Paramore               |              3 |         5 |
+| Jonny Buckland         |              1 |         5 |
++------------------------+----------------+-----------+

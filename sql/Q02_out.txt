@@ -1,27 +1,28 @@
 +------------------------+-------+------+--------------------------+
 | Performer Name         | Genre | Year | Participated in Festival |
 +------------------------+-------+------+--------------------------+
-| Adele                  | Pop   | 2024 | Yes                      |
-| Ed Sheeran             | Pop   | 2024 | No                       |
-| Beyoncé                | Pop   | 2024 | No                       |
-| The Weeknd             | Pop   | 2024 | No                       |
-| Dua Lipa               | Pop   | 2024 | Yes                      |
-| Billie Eilish          | Pop   | 2024 | No                       |
-| Post Malone            | Pop   | 2024 | No                       |
-| Taylor Swift           | Pop   | 2024 | No                       |
-| Bruno Mars             | Pop   | 2024 | No                       |
-| Ariana Grande          | Pop   | 2024 | No                       |
-| Lady Gaga              | Pop   | 2024 | No                       |
-| Justin Bieber          | Pop   | 2024 | No                       |
-| Rihanna                | Pop   | 2024 | Yes                      |
-| Harry Styles           | Pop   | 2024 | No                       |
-| Lizzo                  | Pop   | 2024 | No                       |
-| Bad Bunny              | Pop   | 2024 | No                       |
-| Lorde                  | Pop   | 2024 | Yes                      |
-| Frank Ocean            | Pop   | 2024 | No                       |
-| Imagine Dragons        | Pop   | 2024 | No                       |
-| Maroon 5               | Pop   | 2024 | No                       |
-| The 1975               | Pop   | 2024 | No                       |
-| Florence + The Machine | Pop   | 2024 | No                       |
-| Paramore               | Pop   | 2024 | Yes                      |
+| Coldplay               | Rock  | 2023 | No                       |
+| Imagine Dragons        | Rock  | 2023 | No                       |
+| Twenty One Pilots      | Rock  | 2023 | Yes                      |
+| The 1975               | Rock  | 2023 | Yes                      |
+| Arctic Monkeys         | Rock  | 2023 | No                       |
+| Foo Fighters           | Rock  | 2023 | Yes                      |
+| Red Hot Chili Peppers  | Rock  | 2023 | Yes                      |
+| Metallica              | Rock  | 2023 | Yes                      |
+| Radiohead              | Rock  | 2023 | Yes                      |
+| The Killers            | Rock  | 2023 | Yes                      |
+| Muse                   | Rock  | 2023 | Yes                      |
+| Linkin Park            | Rock  | 2023 | Yes                      |
+| Green Day              | Rock  | 2023 | Yes                      |
+| Tame Impala            | Rock  | 2023 | No                       |
+| The Strokes            | Rock  | 2023 | Yes                      |
+| Gorillaz               | Rock  | 2023 | Yes                      |
+| Florence + The Machine | Rock  | 2023 | Yes                      |
+| Arcade Fire            | Rock  | 2023 | Yes                      |
+| The Black Keys         | Rock  | 2023 | Yes                      |
+| Kings of Leon          | Rock  | 2023 | Yes                      |
+| Vampire Weekend        | Rock  | 2023 | No                       |
+| The xx                 | Rock  | 2023 | Yes                      |
+| MGMT                   | Rock  | 2023 | Yes                      |
+| Paramore               | Rock  | 2023 | Yes                      |
 +------------------------+-------+------+--------------------------+

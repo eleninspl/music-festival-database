@@ -1,0 +1,7 @@
++------------------+------------+----------------+
+| genre1           | genre2     | festival_count |
++------------------+------------+----------------+
+| Alternative Rock | Indie Rock |             10 |
+| Alternative Rock | Rock       |              8 |
+| Alternative Rock | Electronic |              8 |
++------------------+------------+----------------+
