@@ -748,7 +748,7 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('headline', '2020-04-12 21:00:00', '2020-04-12 23:00:00', 4, 5), -- The Weeknd at Coachella Day 3 Main Stage
 ('special guest', '2020-04-12 19:00:00', '2020-04-12 20:30:00', 11, 5), -- Ariana Grande at Coachella Day 3 Main Stage
 ('warm up', '2020-04-12 17:00:00', '2020-04-12 18:30:00', 18, 5), -- Bad Bunny at Coachella Day 3 Main Stage
-('headline', '2020-04-12 20:00:00', '2020-04-12 22:00:00', 40, 6), -- Tame Impala at Coachella Day 3 Outdoor Theatre
+('headline', '2020-04-12 20:00:00', '2020-04-12 22:00:00', 22, 6), -- David Guetta at Coachella Day 3 Outdoor Theatre
 ('warm up', '2020-04-12 18:00:00', '2020-04-12 19:30:00', 47, 6), -- Vampire Weekend at Coachella Day 3 Outdoor Theatre
 
 -- Glastonbury 2021 (event_id 7-16)
@@ -776,7 +776,7 @@ INSERT INTO PERFORMANCE (type, start_time, end_time, performer_id, event_id) VAL
 ('special guest', '2021-06-27 18:00:00', '2021-06-27 19:30:00', 16, 15), -- Harry Styles at Glastonbury Pyramid Stage Day 5
 ('warm up', '2021-06-27 16:00:00', '2021-06-27 17:30:00', 30, 15), -- The 1975 at Glastonbury Pyramid Stage Day 5
 ('headline', '2021-06-27 19:30:00', '2021-06-27 21:30:00', 37, 16), -- Muse at Glastonbury Other Stage Day 5
-('warm up', '2021-06-27 17:30:00', '2021-06-27 19:00:00', 46, 16), -- Kings of Leon at Glastonbury Other Stage Day 5
+('warm up', '2021-06-27 17:30:00', '2021-06-27 19:00:00', 22, 16), -- David Guetta at Glastonbury Other Stage Day 5
 
 -- Lollapalooza 2021 (event_id 17-24)
 ('headline', '2021-07-29 20:00:00', '2021-07-29 22:00:00', 9, 17), -- Taylor Swift at Lollapalooza T-Mobile Day 1
@@ -952,7 +952,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 3: Coachella Day 2 Main Stage (venue_id = 1, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(3, 11), (3, 12), (3, 13), (3, 14), (3, 15), -- Technical staff
+(3, 1), (3, 2), (3, 3), (3, 4), (3, 5), -- Technical staff
 (3, 31), (3, 32), (3, 33), (3, 34), (3, 35), (3, 36), (3, 37), (3, 38), (3, 39), (3, 40),
 (3, 41), (3, 42), (3, 43), (3, 44), (3, 45), (3, 46), (3, 47), (3, 48), (3, 49), (3, 50), -- Security staff
 (3, 86), (3, 87), (3, 88), (3, 89), (3, 90), (3, 91), (3, 92), (3, 93); -- Auxiliary staff
@@ -960,7 +960,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 4: Coachella Day 2 Mojave (venue_id = 3, capacity = 350)
 -- Security needed: 18 staff (5% of 350), Auxiliary needed: 7 staff (2% of 350)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(4, 16), (4, 17), (4, 18), (4, 19), (4, 20), -- Technical staff
+(4, 6), (4, 7), (4, 8), (4, 9), (4, 10), -- Technical staff
 (4, 51), (4, 52), (4, 53), (4, 54), (4, 55), (4, 56), (4, 57), (4, 58), (4, 59), (4, 60),
 (4, 61), (4, 62), (4, 63), (4, 64), (4, 65), (4, 66), (4, 67), (4, 68), -- Security staff
 (4, 94), (4, 95), (4, 96), (4, 97), (4, 98), (4, 99), (4, 100); -- Auxiliary staff
@@ -968,7 +968,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 5: Coachella Day 3 Main Stage (venue_id = 1, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(5, 21), (5, 22), (5, 23), (5, 24), (5, 25), -- Technical staff
+(5, 1), (5, 2), (5, 3), (5, 4), (5, 5), -- Technical staff
 (5, 31), (5, 32), (5, 33), (5, 34), (5, 35), (5, 36), (5, 37), (5, 38), (5, 39), (5, 40),
 (5, 41), (5, 42), (5, 43), (5, 44), (5, 45), (5, 46), (5, 47), (5, 48), (5, 49), (5, 50), -- Security staff
 (5, 86), (5, 87), (5, 88), (5, 89), (5, 90), (5, 91), (5, 92), (5, 93);  -- Auxiliary staff
@@ -976,7 +976,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 6: Coachella Day 3 Outdoor Theatre (venue_id = 5, capacity = 380)
 -- Security needed: 19 staff (5% of 380), Auxiliary needed: 8 staff (2% of 380)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(6, 26), (6, 27), (6, 28), (6, 29), (6, 30), -- Technical staff
+(6, 6), (6, 7), (6, 8), (6, 9), (6, 10), -- Technical staff
 (6, 51), (6, 52), (6, 53), (6, 54), (6, 55), (6, 56), (6, 57), (6, 58), (6, 59), (6, 60),
 (6, 61), (6, 62), (6, 63), (6, 64), (6, 65), (6, 66), (6, 67), (6, 68), (6, 69), -- Security staff
 (6, 94), (6, 95), (6, 96), (6, 97), (6, 98), (6, 99), (6, 100), (6, 101);-- Auxiliary staff
@@ -984,7 +984,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 7: Glastonbury Pyramid Stage Day 1 (venue_id = 6, capacity = 550)
 -- Security needed: 28 staff (5% of 550), Auxiliary needed: 11 staff (2% of 550)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7), -- Technical staff
+(7, 11), (7, 12), (7, 13), (7, 14), (7, 15), (7, 16), (7, 17), -- Technical staff
 (7, 31), (7, 32), (7, 33), (7, 34), (7, 35), (7, 36), (7, 37), (7, 38), (7, 39), (7, 40),
 (7, 41), (7, 42), (7, 43), (7, 44), (7, 45), (7, 46), (7, 47), (7, 48), (7, 49), (7, 50),
 (7, 51), (7, 52), (7, 53), (7, 54), (7, 55), (7, 56), (7, 57), (7, 58), -- Security staff
@@ -993,7 +993,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 8: Glastonbury Other Stage Day 1 (venue_id = 7, capacity = 440)
 -- Security needed: 22 staff (5% of 440), Auxiliary needed: 9 staff (2% of 440)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(8, 8), (8, 9), (8, 10), (8, 11), (8, 12), -- Technical staff
+(8, 18), (8, 19), (8, 20), (8, 21), (8, 22), -- Technical staff
 (8, 59), (8, 60), (8, 61), (8, 62), (8, 63), (8, 64), (8, 65), (8, 66), (8, 67), (8, 68),
 (8, 69), (8, 70), (8, 71), (8, 72), (8, 73), (8, 74), (8, 75), (8, 76), (8, 77), (8, 78),
 (8, 79), (8, 80), -- Security staff
@@ -1002,7 +1002,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 9: Glastonbury Pyramid Stage Day 2 (venue_id = 6, capacity = 550)
 -- Security needed: 28 staff (5% of 550), Auxiliary needed: 11 staff (2% of 550)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(9, 13), (9, 14), (9, 15), (9, 16), (9, 17), (9, 18), (9, 19), -- Technical staff
+(9, 11), (9, 12), (9, 13), (9, 14), (9, 15), (9, 16), (9, 17), -- Technical staff
 (9, 31), (9, 32), (9, 33), (9, 34), (9, 35), (9, 36), (9, 37), (9, 38), (9, 39), (9, 40),
 (9, 41), (9, 42), (9, 43), (9, 44), (9, 45), (9, 46), (9, 47), (9, 48), (9, 49), (9, 50),
 (9, 51), (9, 52), (9, 53), (9, 54), (9, 55), (9, 56), (9, 57), (9, 58), -- Security staff
@@ -1011,7 +1011,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 10: Glastonbury West Holts Day 2 (venue_id = 8, capacity = 350)
 -- Security needed: 18 staff (5% of 350), Auxiliary needed: 7 staff (2% of 350)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(10, 20), (10, 21), (10, 22), (10, 23), (10, 24), -- Technical staff
+(10, 18), (10, 19), (10, 20), (10, 21), (10, 22), -- Technical staff
 (10, 59), (10, 60), (10, 61), (10, 62), (10, 63), (10, 64), (10, 65), (10, 66), (10, 67), (10, 68),
 (10, 69), (10, 70), (10, 71), (10, 72), (10, 73), (10, 74), (10, 75), (10, 76), -- Security staff
 (10, 97), (10, 98), (10, 99), (10, 100), (10, 101), (10, 102), (10, 103); -- Auxiliary staff
@@ -1019,7 +1019,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 11: Glastonbury Pyramid Stage Day 3 (venue_id = 6, capacity = 550)
 -- Security needed: 28 staff (5% of 550), Auxiliary needed: 11 staff (2% of 550)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(11, 25), (11, 26), (11, 27), (11, 28), (11, 29), (11, 30), (11, 1), -- Technical staff
+(11, 11), (11, 12), (11, 13), (11, 14), (11, 15), (11, 16), (11, 17), -- Technical staff
 (11, 31), (11, 32), (11, 33), (11, 34), (11, 35), (11, 36), (11, 37), (11, 38), (11, 39), (11, 40),
 (11, 41), (11, 42), (11, 43), (11, 44), (11, 45), (11, 46), (11, 47), (11, 48), (11, 49), (11, 50),
 (11, 51), (11, 52), (11, 53), (11, 54), (11, 55), (11, 56), (11, 57), (11, 58), -- Security staff
@@ -1028,7 +1028,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 12: Glastonbury Park Stage Day 3 (venue_id = 9, capacity = 300)
 -- Security needed: 15 staff (5% of 300), Auxiliary needed: 6 staff (2% of 300)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(12, 2), (12, 3), (12, 4), (12, 5), (12, 6), -- Technical staff
+(12, 18), (12, 19), (12, 20), (12, 21), (12, 22), -- Technical staff
 (12, 59), (12, 60), (12, 61), (12, 62), (12, 63), (12, 64), (12, 65), (12, 66), (12, 67), (12, 68),
 (12, 69), (12, 70), (12, 71), (12, 72), (12, 73), -- Security staff
 (12, 97), (12, 98), (12, 99), (12, 100), (12, 101), (12, 102); -- Auxiliary staff
@@ -1036,7 +1036,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 13: Glastonbury Pyramid Stage Day 4 (venue_id = 6, capacity = 550)
 -- Security needed: 28 staff (5% of 550), Auxiliary needed: 11 staff (2% of 550)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(13, 7), (13, 8), (13, 9), (13, 10), (13, 11), (13, 12), (13, 13), -- Technical staff
+(13, 11), (13, 12), (13, 13), (13, 14), (13, 15), (13, 16), (13, 17), -- Technical staff
 (13, 31), (13, 32), (13, 33), (13, 34), (13, 35), (13, 36), (13, 37), (13, 38), (13, 39), (13, 40),
 (13, 41), (13, 42), (13, 43), (13, 44), (13, 45), (13, 46), (13, 47), (13, 48), (13, 49), (13, 50),
 (13, 51), (13, 52), (13, 53), (13, 54), (13, 55), (13, 56), (13, 57), (13, 58), -- Security staff
@@ -1045,7 +1045,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 14: Glastonbury Acoustic Stage Day 4 (venue_id = 10, capacity = 280)
 -- Security needed: 14 staff (5% of 280), Auxiliary needed: 6 staff (2% of 280)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(14, 14), (14, 15), (14, 16), (14, 17), (14, 18), -- Technical staff
+(14, 18), (14, 19), (14, 20), (14, 21), (14, 22), -- Technical staff
 (14, 59), (14, 60), (14, 61), (14, 62), (14, 63), (14, 64), (14, 65), (14, 66), (14, 67), (14, 68),
 (14, 69), (14, 70), (14, 71), (14, 72), -- Security staff
 (14, 97), (14, 98), (14, 99), (14, 100), (14, 101); -- Auxiliary staff
@@ -1053,7 +1053,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 15: Glastonbury Pyramid Stage Day 5 (venue_id = 6, capacity = 550)
 -- Security needed: 28 staff (5% of 550), Auxiliary needed: 11 staff (2% of 550)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(15, 19), (15, 20), (15, 21), (15, 22), (15, 23), (15, 24), (15, 25), -- Technical staff
+(15, 11), (15, 12), (15, 13), (15, 14), (15, 15), (15, 16), (15, 17), -- Technical staff
 (15, 31), (15, 32), (15, 33), (15, 34), (15, 35), (15, 36), (15, 37), (15, 38), (15, 39), (15, 40),
 (15, 41), (15, 42), (15, 43), (15, 44), (15, 45), (15, 46), (15, 47), (15, 48), (15, 49), (15, 50),
 (15, 51), (15, 52), (15, 53), (15, 54), (15, 55), (15, 56), (15, 57), (15, 58), -- Security staff
@@ -1062,7 +1062,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 16: Glastonbury Other Stage Day 5 (venue_id = 7, capacity = 440)
 -- Security needed: 22 staff (5% of 440), Auxiliary needed: 9 staff (2% of 440)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(16, 26), (16, 27), (16, 28), (16, 29), (16, 30), -- Technical staff
+(16, 18), (16, 19), (16, 20), (16, 21), (16, 22), -- Technical staff
 (16, 59), (16, 60), (16, 61), (16, 62), (16, 63), (16, 64), (16, 65), (16, 66), (16, 67), (16, 68),
 (16, 69), (16, 70), (16, 71), (16, 72), (16, 73), (16, 74), (16, 75), (16, 76), (16, 77), (16, 78),
 (16, 79), (16, 80), -- Security staff
@@ -1071,7 +1071,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 17: Lollapalooza T-Mobile Day 1 (venue_id = 11, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(17, 1), (17, 2), (17, 3), (17, 4), (17, 5), -- Technical staff
+(17, 23), (17, 24), (17, 25), (17, 26), -- Technical staff
 (17, 31), (17, 32), (17, 33), (17, 34), (17, 35), (17, 36), (17, 37), (17, 38), (17, 39), (17, 40),
 (17, 41), (17, 42), (17, 43), (17, 44), (17, 45), (17, 46), (17, 47), (17, 48), (17, 49), (17, 50),
 (17, 51), (17, 52), -- Security staff
@@ -1080,7 +1080,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 18: Lollapalooza Bud Light Day 1 (venue_id = 12, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(18, 6), (18, 7), (18, 8), (18, 9), (18, 10), -- Technical staff
+(18, 27), (18, 28), (18, 29), (18, 30), -- Technical staff
 (18, 53), (18, 54), (18, 55), (18, 56), (18, 57), (18, 58), (18, 59), (18, 60), (18, 61), (18, 62),
 (18, 63), (18, 64), (18, 65), (18, 66), (18, 67), (18, 68), (18, 69), (18, 70), (18, 71), (18, 72),-- Security staff
 (18, 95), (18, 96), (18, 97), (18, 98), (18, 99), (18, 100), (18, 101), (18, 102); -- Auxiliary staff
@@ -1088,7 +1088,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 19: Lollapalooza T-Mobile Day 2 (venue_id = 11, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(19, 11), (19, 12), (19, 13), (19, 14), (19, 15), -- Technical staff
+(19, 23), (19, 24), (19, 25), (19, 26), -- Technical staff
 (19, 31), (19, 32), (19, 33), (19, 34), (19, 35), (19, 36), (19, 37), (19, 38), (19, 39), (19, 40),
 (19, 41), (19, 42), (19, 43), (19, 44), (19, 45), (19, 46), (19, 47), (19, 48), (19, 49), (19, 50),
 (19, 51), (19, 52), -- Security staff
@@ -1097,7 +1097,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 20: Lollapalooza Perrys Day 2 (venue_id = 13, capacity = 390)
 -- Security needed: 20 staff (5% of 390), Auxiliary needed: 8 staff (2% of 390)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(20, 16), (20, 17), (20, 18), (20, 19), (20, 20), -- Technical staff
+(20, 27), (20, 28), (20, 29), (20, 30),  -- Technical staff
 (20, 53), (20, 54), (20, 55), (20, 56), (20, 57), (20, 58), (20, 59), (20, 60), (20, 61), (20, 62),
 (20, 63), (20, 64), (20, 65), (20, 66), (20, 67), (20, 68), (20, 69), (20, 70), (20, 71), (20, 72), -- Security staff
 (20, 95), (20, 96), (20, 97), (20, 98), (20, 99), (20, 100), (20, 101), (20, 102); -- Auxiliary staff
@@ -1105,7 +1105,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 21: Lollapalooza T-Mobile Day 3 (venue_id = 11, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(21, 21), (21, 22), (21, 23), (21, 24), (21, 25), -- Technical staff
+(21, 23), (21, 24), (21, 25), (21, 26),  -- Technical staff
 (21, 31), (21, 32), (21, 33), (21, 34), (21, 35), (21, 36), (21, 37), (21, 38), (21, 39), (21, 40),
 (21, 41), (21, 42), (21, 43), (21, 44), (21, 45), (21, 46), (21, 47), (21, 48), (21, 49), (21, 50),
 (21, 51), (21, 52), -- Security staff
@@ -1114,7 +1114,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 22: Lollapalooza BMI Stage Day 3 (venue_id = 14, capacity = 250)
 -- Security needed: 13 staff (5% of 250), Auxiliary needed: 5 staff (2% of 250)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(22, 26), (22, 27), (22, 28), (22, 29), (22, 30), -- Technical staff
+(22, 27), (22, 28), (22, 29), (22, 30),  -- Technical staff
 (22, 53), (22, 54), (22, 55), (22, 56), (22, 57), (22, 58), (22, 59), (22, 60), (22, 61), (22, 62),
 (22, 63), (22, 64), (22, 65), -- Security staff
 (22, 95), (22, 96), (22, 97), (22, 98), (22, 99); -- Auxiliary staff
@@ -1122,7 +1122,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 23: Lollapalooza T-Mobile Day 4 (venue_id = 11, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(23, 1), (23, 2), (23, 3), (23, 4), (23, 5), -- Technical staff
+(23, 23), (23, 24), (23, 25), (23, 26),  -- Technical staff
 (23, 31), (23, 32), (23, 33), (23, 34), (23, 35), (23, 36), (23, 37), (23, 38), (23, 39), (23, 40),
 (23, 41), (23, 42), (23, 43), (23, 44), (23, 45), (23, 46), (23, 47), (23, 48), (23, 49), (23, 50),
 (23, 51), (23, 52), -- Security staff
@@ -1131,7 +1131,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 24: Lollapalooza Bud Light Day 4 (venue_id = 12, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(24, 6), (24, 7), (24, 8), (24, 9), (24, 10), -- Technical staff
+(24, 27), (24, 28), (24, 29), (24, 30),  -- Technical staff
 (24, 53), (24, 54), (24, 55), (24, 56), (24, 57), (24, 58), (24, 59), (24, 60), (24, 61), (24, 62),
 (24, 63), (24, 64), (24, 65), (24, 66), (24, 67), (24, 68), (24, 69), (24, 70), (24, 71), (24, 72),-- Security staff
 (24, 95), (24, 96), (24, 97), (24, 98), (24, 99), (24, 100), (24, 101), (24, 102); -- Auxiliary staff
@@ -1139,7 +1139,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 25: Fuji Rock Green Stage Day 1 (venue_id = 15, capacity = 350)
 -- Security needed: 18 staff (5% of 350), Auxiliary needed: 7 staff (2% of 350)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(25, 11), (25, 12), (25, 13), (25, 14), (25, 15), -- Technical staff
+(25, 1), (25, 3), (25, 5), (25, 7), (25, 9), -- Technical staff
 (25, 31), (25, 32), (25, 33), (25, 34), (25, 35), (25, 36), (25, 37), (25, 38), (25, 39), (25, 40),
 (25, 41), (25, 42), (25, 43), (25, 44), (25, 45), (25, 46), (25, 47), (25, 48), -- Security staff
 (25, 86), (25, 87), (25, 88), (25, 89), (25, 90), (25, 91), (25, 92); -- Auxiliary staff
@@ -1147,7 +1147,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 26: Fuji Rock White Stage Day 1 (venue_id = 16, capacity = 330)
 -- Security needed: 17 staff (5% of 330), Auxiliary needed: 7 staff (2% of 330)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(26, 16), (26, 17), (26, 18), (26, 19), (26, 20), -- Technical staff
+(26, 11), (26, 13), (26, 15), (26, 17), (26, 19), -- Technical staff
 (26, 49), (26, 50), (26, 51), (26, 52), (26, 53), (26, 54), (26, 55), (26, 56), (26, 57), (26, 58),
 (26, 59), (26, 60), (26, 61), (26, 62), (26, 63), (26, 64), (26, 65), -- Security staff
 (26, 93), (26, 94), (26, 95), (26, 96), (26, 97), (26, 98), (26, 99); -- Auxiliary staff
@@ -1155,7 +1155,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 27: Fuji Rock Green Stage Day 2 (venue_id = 15, capacity = 350)
 -- Security needed: 18 staff (5% of 350), Auxiliary needed: 7 staff (2% of 350)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(27, 21), (27, 22), (27, 23), (27, 24), (27, 25), -- Technical staff
+(27, 1), (27, 3), (27, 5), (27, 7), (27, 9), -- Technical staff
 (27, 31), (27, 32), (27, 33), (27, 34), (27, 35), (27, 36), (27, 37), (27, 38), (27, 39), (27, 40),
 (27, 41), (27, 42), (27, 43), (27, 44), (27, 45), (27, 46), (27, 47), (27, 48), -- Security staff
 (27, 86), (27, 87), (27, 88), (27, 89), (27, 90), (27, 91), (27, 92); -- Auxiliary staff
@@ -1163,7 +1163,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 28: Fuji Rock Field of Heaven Day 2 (venue_id = 17, capacity = 290)
 -- Security needed: 15 staff (5% of 290), Auxiliary needed: 6 staff (2% of 290)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(28, 26), (28, 27), (28, 28), (28, 29), (28, 30), -- Technical staff
+(28, 11), (28, 13), (28, 15), (28, 17), (28, 19), -- Technical staff
 (28, 49), (28, 50), (28, 51), (28, 52), (28, 53), (28, 54), (28, 55), (28, 56), (28, 57), (28, 58),
 (28, 59), (28, 60), (28, 61), (28, 62), (28, 63), -- Security staff
 (28, 93), (28, 94), (28, 95), (28, 96), (28, 97), (28, 98); -- Auxiliary staff
@@ -1171,7 +1171,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 29: Fuji Rock Green Stage Day 3 (venue_id = 15, capacity = 350)
 -- Security needed: 18 staff (5% of 350), Auxiliary needed: 7 staff (2% of 350)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(29, 1), (29, 2), (29, 3), (29, 4), (29, 5), -- Technical staff
+(29, 1), (29, 3), (29, 5), (29, 7), (29, 9), -- Technical staff
 (29, 31), (29, 32), (29, 33), (29, 34), (29, 35), (29, 36), (29, 37), (29, 38), (29, 39), (29, 40),
 (29, 41), (29, 42), (29, 43), (29, 44), (29, 45), (29, 46), (29, 47), (29, 48), -- Security staff
 (29, 86), (29, 87), (29, 88), (29, 89), (29, 90), (29, 91), (29, 92); -- Auxiliary staff
@@ -1179,7 +1179,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 30: Fuji Rock White Stage Day 3 (venue_id = 16, capacity = 330)
 -- Security needed: 17 staff (5% of 330), Auxiliary needed: 7 staff (2% of 330)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(30, 6), (30, 7), (30, 8), (30, 9), (30, 10), -- Technical staff
+(30, 11), (30, 13), (30, 15), (30, 17), (30, 19), -- Technical staff
 (30, 49), (30, 50), (30, 51), (30, 52), (30, 53), (30, 54), (30, 55), (30, 56), (30, 57), (30, 58),
 (30, 59), (30, 60), (30, 61), (30, 62), (30, 63), (30, 64), (30, 65), -- Security staff
 (30, 93), (30, 94), (30, 95), (30, 96), (30, 97), (30, 98), (30, 99); -- Auxiliary staff
@@ -1187,7 +1187,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 31: Primavera Main Stage Day 1 (venue_id = 18, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(31, 11), (31, 12), (31, 13), (31, 14), (31, 15), -- Technical staff
+(31, 2), (31, 4), (31, 6), (31, 8), (31, 10), -- Technical staff
 (31, 31), (31, 32), (31, 33), (31, 34), (31, 35), (31, 36), (31, 37), (31, 38), (31, 39), (31, 40),
 (31, 41), (31, 42), (31, 43), (31, 44), (31, 45), (31, 46), (31, 47), (31, 48), (31, 49), (31, 50), -- Security staff
 (31, 86), (31, 87), (31, 88), (31, 89), (31, 90), (31, 91), (31, 92),(31, 93);  -- Auxiliary staff
@@ -1195,7 +1195,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 32: Primavera Ray-Ban Stage Day 1 (venue_id = 19, capacity = 370)
 -- Security needed: 19 staff (5% of 370), Auxiliary needed: 8 staff (2% of 370, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(32, 16), (32, 17), (32, 18), (32, 19), (32, 20), -- Technical staff
+(32, 12), (32, 14), (32, 16), (32, 18), (32, 20), -- Technical staff
 (32, 51), (32, 52), (32, 53), (32, 54), (32, 55), (32, 56), (32, 57), (32, 58), (32, 59), (32, 60),
 (32, 61), (32, 62), (32, 63), (32, 64), (32, 65), (32, 66), (32, 67), (32, 68), (32, 69), -- Security staff
 (32, 94), (32, 95), (32, 96), (32, 97), (32, 98), (32, 99), (32, 100), (32, 101); -- Auxiliary staff
@@ -1203,7 +1203,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 33: Primavera Main Stage Day 2 (venue_id = 18, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(33, 21), (33, 22), (33, 23), (33, 24), (33, 25), -- Technical staff
+(33, 2), (33, 4), (33, 6), (33, 8), (33, 10), -- Technical staff
 (33, 31), (33, 32), (33, 33), (33, 34), (33, 35), (33, 36), (33, 37), (33, 38), (33, 39), (33, 40),
 (33, 41), (33, 42), (33, 43), (33, 44), (33, 45), (33, 46), (33, 47), (33, 48), (33, 49), (33, 50), -- Security staff
 (33, 86), (33, 87), (33, 88), (33, 89), (33, 90), (33, 91), (33, 92),(33, 93); -- Auxiliary staff
@@ -1211,7 +1211,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 34: Primavera Pitchfork Stage Day 2 (venue_id = 20, capacity = 320)
 -- Security needed: 16 staff (5% of 320), Auxiliary needed: 7 staff (2% of 320, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(34, 26), (34, 27), (34, 28), (34, 29), (34, 30), -- Technical staff
+(34, 12), (34, 14), (34, 16), (34, 18), (34, 20), -- Technical staff
 (34, 51), (34, 52), (34, 53), (34, 54), (34, 55), (34, 56), (34, 57), (34, 58), (34, 59), (34, 60),
 (34, 61), (34, 62), (34, 63), (34, 64), (34, 65), (34, 66), -- Security staff
 (34, 94), (34, 95), (34, 96), (34, 97), (34, 98), (34, 99), (34, 100); -- Auxiliary staff
@@ -1219,7 +1219,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 35: Primavera Main Stage Day 3 (venue_id = 18, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(35, 1), (35, 2), (35, 3), (35, 4), (35, 5), -- Technical staff
+(35, 2), (35, 4), (35, 6), (35, 8), (35, 10), -- Technical staff
 (35, 31), (35, 32), (35, 33), (35, 34), (35, 35), (35, 36), (35, 37), (35, 38), (35, 39), (35, 40),
 (35, 41), (35, 42), (35, 43), (35, 44), (35, 45), (35, 46), (35, 47), (35, 48), (35, 49), (35, 50), -- Security staff
 (35, 86), (35, 87), (35, 88), (35, 89), (35, 90), (35, 91), (35, 92), (35, 93); -- Auxiliary staff
@@ -1227,7 +1227,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 36: Primavera Ray-Ban Stage Day 3 (venue_id = 19, capacity = 370)
 -- Security needed: 19 staff (5% of 370), Auxiliary needed: 8 staff (2% of 370, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(36, 6), (36, 7), (36, 8), (36, 9), (36, 10), -- Technical staff
+(36, 12), (36, 14), (36, 16), (36, 18), (36, 20), -- Technical staff
 (36, 51), (36, 52), (36, 53), (36, 54), (36, 55), (36, 56), (36, 57), (36, 58), (36, 59), (36, 60),
 (36, 61), (36, 62), (36, 63), (36, 64), (36, 65), (36, 66), (36, 67), (36, 68), (36, 69), -- Security staff
 (36, 94), (36, 95), (36, 96), (36, 97), (36, 98), (36, 99), (36, 100), (36, 101);-- Auxiliary staff
@@ -1235,7 +1235,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 37: Rock am Ring Centerfeld Day 1 (venue_id = 21, capacity = 480)
 -- Security needed: 24 staff (5% of 480), Auxiliary needed: 10 staff (2% of 480)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(37, 11), (37, 12), (37, 13), (37, 14), (37, 15), -- Technical staff
+(37, 6), (37, 7), (37, 8), (37, 9), (37, 10), -- Technical staff
 (37, 31), (37, 32), (37, 33), (37, 34), (37, 35), (37, 36), (37, 37), (37, 38), (37, 39), (37, 40),
 (37, 41), (37, 42), (37, 43), (37, 44), (37, 45), (37, 46), (37, 47), (37, 48), (37, 49), (37, 50),
 (37, 51), (37, 52), (37, 53), (37, 54), -- Security staff
@@ -1244,7 +1244,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 38: Rock am Ring Mandora Stage Day 1 (venue_id = 22, capacity = 440)
 -- Security needed: 22 staff (5% of 440), Auxiliary needed: 9 staff (2% of 440)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(38, 16), (38, 17), (38, 18), (38, 19), (38, 20), -- Technical staff
+(38, 21), (38, 22), (38, 23), (38, 24), (38, 25), -- Technical staff
 (38, 55), (38, 56), (38, 57), (38, 58), (38, 59), (38, 60), (38, 61), (38, 62), (38, 63), (38, 64), 
 (38, 65), (38, 66), (38, 67), (38, 68), (38, 69), (38, 70), (38, 71), (38, 72), (38, 73), (38, 74), 
 (38, 75), (38, 76), -- Security staff
@@ -1253,7 +1253,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 39: Rock am Ring Centerfeld Day 2 (venue_id = 21, capacity = 480)
 -- Security needed: 24 staff (5% of 480), Auxiliary needed: 10 staff (2% of 480)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(39, 21), (39, 22), (39, 23), (39, 24), (39, 25), -- Technical staff
+(39, 6), (39, 7), (39, 8), (39, 9), (39, 10), -- Technical staff
 (39, 31), (39, 32), (39, 33), (39, 34), (39, 35), (39, 36), (39, 37), (39, 38), (39, 39), (39, 40),
 (39, 41), (39, 42), (39, 43), (39, 44), (39, 45), (39, 46), (39, 47), (39, 48), (39, 49), (39, 50),
 (39, 51), (39, 52), (39, 53), (39, 54), -- Security staff
@@ -1262,7 +1262,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 40: Rock am Ring Mandora Stage Day 2 (venue_id = 22, capacity = 440)
 -- Security needed: 22 staff (5% of 440), Auxiliary needed: 9 staff (2% of 440)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(40, 26), (40, 27), (40, 28), (40, 29), (40, 30), -- Technical staff
+(40, 21), (40, 22), (40, 23), (40, 24), (40, 25), -- Technical staff
 (40, 59), (40, 60), (40, 61), (40, 62), (40, 63), (40, 64), (40, 65), (40, 66), (40, 67), (40, 68),
 (40, 69), (40, 70), (40, 71), (40, 72), (40, 73), (40, 74), (40, 75), (40, 76), (40, 77), (40, 78),
 (40, 79), (40, 80), -- Security staff
@@ -1271,7 +1271,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 41: Rock am Ring Centerfeld Day 3 (venue_id = 21, capacity = 480)
 -- Security needed: 24 staff (5% of 480), Auxiliary needed: 10 staff (2% of 480)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(41, 1), (41, 2), (41, 3), (41, 4), (41, 5), -- Technical staff
+(41, 6), (41, 7), (41, 8), (41, 9), (41, 10), -- Technical staff
 (41, 31), (41, 32), (41, 33), (41, 34), (41, 35), (41, 36), (41, 37), (41, 38), (41, 39), (41, 40),
 (41, 41), (41, 42), (41, 43), (41, 44), (41, 45), (41, 46), (41, 47), (41, 48), (41, 49), (41, 50),
 (41, 51), (41, 52), (41, 53), (41, 54), -- Security staff
@@ -1280,7 +1280,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 42: Rock am Ring Mandora Stage Day 3 (venue_id = 22, capacity = 440)
 -- Security needed: 22 staff (5% of 440), Auxiliary needed: 9 staff (2% of 440)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(42, 6), (42, 7), (42, 8), (42, 9), (42, 10), -- Technical staff
+(42, 21), (42, 22), (42, 23), (42, 24), (42, 25), -- Technical staff
 (42, 59), (42, 60), (42, 61), (42, 62), (42, 63), (42, 64), (42, 65), (42, 66), (42, 67), (42, 68),
 (42, 69), (42, 70), (42, 71), (42, 72), (42, 73), (42, 74), (42, 75), (42, 76), (42, 77), (42, 78),
 (42, 79), (42, 80), -- Security staff
@@ -1289,7 +1289,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 43: Woodstock Peace Garden Day 1 (venue_id = 23, capacity = 410)
 -- Security needed: 21 staff (5% of 410), Auxiliary needed: 9 staff (2% of 410, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(43, 11), (43, 12), (43, 13), (43, 14), (43, 15), -- Technical staff
+(43, 1), (43, 2), (43, 3), (43, 4), (43, 5), -- Technical staff
 (43, 31), (43, 32), (43, 33), (43, 34), (43, 35), (43, 36), (43, 37), (43, 38), (43, 39), (43, 40),
 (43, 41), (43, 42), (43, 43), (43, 44), (43, 45), (43, 46), (43, 47), (43, 48), (43, 49), (43, 50),
 (43, 51), -- Security staff
@@ -1298,7 +1298,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 44: Woodstock Freedom Stage Day 1 (venue_id = 24, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(44, 16), (44, 17), (44, 18), (44, 19), (44, 20), -- Technical staff
+(44, 26), (44, 27), (44, 28), (44, 29), (44, 30), -- Technical staff
 (44, 53), (44, 54), (44, 55), (44, 56), (44, 57), (44, 58), (44, 59), (44, 60), (44, 61), (44, 62), 
 (44, 63), (44, 64), (44, 65), (44, 66), (44, 67), (44, 68), (44, 69), (44, 70), (44, 71), (44, 72), -- Security staff
 (44, 95), (44, 96), (44, 97), (44, 98), (44, 99), (44, 100), (44, 101), (44, 102); -- Auxiliary staff
@@ -1306,7 +1306,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 45: Woodstock Peace Garden Day 2 (venue_id = 23, capacity = 410)
 -- Security needed: 21 staff (5% of 410), Auxiliary needed: 9 staff (2% of 410, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(45, 21), (45, 22), (45, 23), (45, 24), (45, 25), -- Technical staff
+(45, 1), (45, 2), (45, 3), (45, 4), (45, 5), -- Technical staff
 (45, 31), (45, 32), (45, 33), (45, 34), (45, 35), (45, 36), (45, 37), (45, 38), (45, 39), (45, 40),
 (45, 41), (45, 42), (45, 43), (45, 44), (45, 45), (45, 46), (45, 47), (45, 48), (45, 49), (45, 50),
 (45, 51), -- Security staff
@@ -1332,7 +1332,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 48: Woodstock Freedom Stage Day 3 (venue_id = 24, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(48, 6), (48, 7), (48, 8), (48, 9), (48, 10), -- Technical staff
+(48, 26), (48, 27), (48, 28), (48, 29), (48, 30), -- Technical staff
 (48, 52), (48, 53), (48, 54), (48, 55), (48, 56), (48, 57), (48, 58), (48, 59), (48, 60), (48, 61), 
 (48, 62), (48, 63), (48, 64), (48, 65), (48, 66), (48, 67), (48, 68), (48, 69), (48, 70), (48, 71), -- Security staff
 (48, 95), (48, 96), (48, 97), (48, 98), (48, 99), (48, 100), (48, 101), (48, 102); -- Auxiliary staff
@@ -1340,7 +1340,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 49: Woodstock Peace Garden Day 4 (venue_id = 23, capacity = 410)
 -- Security needed: 21 staff (5% of 410), Auxiliary needed: 9 staff (2% of 410, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(49, 11), (49, 12), (49, 13), (49, 14), (49, 15), -- Technical staff
+(49, 1), (49, 2), (49, 3), (49, 4), (49, 5), -- Technical staff
 (49, 31), (49, 32), (49, 33), (49, 34), (49, 35), (49, 36), (49, 37), (49, 38), (49, 39), (49, 40),
 (49, 41), (49, 42), (49, 43), (49, 44), (49, 45), (49, 46), (49, 47), (49, 48), (49, 49), (49, 50),
 (49, 51), -- Security staff
@@ -1349,7 +1349,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 50: Woodstock Freedom Stage Day 4 (venue_id = 24, capacity = 400)
 -- Security needed: 20 staff (5% of 400), Auxiliary needed: 8 staff (2% of 400)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(50, 16), (50, 17), (50, 18), (50, 19), (50, 20), -- Technical staff
+(50, 26), (50, 27), (50, 28), (50, 29), (50, 30), -- Technical staff
 (50, 52), (50, 53), (50, 54), (50, 55), (50, 56), (50, 57), (50, 58), (50, 59), (50, 60), (50, 61), 
 (50, 62), (50, 63), (50, 64), (50, 65), (50, 66), (50, 67), (50, 68), (50, 69), (50, 70), (50, 71), -- Security staff
 (50, 95), (50, 96), (50, 97), (50, 98), (50, 99), (50, 100), (50, 101), (50, 102); -- Auxiliary staff
@@ -1357,7 +1357,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 51: Boom Dance Temple Day 1 (venue_id = 25, capacity = 470)
 -- Security needed: 24 staff (5% of 470, rounded up), Auxiliary needed: 10 staff (2% of 470, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(51, 21), (51, 22), (51, 23), (51, 24), (51, 25), -- Technical staff
+(51, 1), (51, 2), (51, 3), (51, 6), (51, 7), -- Technical staff
 (51, 31), (51, 32), (51, 33), (51, 34), (51, 35), (51, 36), (51, 37), (51, 38), (51, 39), (51, 40),
 (51, 41), (51, 42), (51, 43), (51, 44), (51, 45), (51, 46), (51, 47), (51, 48), (51, 49), (51, 50),
 (51, 51), (51, 52), (51, 53), (51, 54), -- Security staff
@@ -1366,7 +1366,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 52: Boom Sacred Fire Day 1 (venue_id = 26, capacity = 420)
 -- Security needed: 21 staff (5% of 420), Auxiliary needed: 9 staff (2% of 420, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(52, 26), (52, 27), (52, 28), (52, 29), (52, 30), -- Technical staff
+(52, 13), (52, 14), (52, 15), (52, 16), (52, 17), -- Technical staff
 (52, 55), (52, 56), (52, 57), (52, 58), (52, 59), (52, 60), (52, 61), (52, 62), (52, 63), (52, 64), 
 (52, 65), (52, 66), (52, 67), (52, 68), (52, 69), (52, 70), (52, 71), (52, 72), (52, 73), (52, 74), 
 (52, 75), -- Security staff
@@ -1375,7 +1375,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 53: Boom Dance Temple Day 2 (venue_id = 25, capacity = 470)
 -- Security needed: 24 staff (5% of 470, rounded up), Auxiliary needed: 10 staff (2% of 470, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(53, 1), (53, 2), (53, 3), (53, 4), (53, 5), -- Technical staff
+(53, 1), (53, 2), (53, 3), (53, 6), (53, 7), -- Technical staff
 (53, 31), (53, 32), (53, 33), (53, 34), (53, 35), (53, 36), (53, 37), (53, 38), (53, 39), (53, 40),
 (53, 41), (53, 42), (53, 43), (53, 44), (53, 45), (53, 46), (53, 47), (53, 48), (53, 49), (53, 50),
 (53, 51), (53, 52), (53, 53), (53, 54), -- Security staff
@@ -1384,7 +1384,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 54: Boom Sacred Fire Day 2 (venue_id = 26, capacity = 420)
 -- Security needed: 21 staff (5% of 420), Auxiliary needed: 9 staff (2% of 420, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(54, 6), (54, 7), (54, 8), (54, 9), (54, 10), -- Technical staff
+(54, 13), (54, 14), (54, 15), (54, 16), (54, 17), -- Technical staff
 (54, 55), (54, 56), (54, 57), (54, 58), (54, 59), (54, 60), (54, 61), (54, 62), (54, 63), (54, 64), 
 (54, 65), (54, 66), (54, 67), (54, 68), (54, 69), (54, 70), (54, 71), (54, 72), (54, 73), (54, 74), 
 (54, 75), -- Security staff
@@ -1393,7 +1393,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 55: Boom Dance Temple Day 3 (venue_id = 25, capacity = 470)
 -- Security needed: 24 staff (5% of 470, rounded up), Auxiliary needed: 10 staff (2% of 470, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(55, 11), (55, 12), (55, 13), (55, 14), (55, 15), -- Technical staff
+(55, 1), (55, 2), (55, 3), (55, 6), (55, 7), -- Technical staff
 (55, 31), (55, 32), (55, 33), (55, 34), (55, 35), (55, 36), (55, 37), (55, 38), (55, 39), (55, 40),
 (55, 41), (55, 42), (55, 43), (55, 44), (55, 45), (55, 46), (55, 47), (55, 48), (55, 49), (55, 50),
 (55, 51), (55, 52), (55, 53), (55, 54), -- Security staff
@@ -1402,7 +1402,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 56: Boom Sacred Fire Day 3 (venue_id = 26, capacity = 420)
 -- Security needed: 21 staff (5% of 420), Auxiliary needed: 9 staff (2% of 420, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(56, 16), (56, 17), (56, 18), (56, 19), (56, 20), -- Technical staff
+(56, 13), (56, 14), (56, 15), (56, 16), (56, 17), -- Technical staff
 (56, 55), (56, 56), (56, 57), (56, 58), (56, 59), (56, 60), (56, 61), (56, 62), (56, 63), (56, 64), 
 (56, 65), (56, 66), (56, 67), (56, 68), (56, 69), (56, 70), (56, 71), (56, 72), (56, 73), (56, 74), 
 (56, 75), -- Security staff
@@ -1411,7 +1411,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 57: Boom Dance Temple Day 4 (venue_id = 25, capacity = 470)
 -- Security needed: 24 staff (5% of 470, rounded up), Auxiliary needed: 10 staff (2% of 470, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(57, 21), (57, 22), (57, 23), (57, 24), (57, 25), -- Technical staff
+(57, 1), (57, 2), (57, 3), (57, 6), (57, 7), -- Technical staff
 (57, 31), (57, 32), (57, 33), (57, 34), (57, 35), (57, 36), (57, 37), (57, 38), (57, 39), (57, 40),
 (57, 41), (57, 42), (57, 43), (57, 44), (57, 45), (57, 46), (57, 47), (57, 48), (57, 49), (57, 50),
 (57, 51), (57, 52), (57, 53), (57, 54), -- Security staff
@@ -1420,7 +1420,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 58: Boom Sacred Fire Day 4 (venue_id = 26, capacity = 420)
 -- Security needed: 21 staff (5% of 420), Auxiliary needed: 9 staff (2% of 420, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(58, 26), (58, 27), (58, 28), (58, 29), (58, 30), -- Technical staff
+(58, 13), (58, 14), (58, 15), (58, 16), (58, 17), -- Technical staff
 (58, 55), (58, 56), (58, 57), (58, 58), (58, 59), (58, 60), (58, 61), (58, 62), (58, 63), (58, 64), 
 (58, 65), (58, 66), (58, 67), (58, 68), (58, 69), (58, 70), (58, 71), (58, 72), (58, 73), (58, 74), 
 (58, 75), -- Security staff
@@ -1429,7 +1429,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 59: Ultra Main Stage Day 1 (venue_id = 27, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(59, 1), (59, 2), (59, 3), (59, 4), (59, 5), -- Technical staff
+(59, 2), (59, 4), (59, 6), (59, 8), (59, 10), -- Technical staff
 (59, 31), (59, 32), (59, 33), (59, 34), (59, 35), (59, 36), (59, 37), (59, 38), (59, 39), (59, 40),
 (59, 41), (59, 42), (59, 43), (59, 44), (59, 45), (59, 46), (59, 47), (59, 48), (59, 49), (59, 50),
 (59, 51), (59, 52), (59, 53), -- Security staff
@@ -1438,7 +1438,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 60: Ultra Resistance Stage Day 1 (venue_id = 28, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(60, 6), (60, 7), (60, 8), (60, 9), (60, 10), -- Technical staff
+(60, 20), (60, 21), (60, 22), (60, 23), (60, 24), -- Technical staff
 (60, 54), (60, 55), (60, 56), (60, 57), (60, 58), (60, 59), (60, 60), (60, 61), (60, 62), (60, 63), 
 (60, 64), (60, 65), (60, 66), (60, 67), (60, 68), (60, 69), (60, 70), (60, 71), (60, 72), (60, 73), 
 (60, 74), (60, 75), -- Security staff
@@ -1447,7 +1447,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 61: Ultra Main Stage Day 2 (venue_id = 27, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(61, 11), (61, 12), (61, 13), (61, 14), (61, 15), -- Technical staff
+(61, 2), (61, 4), (61, 6), (61, 8), (61, 10), -- Technical staff
 (61, 31), (61, 32), (61, 33), (61, 34), (61, 35), (61, 36), (61, 37), (61, 38), (61, 39), (61, 40),
 (61, 41), (61, 42), (61, 43), (61, 44), (61, 45), (61, 46), (61, 47), (61, 48), (61, 49), (61, 50),
 (61, 51), (61, 52), (61, 53), -- Security staff
@@ -1456,7 +1456,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 62: Ultra Resistance Stage Day 2 (venue_id = 28, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(62, 16), (62, 17), (62, 18), (62, 19), (62, 20), -- Technical staff
+(62, 20), (62, 21), (62, 22), (62, 23), (62, 24), -- Technical staff
 (62, 54), (62, 55), (62, 56), (62, 57), (62, 58), (62, 59), (62, 60), (62, 61), (62, 62), (62, 63), 
 (62, 64), (62, 65), (62, 66), (62, 67), (62, 68), (62, 69), (62, 70), (62, 71), (62, 72), (62, 73), 
 (62, 74), (62, 75), -- Security staff
@@ -1465,7 +1465,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 63: Ultra Main Stage Day 3 (venue_id = 27, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(63, 21), (63, 22), (63, 23), (63, 24), (63, 25), -- Technical staff
+(63, 2), (63, 4), (63, 6), (63, 8), (63, 10), -- Technical staff
 (63, 31), (63, 32), (63, 33), (63, 34), (63, 35), (63, 36), (63, 37), (63, 38), (63, 39), (63, 40),
 (63, 41), (63, 42), (63, 43), (63, 44), (63, 45), (63, 46), (63, 47), (63, 48), (63, 49), (63, 50),
 (63, 51), (63, 52), (63, 53), -- Security staff
@@ -1474,7 +1474,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 64: Ultra Resistance Stage Day 3 (venue_id = 28, capacity = 430)
 -- Security needed: 22 staff (5% of 430), Auxiliary needed: 9 staff (2% of 430)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(64, 26), (64, 27), (64, 28), (64, 29), (64, 30), -- Technical staff
+(64, 20), (64, 21), (64, 22), (64, 23), (64, 24), -- Technical staff
 (64, 54), (64, 55), (64, 56), (64, 57), (64, 58), (64, 59), (64, 60), (64, 61), (64, 62), (64, 63), 
 (64, 64), (64, 65), (64, 66), (64, 67), (64, 68), (64, 69), (64, 70), (64, 71), (64, 72), (64, 73), 
 (64, 74), (64, 75), -- Security staff
@@ -1483,7 +1483,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 65: Creamfields Steel Yard Day 1 (venue_id = 29, capacity = 380)
 -- Security needed: 19 staff (5% of 380), Auxiliary needed: 8 staff (2% of 380)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(65, 1), (65, 2), (65, 3), (65, 4), (65, 5), -- Technical staff
+(65, 3), (65, 6), (65, 9), (65, 12), (65, 15), -- Technical staff
 (65, 31), (65, 32), (65, 33), (65, 34), (65, 35), (65, 36), (65, 37), (65, 38), (65, 39), (65, 40),
 (65, 41), (65, 42), (65, 43), (65, 44), (65, 45), (65, 46), (65, 47), (65, 48), (65, 49), -- Security staff
 (65, 86), (65, 87), (65, 88), (65, 89), (65, 90), (65, 91), (65, 92), (65, 93); -- Auxiliary staff
@@ -1491,7 +1491,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 66: Creamfields Arc Stage Day 1 (venue_id = 30, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(66, 6), (66, 7), (66, 8), (66, 9), (66, 10), -- Technical staff
+(66, 4), (66, 8), (66, 16), (66, 20), (66, 24), -- Technical staff
 (66, 50), (66, 51), (66, 52), (66, 53), (66, 54), (66, 55), (66, 56), (66, 57), (66, 58), (66, 59),
 (66, 60), (66, 61), (66, 62), (66, 63), (66, 64), (66, 65), (66, 66), (66, 67), (66, 68), (66, 69),
 (66, 70), (66, 71), (66, 72), -- Security staff
@@ -1500,7 +1500,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 67: Creamfields Steel Yard Day 2 (venue_id = 29, capacity = 380)
 -- Security needed: 19 staff (5% of 380), Auxiliary needed: 8 staff (2% of 380)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(67, 11), (67, 12), (67, 13), (67, 14), (67, 15), -- Technical staff
+(67, 3), (67, 6), (67, 9), (67, 12), (67, 15), -- Technical staff
 (67, 31), (67, 32), (67, 33), (67, 34), (67, 35), (67, 36), (67, 37), (67, 38), (67, 39), (67, 40),
 (67, 41), (67, 42), (67, 43), (67, 44), (67, 45), (67, 46), (67, 47), (67, 48), (67, 49), -- Security staff
 (67, 86), (67, 87), (67, 88), (67, 89), (67, 90), (67, 91), (67, 92), (67, 93); -- Auxiliary staff
@@ -1508,7 +1508,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 68: Creamfields Arc Stage Day 2 (venue_id = 30, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(68, 16), (68, 17), (68, 18), (68, 19), (68, 20), -- Technical staff
+(68, 4), (68, 8), (68, 16), (68, 20), (68, 24), -- Technical staff
 (68, 50), (68, 51), (68, 52), (68, 53), (68, 54), (68, 55), (68, 56), (68, 57), (68, 58), (68, 59),
 (68, 60), (68, 61), (68, 62), (68, 63), (68, 64), (68, 65), (68, 66), (68, 67), (68, 68), (68, 69),
 (68, 70), (68, 71), (68, 72), -- Security staff
@@ -1517,7 +1517,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 69: Creamfields Steel Yard Day 3 (venue_id = 29, capacity = 380)
 -- Security needed: 19 staff (5% of 380), Auxiliary needed: 8 staff (2% of 380)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(69, 21), (69, 22), (69, 23), (69, 24), (69, 25), -- Technical staff
+(69, 3), (69, 6), (69, 9), (69, 12), (69, 15), -- Technical staff
 (69, 31), (69, 32), (69, 33), (69, 34), (69, 35), (69, 36), (69, 37), (69, 38), (69, 39), (69, 40),
 (69, 41), (69, 42), (69, 43), (69, 44), (69, 45), (69, 46), (69, 47), (69, 48), (69, 49), -- Security staff
 (69, 86), (69, 87), (69, 88), (69, 89), (69, 90), (69, 91), (69, 92), (69, 93); -- Auxiliary staff
@@ -1525,7 +1525,7 @@ INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
 -- Event 70: Creamfields Arc Stage Day 3 (venue_id = 30, capacity = 460)
 -- Security needed: 23 staff (5% of 460), Auxiliary needed: 10 staff (2% of 460, rounded up)
 INSERT INTO EVENT_STAFF (event_id, staff_id) VALUES
-(70, 26), (70, 27), (70, 28), (70, 29), (70, 30), -- Technical staff
+(70, 4), (70, 8), (70, 16), (70, 20), (70, 24), -- Technical staff
 (70, 50), (70, 51), (70, 52), (70, 53), (70, 54), (70, 55), (70, 56), (70, 57), (70, 58), (70, 59),
 (70, 60), (70, 61), (70, 62), (70, 63), (70, 64), (70, 65), (70, 66), (70, 67), (70, 68), (70, 69),
 (70, 70), (70, 71), (70, 72),  -- Security staff
@@ -1698,16 +1698,16 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2020-1-007', 'Early Bird', '2019-12-10 08:45:30', 299.99, 'Credit Card', 1, 7, 4, NULL, NULL),
 ('EAN-2020-1-008', 'General Admission', '2020-02-20 15:15:40', 350.00, 'Bank Transfer', 1, 8, 4, NULL, NULL),
 ('EAN-2020-1-009', 'Premium', '2020-01-30 12:10:55', 399.99, 'Credit Card', 1, 9, 5, NULL, NULL),
-('EAN-2020-1-010', 'VIP', '2020-02-05 17:05:23', 450.00, 'Debit Card', 1, 10, 5, NULL, NULL),
+('EAN-2020-1-010', 'VIP', '2020-02-05 17:05:23', 450.00, 'Debit Card', 1, 45, 5, NULL, NULL),
 ('EAN-2020-1-011', 'General Admission', '2020-02-12 10:33:42', 350.00, 'Credit Card', 1, 11, 6, NULL, NULL),
 ('EAN-2020-1-012', 'Early Bird', '2019-12-15 09:25:18', 299.99, 'Bank Transfer', 1, 12, 6, NULL, NULL),
-('EAN-2020-1-013', 'Premium', '2020-01-18 14:40:33', 399.99, 'Credit Card', 1, 13, 1, NULL, NULL),
-('EAN-2020-1-014', 'General Admission', '2020-02-22 16:20:15', 350.00, 'Debit Card', 1, 14, 2, NULL, NULL),
-('EAN-2020-1-015', 'VIP', '2020-01-28 11:15:50', 450.00, 'Credit Card', 1, 15, 3, NULL, NULL),
-('EAN-2020-1-016', 'Early Bird', '2019-12-20 08:55:25', 299.99, 'Bank Transfer', 1, 16, 4, NULL, NULL),
-('EAN-2020-1-017', 'General Admission', '2020-02-25 15:30:10', 350.00, 'Credit Card', 1, 17, 5, NULL, NULL),
+('EAN-2020-1-013', 'Premium', '2020-01-18 14:40:33', 399.99, 'Credit Card', 1, 11, 1, NULL, NULL),
+('EAN-2020-1-014', 'General Admission', '2020-02-22 16:20:15', 350.00, 'Debit Card', 1, 11, 2, NULL, NULL),
+('EAN-2020-1-015', 'VIP', '2020-01-28 11:15:50', 450.00, 'Credit Card', 1, 11, 3, NULL, NULL),
+('EAN-2020-1-016', 'Early Bird', '2019-12-20 08:55:25', 299.99, 'Bank Transfer', 1, 18, 4, NULL, NULL),
+('EAN-2020-1-017', 'General Admission', '2020-02-25 15:30:10', 350.00, 'Credit Card', 1, 18, 5, NULL, NULL),
 ('EAN-2020-1-018', 'Premium', '2020-01-22 13:45:38', 399.99, 'Debit Card', 1, 18, 6, NULL, NULL),
-('EAN-2020-1-019', 'VIP', '2020-02-08 17:25:12', 450.00, 'Credit Card', 1, 19, 1, NULL, NULL),
+('EAN-2020-1-019', 'VIP', '2020-02-08 17:25:12', 450.00, 'Credit Card', 1, 18, 1, NULL, NULL),
 ('EAN-2020-1-020', 'General Admission', '2020-02-18 12:50:30', 350.00, 'Bank Transfer', 1, 20, 2, NULL, NULL);
 
 -- Glastonbury 2021 (festival_id = 2, events 7-16)
@@ -1723,14 +1723,14 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2021-2-009', 'Premium', '2021-02-25 12:15:55', 425.00, 'Credit Card', 1, 29, 15, NULL, NULL),
 ('EAN-2021-2-010', 'VIP', '2021-03-15 17:35:28', 500.00, 'Debit Card', 1, 30, 16, NULL, NULL),
 ('EAN-2021-2-011', 'General Admission', '2021-03-20 10:50:15', 375.00, 'Credit Card', 1, 31, 7, NULL, NULL),
-('EAN-2021-2-012', 'Early Bird', '2020-12-15 08:40:30', 325.00, 'Bank Transfer', 1, 32, 8, NULL, NULL),
-('EAN-2021-2-013', 'Premium', '2021-02-18 13:55:22', 425.00, 'Credit Card', 1, 33, 9, NULL, NULL),
-('EAN-2021-2-014', 'General Admission', '2021-03-25 15:45:10', 375.00, 'Debit Card', 1, 34, 10, NULL, NULL),
-('EAN-2021-2-015', 'VIP', '2021-02-28 11:25:40', 500.00, 'Credit Card', 1, 35, 11, NULL, NULL),
-('EAN-2021-2-016', 'Early Bird', '2020-12-20 09:20:15', 325.00, 'Bank Transfer', 1, 36, 12, NULL, NULL),
-('EAN-2021-2-017', 'General Admission', '2021-04-01 16:10:33', 375.00, 'Credit Card', 1, 37, 13, NULL, NULL),
-('EAN-2021-2-018', 'Premium', '2021-03-05 12:35:45', 425.00, 'Debit Card', 1, 38, 14, NULL, NULL),
-('EAN-2021-2-019', 'VIP', '2021-03-18 17:50:20', 500.00, 'Credit Card', 1, 39, 15, NULL, NULL),
+('EAN-2021-2-012', 'Early Bird', '2020-12-15 08:40:30', 325.00, 'Bank Transfer', 1, 31, 8, NULL, NULL),
+('EAN-2021-2-013', 'Premium', '2021-02-18 13:55:22', 425.00, 'Credit Card', 1, 31, 9, NULL, NULL),
+('EAN-2021-2-014', 'General Admission', '2021-03-25 15:45:10', 375.00, 'Debit Card', 1, 31, 10, NULL, NULL),
+('EAN-2021-2-015', 'VIP', '2021-02-28 11:25:40', 500.00, 'Credit Card', 1, 31, 11, NULL, NULL),
+('EAN-2021-2-016', 'Early Bird', '2020-12-20 09:20:15', 325.00, 'Bank Transfer', 1, 35, 12, NULL, NULL),
+('EAN-2021-2-017', 'General Admission', '2021-04-01 16:10:33', 375.00, 'Credit Card', 1, 35, 13, NULL, NULL),
+('EAN-2021-2-018', 'Premium', '2021-03-05 12:35:45', 425.00, 'Debit Card', 1, 35, 14, NULL, NULL),
+('EAN-2021-2-019', 'VIP', '2021-03-18 17:50:20', 500.00, 'Credit Card', 1, 35, 15, NULL, NULL),
 ('EAN-2021-2-020', 'General Admission', '2021-03-28 11:05:38', 375.00, 'Bank Transfer', 1, 40, 16, NULL, NULL);
 
 -- Lollapalooza 2021 (festival_id = 3, events 17-24)
@@ -1745,7 +1745,7 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2021-3-008', 'General Admission', '2021-05-10 17:30:42', 365.00, 'Bank Transfer', 1, 48, 24, NULL, NULL),
 ('EAN-2021-3-009', 'Premium', '2021-04-25 13:15:55', 415.00, 'Credit Card', 1, 49, 17, NULL, NULL),
 ('EAN-2021-3-010', 'VIP', '2021-05-15 18:35:28', 475.00, 'Debit Card', 1, 50, 18, NULL, NULL),
-('EAN-2021-3-011', 'General Admission', '2021-05-20 11:50:15', 365.00, 'Credit Card', 1, 51, 19, NULL, NULL),
+('EAN-2021-3-011', 'General Admission', '2021-05-20 11:50:15', 365.00, 'Credit Card', 1, 35, 19, NULL, NULL),
 ('EAN-2021-3-012', 'Early Bird', '2021-02-15 09:40:30', 315.00, 'Bank Transfer', 1, 52, 20, NULL, NULL),
 ('EAN-2021-3-013', 'Premium', '2021-04-18 14:55:22', 415.00, 'Credit Card', 1, 53, 21, NULL, NULL),
 ('EAN-2021-3-014', 'General Admission', '2021-05-25 16:45:10', 365.00, 'Debit Card', 1, 54, 22, NULL, NULL),
@@ -1792,13 +1792,13 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2022-5-009', 'Premium', '2022-02-25 13:15:55', 420.00, 'Credit Card', 1, 89, 33, NULL, NULL),
 ('EAN-2022-5-010', 'VIP', '2022-03-15 18:35:28', 490.00, 'Debit Card', 1, 90, 34, NULL, NULL),
 ('EAN-2022-5-011', 'General Admission', '2022-03-20 11:50:15', 370.00, 'Credit Card', 1, 91, 35, NULL, NULL),
-('EAN-2022-5-012', 'Early Bird', '2021-12-15 09:40:30', 320.00, 'Bank Transfer', 1, 92, 36, NULL, NULL),
-('EAN-2022-5-013', 'Premium', '2022-02-18 14:55:22', 420.00, 'Credit Card', 1, 93, 31, NULL, NULL),
-('EAN-2022-5-014', 'General Admission', '2022-03-25 16:45:10', 370.00, 'Debit Card', 1, 94, 32, NULL, NULL),
+('EAN-2022-5-012', 'Early Bird', '2021-12-15 09:40:30', 320.00, 'Bank Transfer', 1, 91, 36, NULL, NULL),
+('EAN-2022-5-013', 'Premium', '2022-02-18 14:55:22', 420.00, 'Credit Card', 1, 91, 31, NULL, NULL),
+('EAN-2022-5-014', 'General Admission', '2022-03-25 16:45:10', 370.00, 'Debit Card', 1, 91, 32, NULL, NULL),
 ('EAN-2022-5-015', 'VIP', '2022-02-28 12:25:40', 490.00, 'Credit Card', 1, 95, 33, NULL, NULL),
-('EAN-2022-5-016', 'Early Bird', '2021-12-20 08:20:15', 320.00, 'Bank Transfer', 1, 96, 34, NULL, NULL),
-('EAN-2022-5-017', 'General Admission', '2022-04-01 17:10:33', 370.00, 'Credit Card', 1, 97, 35, NULL, NULL),
-('EAN-2022-5-018', 'Premium', '2022-03-05 13:35:45', 420.00, 'Debit Card', 1, 98, 36, NULL, NULL),
+('EAN-2022-5-016', 'Early Bird', '2021-12-20 08:20:15', 320.00, 'Bank Transfer', 1, 95, 34, NULL, NULL),
+('EAN-2022-5-017', 'General Admission', '2022-04-01 17:10:33', 370.00, 'Credit Card', 1, 95, 35, NULL, NULL),
+('EAN-2022-5-018', 'Premium', '2022-03-05 13:35:45', 420.00, 'Debit Card', 1, 95, 36, NULL, NULL),
 ('EAN-2022-5-019', 'VIP', '2022-03-18 18:50:20', 490.00, 'Credit Card', 1, 99, 31, NULL, NULL),
 ('EAN-2022-5-020', 'General Admission', '2022-03-28 12:05:38', 370.00, 'Bank Transfer', 1, 100, 32, NULL, NULL);
 
@@ -1807,7 +1807,7 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2023-6-001', 'VIP', '2023-02-10 09:15:30', 510.00, 'Credit Card', 1, 101, 37, NULL, NULL),
 ('EAN-2023-6-002', 'General Admission', '2023-02-15 13:25:22', 380.00, 'Debit Card', 1, 102, 38, NULL, NULL),
 ('EAN-2023-6-003', 'Early Bird', '2022-12-05 08:30:15', 330.00, 'Credit Card', 1, 103, 39, NULL, NULL),
-('EAN-2023-6-004', 'Premium', '2023-03-01 15:20:45', 430.00, 'Bank Transfer', 1, 104, 40, NULL, NULL),
+('EAN-2023-6-004', 'Premium', '2023-03-01 15:20:45', 430.00, 'Bank Transfer', 1, 61, 40, NULL, NULL),
 ('EAN-2023-6-005', 'General Admission', '2023-03-05 11:10:33', 380.00, 'Credit Card', 1, 105, 41, NULL, NULL),
 ('EAN-2023-6-006', 'VIP', '2023-02-20 14:25:18', 510.00, 'Debit Card', 1, 106, 42, NULL, NULL),
 ('EAN-2023-6-007', 'Early Bird', '2022-12-10 09:45:20', 330.00, 'Credit Card', 1, 107, 37, NULL, NULL),
@@ -1831,7 +1831,7 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2023-7-002', 'General Admission', '2023-04-15 14:25:22', 360.00, 'Debit Card', 1, 122, 44, NULL, NULL),
 ('EAN-2023-7-003', 'Early Bird', '2023-02-05 09:30:15', 310.00, 'Credit Card', 1, 123, 45, NULL, NULL),
 ('EAN-2023-7-004', 'Premium', '2023-05-01 16:20:45', 410.00, 'Bank Transfer', 1, 124, 46, NULL, NULL),
-('EAN-2023-7-005', 'General Admission', '2023-05-05 12:10:33', 360.00, 'Credit Card', 1, 125, 47, NULL, NULL),
+('EAN-2023-7-005', 'General Admission', '2023-05-05 12:10:33', 360.00, 'Credit Card', 1, 1, 47, NULL, NULL),
 ('EAN-2023-7-006', 'VIP', '2023-04-20 15:25:18', 480.00, 'Debit Card', 1, 126, 48, NULL, NULL),
 ('EAN-2023-7-007', 'Early Bird', '2023-02-10 08:45:20', 310.00, 'Credit Card', 1, 127, 49, NULL, NULL),
 ('EAN-2023-7-008', 'General Admission', '2023-05-10 17:30:42', 360.00, 'Bank Transfer', 1, 128, 50, NULL, NULL),
@@ -1859,7 +1859,7 @@ INSERT INTO TICKET (EAN_code, category, purchased_date, price, payment_method, i
 ('EAN-2024-8-007', 'Early Bird', '2024-01-10 09:45:20', 340.00, 'Credit Card', 1, 7, 57, NULL, NULL),
 ('EAN-2024-8-008', 'General Admission', '2024-04-10 16:30:42', 390.00, 'Bank Transfer', 1, 8, 58, NULL, NULL),
 ('EAN-2024-8-009', 'Premium', '2024-03-25 12:15:55', 440.00, 'Credit Card', 1, 9, 51, NULL, NULL),
-('EAN-2024-8-010', 'VIP', '2024-04-15 17:35:28', 530.00, 'Debit Card', 1, 10, 52, NULL, NULL),
+('EAN-2024-8-010', 'VIP', '2024-04-15 17:35:28', 530.00, 'Debit Card', 1, 45, 52, NULL, NULL),
 ('EAN-2024-8-011', 'General Admission', '2024-04-20 10:50:15', 390.00, 'Credit Card', 1, 11, 53, NULL, NULL),
 ('EAN-2024-8-012', 'Early Bird', '2024-01-15 08:40:30', 340.00, 'Bank Transfer', 1, 12, 54, NULL, NULL),
 ('EAN-2024-8-013', 'Premium', '2024-03-18 13:55:22', 440.00, 'Credit Card', 1, 13, 55, NULL, NULL),
@@ -1932,7 +1932,7 @@ INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organ
 (4, 4, 3, 4, 4, 'Solid performance, though I expected more stage presence.', '2020-04-18 08:45:30', 7, 9),
 (3, 5, 4, 4, 4, 'Great lighting effects! The artist was good but not exceptional.', '2020-04-18 15:15:40', 8, 10),
 (5, 5, 4, 3, 4, 'Incredible artist, but the venue was too crowded.', '2020-04-19 12:10:55', 9, 11),
-(4, 5, 5, 4, 5, 'One of the best performances of the festival!', '2020-04-19 17:05:23', 10, 12);
+(4, 5, 5, 4, 5, 'One of the best performances of the festival!', '2020-04-19 17:05:23', 45, 12);
 
 -- Ratings for Glastonbury 2021 performances (festival_id = 2)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
@@ -1962,7 +1962,7 @@ INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organ
 
 -- Ratings for Fuji Rock 2022 performances (festival_id = 4)
 INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organization, overall_impression, rating_comment, rating_date, visitor_id, performance_id) VALUES
-(5, 4, 5, 5, 5, 'Perfect in every way! The artist was incredible and the organization flawless.', '2022-07-30 09:15:30', 61, 61),
+(4, 4, 5, 5, 5, 'Perfect in every way! The artist was incredible and the organization flawless.', '2022-07-30 09:15:30', 61, 61),
 (4, 5, 4, 4, 4, 'Great sound and lighting effects. Very enjoyable performance.', '2022-07-30 13:25:22', 62, 64),
 (3, 3, 4, 5, 4, 'Well organized event, but the performance was just average.', '2022-07-31 08:30:15', 63, 66),
 (5, 4, 3, 4, 4, 'Excellent interpretation, though stage presence could be improved.', '2022-07-31 15:20:45', 64, 69),
@@ -1991,7 +1991,7 @@ INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organ
 (5, 5, 5, 4, 5, 'Absolutely phenomenal performance! The energy was electric.', '2023-06-04 09:15:30', 101, 91),
 (4, 3, 4, 5, 4, 'Well organized event with a good performance, though sound was mediocre.', '2023-06-04 13:25:22', 102, 94),
 (3, 4, 5, 4, 4, 'Amazing stage presence, but the artists interpretation was just okay.', '2023-06-05 08:30:15', 103, 96),
-(5, 5, 3, 3, 4, 'Excellent sound and artist, but stage presence and organization were lacking.', '2023-06-05 15:20:45', 104, 99),
+(3, 5, 3, 3, 4, 'Excellent sound and artist, but stage presence and organization were lacking.', '2023-06-05 15:20:45', 61, 99),
 (4, 4, 4, 5, 4, 'Solid performance all around. Very well organized event.', '2023-06-06 11:10:33', 105, 101),
 (5, 3, 5, 4, 4, 'Incredible artist and stage presence, but sound quality issues.', '2023-06-06 14:25:18', 106, 104),
 (3, 5, 4, 5, 4, 'Excellent sound and lighting effects. Well organized but the artist was average.', '2023-06-07 09:45:20', 107, 92),
@@ -2005,7 +2005,7 @@ INSERT INTO RATING (artist_interpretation, sound_lighting, stage_presence, organ
 (5, 5, 4, 3, 4, 'Brilliant artist and sound, but the venue was too crowded.', '2023-08-20 14:25:22', 122, 109),
 (3, 4, 3, 5, 4, 'Very well organized, but the performance was somewhat mediocre.', '2023-08-21 09:30:15', 123, 111),
 (4, 3, 5, 4, 4, 'Amazing stage presence, though the sound quality could be better.', '2023-08-21 16:20:45', 124, 114),
-(5, 5, 4, 5, 5, 'Perfect in every way! One of the highlights of the festival.', '2023-08-22 12:10:33', 125, 116),
+(5, 5, 4, 5, 5, 'Perfect in every way! One of the highlights of the festival.', '2023-08-22 12:10:33', 1, 116),
 (4, 4, 3, 4, 4, 'Solid performance, but I expected more stage presence.', '2023-08-22 15:25:18', 126, 119),
 (3, 5, 5, 3, 4, 'Incredible stage presence and lighting, but poor organization.', '2023-08-23 08:45:20', 127, 121),
 (5, 3, 4, 5, 4, 'The artist was amazing and the event was well organized, but sound issues.', '2023-08-23 17:30:42', 128, 124),

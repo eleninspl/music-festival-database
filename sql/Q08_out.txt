@@ -1,21 +1,6 @@
 +----------+------------+-----------+
 | staff_id | first_name | last_name |
 +----------+------------+-----------+
-|       86 | Thomas     | Green     |
-|       87 | Christina  | Adams     |
-|       88 | Steven     | Baker     |
-|       89 | Laura      | Gonzalez  |
-|       90 | Jeffrey    | Nelson    |
-|       91 | Kimberly   | Carter    |
-|       92 | Charles    | Mitchell  |
-|       93 | Angela     | Perez     |
-|       94 | Mark       | Roberts   |
-|       95 | Cynthia    | Turner    |
-|       96 | Paul       | Phillips  |
-|       97 | Stephanie  | Campbell  |
-|       98 | Gregory    | Parker    |
-|       99 | Rachel     | Evans     |
-|      100 | Kenneth    | Edwards   |
 |      101 | Emily      | Collins   |
 |      102 | Catherine  | Collins   |
 |      103 | Timothy    | Stewart   |

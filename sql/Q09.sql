@@ -2,36 +2,58 @@
 -- QUERY 9
 -- -----------------------------------------------------
 
-WITH attendance_per_year AS (
+WITH visit_dates AS (
     SELECT 
         v.visitor_id,
         v.email,
-        YEAR(e.date) AS year,
-        COUNT(DISTINCT t.event_id) AS performances_attended
+        e.date AS event_date
     FROM 
         TICKET t
     JOIN 
         EVENT e ON t.event_id = e.event_id
     JOIN 
         VISITOR v ON t.visitor_id = v.visitor_id
+),
+rolling_windows AS (
+    SELECT 
+        v1.visitor_id,
+        v1.email,
+        COUNT(*) AS performances_attended
+    FROM 
+        visit_dates v1
+    JOIN 
+        visit_dates v2 ON v1.visitor_id = v2.visitor_id 
+                      AND v2.event_date BETWEEN v1.event_date AND DATE_ADD(v1.event_date, INTERVAL 364 DAY)
     GROUP BY 
-        v.visitor_id, YEAR(e.date)
+        v1.visitor_id, v1.event_date
+),
+best_window_per_visitor AS (
+    SELECT 
+        visitor_id,
+        email,
+        MAX(performances_attended) AS performances_attended
+    FROM 
+        rolling_windows
+    GROUP BY 
+        visitor_id
     HAVING 
         performances_attended > 3
 ),
-grouped AS (
+grouped_counts AS (
     SELECT 
         performances_attended,
         GROUP_CONCAT(email SEPARATOR ', ') AS visitors,
         COUNT(*) AS number_of_visitors
     FROM 
-        attendance_per_year
+        best_window_per_visitor
     GROUP BY 
         performances_attended
     HAVING 
-        COUNT(*) > 1
+        number_of_visitors > 1
 )
 SELECT 
     *
 FROM 
-    grouped;
+    grouped_counts
+ORDER BY 
+    performances_attended DESC;

@@ -1,9 +1,9 @@
-+------------------------+-----------------+
-| stage_name             | continent_count |
-+------------------------+-----------------+
-| Florence + The Machine |               3 |
-| Maroon 5               |               3 |
-| Lady Gaga              |               3 |
-| The Black Keys         |               3 |
-| Arcade Fire            |               3 |
-+------------------------+-----------------+
++------------------------+-----------------+-----------------------------+
+| stage_name             | continent_count | continents                  |
++------------------------+-----------------+-----------------------------+
+| Lady Gaga              |               3 | Asia, Europe, North America |
+| Maroon 5               |               3 | Asia, Europe, North America |
+| Florence + The Machine |               3 | Asia, Europe, North America |
+| Arcade Fire            |               3 | Asia, Europe, North America |
+| The Black Keys         |               3 | Asia, Europe, North America |
++------------------------+-----------------+-----------------------------+

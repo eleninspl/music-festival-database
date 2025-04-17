@@ -1,109 +1,109 @@
-+------------+------------+-------------+-------------+------------+
-| event_day  | staff_type | staff_count | total_staff | percentage |
-+------------+------------+-------------+-------------+------------+
-| 2020-04-10 | auxiliary  |          18 |          73 |      24.66 |
-| 2020-04-10 | security   |          45 |          73 |      61.64 |
-| 2020-04-10 | technical  |          10 |          73 |      13.70 |
-| 2020-04-11 | auxiliary  |          15 |          63 |      23.81 |
-| 2020-04-11 | security   |          38 |          63 |      60.32 |
-| 2020-04-11 | technical  |          10 |          63 |      15.87 |
-| 2020-04-12 | auxiliary  |          16 |          65 |      24.62 |
-| 2020-04-12 | security   |          39 |          65 |      60.00 |
-| 2020-04-12 | technical  |          10 |          65 |      15.38 |
-| 2021-06-23 | auxiliary  |          20 |          82 |      24.39 |
-| 2021-06-23 | security   |          50 |          82 |      60.98 |
-| 2021-06-23 | technical  |          12 |          82 |      14.63 |
-| 2021-06-24 | auxiliary  |          18 |          76 |      23.68 |
-| 2021-06-24 | security   |          46 |          76 |      60.53 |
-| 2021-06-24 | technical  |          12 |          76 |      15.79 |
-| 2021-06-25 | auxiliary  |          17 |          72 |      23.61 |
-| 2021-06-25 | security   |          43 |          72 |      59.72 |
-| 2021-06-25 | technical  |          12 |          72 |      16.67 |
-| 2021-06-26 | auxiliary  |          16 |          70 |      22.86 |
-| 2021-06-26 | security   |          42 |          70 |      60.00 |
-| 2021-06-26 | technical  |          12 |          70 |      17.14 |
-| 2021-06-27 | auxiliary  |          18 |          80 |      22.50 |
-| 2021-06-27 | security   |          50 |          80 |      62.50 |
-| 2021-06-27 | technical  |          12 |          80 |      15.00 |
-| 2021-07-29 | auxiliary  |          17 |          69 |      24.64 |
-| 2021-07-29 | security   |          42 |          69 |      60.87 |
-| 2021-07-29 | technical  |          10 |          69 |      14.49 |
-| 2021-07-30 | auxiliary  |          17 |          69 |      24.64 |
-| 2021-07-30 | security   |          42 |          69 |      60.87 |
-| 2021-07-30 | technical  |          10 |          69 |      14.49 |
-| 2021-07-31 | auxiliary  |          14 |          59 |      23.73 |
-| 2021-07-31 | security   |          35 |          59 |      59.32 |
-| 2021-07-31 | technical  |          10 |          59 |      16.95 |
-| 2021-08-01 | auxiliary  |          17 |          69 |      24.64 |
-| 2021-08-01 | security   |          42 |          69 |      60.87 |
-| 2021-08-01 | technical  |          10 |          69 |      14.49 |
-| 2022-06-02 | auxiliary  |          16 |          65 |      24.62 |
-| 2022-06-02 | security   |          39 |          65 |      60.00 |
-| 2022-06-02 | technical  |          10 |          65 |      15.38 |
-| 2022-06-03 | auxiliary  |          15 |          61 |      24.59 |
-| 2022-06-03 | security   |          36 |          61 |      59.02 |
-| 2022-06-03 | technical  |          10 |          61 |      16.39 |
-| 2022-06-04 | auxiliary  |          16 |          65 |      24.62 |
-| 2022-06-04 | security   |          39 |          65 |      60.00 |
-| 2022-06-04 | technical  |          10 |          65 |      15.38 |
-| 2022-07-29 | auxiliary  |          14 |          59 |      23.73 |
-| 2022-07-29 | security   |          35 |          59 |      59.32 |
-| 2022-07-29 | technical  |          10 |          59 |      16.95 |
-| 2022-07-30 | auxiliary  |          13 |          56 |      23.21 |
-| 2022-07-30 | security   |          33 |          56 |      58.93 |
-| 2022-07-30 | technical  |          10 |          56 |      17.86 |
-| 2022-07-31 | auxiliary  |          14 |          59 |      23.73 |
-| 2022-07-31 | security   |          35 |          59 |      59.32 |
-| 2022-07-31 | technical  |          10 |          59 |      16.95 |
-| 2023-06-02 | auxiliary  |          19 |          75 |      25.33 |
-| 2023-06-02 | security   |          46 |          75 |      61.33 |
-| 2023-06-02 | technical  |          10 |          75 |      13.33 |
-| 2023-06-03 | auxiliary  |          19 |          75 |      25.33 |
-| 2023-06-03 | security   |          46 |          75 |      61.33 |
-| 2023-06-03 | technical  |          10 |          75 |      13.33 |
-| 2023-06-04 | auxiliary  |          19 |          75 |      25.33 |
-| 2023-06-04 | security   |          46 |          75 |      61.33 |
-| 2023-06-04 | technical  |          10 |          75 |      13.33 |
-| 2023-08-03 | auxiliary  |          17 |          68 |      25.00 |
-| 2023-08-03 | security   |          41 |          68 |      60.29 |
-| 2023-08-03 | technical  |          10 |          68 |      14.71 |
-| 2023-08-04 | auxiliary  |          17 |          68 |      25.00 |
-| 2023-08-04 | security   |          41 |          68 |      60.29 |
-| 2023-08-04 | technical  |          10 |          68 |      14.71 |
-| 2023-08-05 | auxiliary  |          17 |          68 |      25.00 |
-| 2023-08-05 | security   |          41 |          68 |      60.29 |
-| 2023-08-05 | technical  |          10 |          68 |      14.71 |
-| 2023-08-06 | auxiliary  |          17 |          68 |      25.00 |
-| 2023-08-06 | security   |          41 |          68 |      60.29 |
-| 2023-08-06 | technical  |          10 |          68 |      14.71 |
-| 2024-07-18 | auxiliary  |          19 |          74 |      25.68 |
-| 2024-07-18 | security   |          45 |          74 |      60.81 |
-| 2024-07-18 | technical  |          10 |          74 |      13.51 |
-| 2024-07-19 | auxiliary  |          19 |          74 |      25.68 |
-| 2024-07-19 | security   |          45 |          74 |      60.81 |
-| 2024-07-19 | technical  |          10 |          74 |      13.51 |
-| 2024-07-20 | auxiliary  |          19 |          74 |      25.68 |
-| 2024-07-20 | security   |          45 |          74 |      60.81 |
-| 2024-07-20 | technical  |          10 |          74 |      13.51 |
-| 2024-07-21 | auxiliary  |          19 |          74 |      25.68 |
-| 2024-07-21 | security   |          45 |          74 |      60.81 |
-| 2024-07-21 | technical  |          10 |          74 |      13.51 |
-| 2025-05-28 | auxiliary  |          19 |          74 |      25.68 |
-| 2025-05-28 | security   |          45 |          74 |      60.81 |
-| 2025-05-28 | technical  |          10 |          74 |      13.51 |
-| 2025-05-29 | auxiliary  |          19 |          74 |      25.68 |
-| 2025-05-29 | security   |          45 |          74 |      60.81 |
-| 2025-05-29 | technical  |          10 |          74 |      13.51 |
-| 2025-05-30 | auxiliary  |          19 |          74 |      25.68 |
-| 2025-05-30 | security   |          45 |          74 |      60.81 |
-| 2025-05-30 | technical  |          10 |          74 |      13.51 |
-| 2025-08-22 | auxiliary  |          18 |          70 |      25.71 |
-| 2025-08-22 | security   |          42 |          70 |      60.00 |
-| 2025-08-22 | technical  |          10 |          70 |      14.29 |
-| 2025-08-23 | auxiliary  |          18 |          70 |      25.71 |
-| 2025-08-23 | security   |          42 |          70 |      60.00 |
-| 2025-08-23 | technical  |          10 |          70 |      14.29 |
-| 2025-08-24 | auxiliary  |          18 |          70 |      25.71 |
-| 2025-08-24 | security   |          42 |          70 |      60.00 |
-| 2025-08-24 | technical  |          10 |          70 |      14.29 |
-+------------+------------+-------------+-------------+------------+
++------------+---------------------------+------------+-------------+-------------+------------+
+| event_day  | festival_name             | staff_type | staff_count | total_staff | percentage |
++------------+---------------------------+------------+-------------+-------------+------------+
+| 2020-04-10 | Coachella 2020            | auxiliary  |          18 |          73 |      24.66 |
+| 2020-04-10 | Coachella 2020            | security   |          45 |          73 |      61.64 |
+| 2020-04-10 | Coachella 2020            | technical  |          10 |          73 |      13.70 |
+| 2020-04-11 | Coachella 2020            | auxiliary  |          15 |          63 |      23.81 |
+| 2020-04-11 | Coachella 2020            | security   |          38 |          63 |      60.32 |
+| 2020-04-11 | Coachella 2020            | technical  |          10 |          63 |      15.87 |
+| 2020-04-12 | Coachella 2020            | auxiliary  |          16 |          65 |      24.62 |
+| 2020-04-12 | Coachella 2020            | security   |          39 |          65 |      60.00 |
+| 2020-04-12 | Coachella 2020            | technical  |          10 |          65 |      15.38 |
+| 2021-06-23 | Glastonbury 2021          | auxiliary  |          20 |          82 |      24.39 |
+| 2021-06-23 | Glastonbury 2021          | security   |          50 |          82 |      60.98 |
+| 2021-06-23 | Glastonbury 2021          | technical  |          12 |          82 |      14.63 |
+| 2021-06-24 | Glastonbury 2021          | auxiliary  |          18 |          76 |      23.68 |
+| 2021-06-24 | Glastonbury 2021          | security   |          46 |          76 |      60.53 |
+| 2021-06-24 | Glastonbury 2021          | technical  |          12 |          76 |      15.79 |
+| 2021-06-25 | Glastonbury 2021          | auxiliary  |          17 |          72 |      23.61 |
+| 2021-06-25 | Glastonbury 2021          | security   |          43 |          72 |      59.72 |
+| 2021-06-25 | Glastonbury 2021          | technical  |          12 |          72 |      16.67 |
+| 2021-06-26 | Glastonbury 2021          | auxiliary  |          16 |          70 |      22.86 |
+| 2021-06-26 | Glastonbury 2021          | security   |          42 |          70 |      60.00 |
+| 2021-06-26 | Glastonbury 2021          | technical  |          12 |          70 |      17.14 |
+| 2021-06-27 | Glastonbury 2021          | auxiliary  |          18 |          80 |      22.50 |
+| 2021-06-27 | Glastonbury 2021          | security   |          50 |          80 |      62.50 |
+| 2021-06-27 | Glastonbury 2021          | technical  |          12 |          80 |      15.00 |
+| 2021-07-29 | Lollapalooza 2021         | auxiliary  |          17 |          67 |      25.37 |
+| 2021-07-29 | Lollapalooza 2021         | security   |          42 |          67 |      62.69 |
+| 2021-07-29 | Lollapalooza 2021         | technical  |           8 |          67 |      11.94 |
+| 2021-07-30 | Lollapalooza 2021         | auxiliary  |          17 |          67 |      25.37 |
+| 2021-07-30 | Lollapalooza 2021         | security   |          42 |          67 |      62.69 |
+| 2021-07-30 | Lollapalooza 2021         | technical  |           8 |          67 |      11.94 |
+| 2021-07-31 | Lollapalooza 2021         | auxiliary  |          14 |          57 |      24.56 |
+| 2021-07-31 | Lollapalooza 2021         | security   |          35 |          57 |      61.40 |
+| 2021-07-31 | Lollapalooza 2021         | technical  |           8 |          57 |      14.04 |
+| 2021-08-01 | Lollapalooza 2021         | auxiliary  |          17 |          67 |      25.37 |
+| 2021-08-01 | Lollapalooza 2021         | security   |          42 |          67 |      62.69 |
+| 2021-08-01 | Lollapalooza 2021         | technical  |           8 |          67 |      11.94 |
+| 2022-06-02 | Primavera Sound 2022      | auxiliary  |          16 |          65 |      24.62 |
+| 2022-06-02 | Primavera Sound 2022      | security   |          39 |          65 |      60.00 |
+| 2022-06-02 | Primavera Sound 2022      | technical  |          10 |          65 |      15.38 |
+| 2022-06-03 | Primavera Sound 2022      | auxiliary  |          15 |          61 |      24.59 |
+| 2022-06-03 | Primavera Sound 2022      | security   |          36 |          61 |      59.02 |
+| 2022-06-03 | Primavera Sound 2022      | technical  |          10 |          61 |      16.39 |
+| 2022-06-04 | Primavera Sound 2022      | auxiliary  |          16 |          65 |      24.62 |
+| 2022-06-04 | Primavera Sound 2022      | security   |          39 |          65 |      60.00 |
+| 2022-06-04 | Primavera Sound 2022      | technical  |          10 |          65 |      15.38 |
+| 2022-07-29 | Fuji Rock 2022            | auxiliary  |          14 |          59 |      23.73 |
+| 2022-07-29 | Fuji Rock 2022            | security   |          35 |          59 |      59.32 |
+| 2022-07-29 | Fuji Rock 2022            | technical  |          10 |          59 |      16.95 |
+| 2022-07-30 | Fuji Rock 2022            | auxiliary  |          13 |          56 |      23.21 |
+| 2022-07-30 | Fuji Rock 2022            | security   |          33 |          56 |      58.93 |
+| 2022-07-30 | Fuji Rock 2022            | technical  |          10 |          56 |      17.86 |
+| 2022-07-31 | Fuji Rock 2022            | auxiliary  |          14 |          59 |      23.73 |
+| 2022-07-31 | Fuji Rock 2022            | security   |          35 |          59 |      59.32 |
+| 2022-07-31 | Fuji Rock 2022            | technical  |          10 |          59 |      16.95 |
+| 2023-06-02 | Rock am Ring 2023         | auxiliary  |          19 |          75 |      25.33 |
+| 2023-06-02 | Rock am Ring 2023         | security   |          46 |          75 |      61.33 |
+| 2023-06-02 | Rock am Ring 2023         | technical  |          10 |          75 |      13.33 |
+| 2023-06-03 | Rock am Ring 2023         | auxiliary  |          19 |          75 |      25.33 |
+| 2023-06-03 | Rock am Ring 2023         | security   |          46 |          75 |      61.33 |
+| 2023-06-03 | Rock am Ring 2023         | technical  |          10 |          75 |      13.33 |
+| 2023-06-04 | Rock am Ring 2023         | auxiliary  |          19 |          75 |      25.33 |
+| 2023-06-04 | Rock am Ring 2023         | security   |          46 |          75 |      61.33 |
+| 2023-06-04 | Rock am Ring 2023         | technical  |          10 |          75 |      13.33 |
+| 2023-08-03 | Woodstock Revival 2023    | auxiliary  |          17 |          68 |      25.00 |
+| 2023-08-03 | Woodstock Revival 2023    | security   |          41 |          68 |      60.29 |
+| 2023-08-03 | Woodstock Revival 2023    | technical  |          10 |          68 |      14.71 |
+| 2023-08-04 | Woodstock Revival 2023    | auxiliary  |          17 |          68 |      25.00 |
+| 2023-08-04 | Woodstock Revival 2023    | security   |          41 |          68 |      60.29 |
+| 2023-08-04 | Woodstock Revival 2023    | technical  |          10 |          68 |      14.71 |
+| 2023-08-05 | Woodstock Revival 2023    | auxiliary  |          17 |          68 |      25.00 |
+| 2023-08-05 | Woodstock Revival 2023    | security   |          41 |          68 |      60.29 |
+| 2023-08-05 | Woodstock Revival 2023    | technical  |          10 |          68 |      14.71 |
+| 2023-08-06 | Woodstock Revival 2023    | auxiliary  |          17 |          68 |      25.00 |
+| 2023-08-06 | Woodstock Revival 2023    | security   |          41 |          68 |      60.29 |
+| 2023-08-06 | Woodstock Revival 2023    | technical  |          10 |          68 |      14.71 |
+| 2024-07-18 | Boom Festival 2024        | auxiliary  |          19 |          74 |      25.68 |
+| 2024-07-18 | Boom Festival 2024        | security   |          45 |          74 |      60.81 |
+| 2024-07-18 | Boom Festival 2024        | technical  |          10 |          74 |      13.51 |
+| 2024-07-19 | Boom Festival 2024        | auxiliary  |          19 |          74 |      25.68 |
+| 2024-07-19 | Boom Festival 2024        | security   |          45 |          74 |      60.81 |
+| 2024-07-19 | Boom Festival 2024        | technical  |          10 |          74 |      13.51 |
+| 2024-07-20 | Boom Festival 2024        | auxiliary  |          19 |          74 |      25.68 |
+| 2024-07-20 | Boom Festival 2024        | security   |          45 |          74 |      60.81 |
+| 2024-07-20 | Boom Festival 2024        | technical  |          10 |          74 |      13.51 |
+| 2024-07-21 | Boom Festival 2024        | auxiliary  |          19 |          74 |      25.68 |
+| 2024-07-21 | Boom Festival 2024        | security   |          45 |          74 |      60.81 |
+| 2024-07-21 | Boom Festival 2024        | technical  |          10 |          74 |      13.51 |
+| 2025-05-28 | Ultra Music Festival 2025 | auxiliary  |          19 |          74 |      25.68 |
+| 2025-05-28 | Ultra Music Festival 2025 | security   |          45 |          74 |      60.81 |
+| 2025-05-28 | Ultra Music Festival 2025 | technical  |          10 |          74 |      13.51 |
+| 2025-05-29 | Ultra Music Festival 2025 | auxiliary  |          19 |          74 |      25.68 |
+| 2025-05-29 | Ultra Music Festival 2025 | security   |          45 |          74 |      60.81 |
+| 2025-05-29 | Ultra Music Festival 2025 | technical  |          10 |          74 |      13.51 |
+| 2025-05-30 | Ultra Music Festival 2025 | auxiliary  |          19 |          74 |      25.68 |
+| 2025-05-30 | Ultra Music Festival 2025 | security   |          45 |          74 |      60.81 |
+| 2025-05-30 | Ultra Music Festival 2025 | technical  |          10 |          74 |      13.51 |
+| 2025-08-22 | Creamfields 2025          | auxiliary  |          18 |          70 |      25.71 |
+| 2025-08-22 | Creamfields 2025          | security   |          42 |          70 |      60.00 |
+| 2025-08-22 | Creamfields 2025          | technical  |          10 |          70 |      14.29 |
+| 2025-08-23 | Creamfields 2025          | auxiliary  |          18 |          70 |      25.71 |
+| 2025-08-23 | Creamfields 2025          | security   |          42 |          70 |      60.00 |
+| 2025-08-23 | Creamfields 2025          | technical  |          10 |          70 |      14.29 |
+| 2025-08-24 | Creamfields 2025          | auxiliary  |          18 |          70 |      25.71 |
+| 2025-08-24 | Creamfields 2025          | security   |          42 |          70 |      60.00 |
+| 2025-08-24 | Creamfields 2025          | technical  |          10 |          70 |      14.29 |
++------------+---------------------------+------------+-------------+-------------+------------+

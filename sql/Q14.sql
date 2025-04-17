@@ -18,7 +18,7 @@ WITH genre_year_counts AS (
     GROUP BY 
         g.name, YEAR(e.date)
     HAVING 
-        COUNT(*) >= 3
+        COUNT(*) >= 1
 ),
 pairs AS (
     SELECT 

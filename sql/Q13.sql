@@ -4,7 +4,8 @@
 
 SELECT 
     p.stage_name,
-    COUNT(DISTINCT l.continent) AS continent_count
+    COUNT(DISTINCT l.continent) AS continent_count,
+    GROUP_CONCAT(DISTINCT l.continent ORDER BY l.continent SEPARATOR ', ') AS continents
 FROM 
     PERFORMANCE perf
 JOIN 
