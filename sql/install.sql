@@ -291,8 +291,6 @@ CREATE TABLE IF NOT EXISTS `TICKET` (
   `is_activated` TINYINT NOT NULL,
   `visitor_id` INT NOT NULL,
   `event_id` INT NOT NULL,
-  `resale_buyer_queue_id` INT NULL,
-  `resale_seller_queue_id` INT NULL,
   PRIMARY KEY (`ticket_id`),
   CONSTRAINT `fk_ticket_visitor`
     FOREIGN KEY (`visitor_id`)

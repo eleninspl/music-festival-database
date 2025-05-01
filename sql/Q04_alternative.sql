@@ -2,7 +2,8 @@
 -- QUERY 4: Μέσος όρος αξιολογήσεων για συγκεκριμένο καλλιτέχνη
 -- -----------------------------------------------------
 
--- Enable profiling to collect execution statistics
+-- Απενεργοποίηση και επανενεργοποίηση του profiling για καθαρισμό
+SET profiling = 0;
 SET profiling = 1;
 
 -- Create necessary indexes if they don't exist
@@ -158,18 +159,25 @@ GROUP BY
 SELECT 'PROFILING RESULTS' AS 'Analysis';
 SHOW PROFILES;
 
--- Get detailed profiling for each query
+-- Εμφάνιση των αποτελεσμάτων profiling για κάθε στρατηγική
+-- ΣΗΜΑΝΤΙΚΟ: Προσαρμόστε τους αριθμούς των ερωτημάτων με βάση τα αποτελέσματα του SHOW PROFILES
+-- Τα παρακάτω είναι με βάση τα αποτελέσματα που μου στείλατε προηγουμένως
+
 SELECT 'DETAILED PROFILING FOR DEFAULT JOIN' AS 'Analysis';
-SHOW PROFILE FOR QUERY 2;
-
-SELECT 'DETAILED PROFILING FOR NESTED LOOP JOIN' AS 'Analysis';
-SHOW PROFILE FOR QUERY 4;
-
-SELECT 'DETAILED PROFILING FOR HASH JOIN' AS 'Analysis';
+-- Το ερώτημα DEFAULT JOIN είναι το 6ο στη λίστα του SHOW PROFILES
 SHOW PROFILE FOR QUERY 6;
 
+SELECT 'DETAILED PROFILING FOR NESTED LOOP JOIN' AS 'Analysis';
+-- Το ερώτημα NESTED LOOP JOIN είναι το 9ο στη λίστα του SHOW PROFILES
+SHOW PROFILE FOR QUERY 9;
+
+SELECT 'DETAILED PROFILING FOR HASH JOIN' AS 'Analysis';
+-- Το ερώτημα HASH JOIN είναι το 12ο στη λίστα του SHOW PROFILES
+SHOW PROFILE FOR QUERY 12;
+
 SELECT 'DETAILED PROFILING FOR MERGE JOIN' AS 'Analysis';
-SHOW PROFILE FOR QUERY 8;
+-- Το ερώτημα MERGE JOIN είναι το 15ο στη λίστα του SHOW PROFILES
+SHOW PROFILE FOR QUERY 15;
 
 -- Disable profiling
 SET profiling = 0;
