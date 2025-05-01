@@ -13,18 +13,21 @@ mysql -u $(whoami) -p -t festival < sql/Q03.sql > sql/Q03_out.txt
 
 QUERY 4
 mysql -u $(whoami) -p -t festival -e "SET @artist_name = 'The Weeknd'; SOURCE sql/Q04.sql;" > sql/Q04_out.txt
+mysql -u $(whoami) -p -t festival -e "SET @artist_name = 'The Weeknd'; SOURCE sql/Q04_alternative.sql;" > sql/Q04_alternative_out.txt
 
 QUERY 5
 mysql -u $(whoami) -p -t festival < sql/Q05.sql > sql/Q05_out.txt
 
 QUERY 6
 mysql -u $(whoami) -p -t festival -e "SET @visitor_email = 'james.wilson@example.com'; SOURCE sql/Q06.sql;" > sql/Q06_out.txt
+mysql -u $(whoami) -p -t festival -e "SET @visitor_email = 'james.wilson@example.com'; SOURCE sql/Q06_alternative.sql;" > sql/Q06_alternative_out.txt
 
 QUERY 7
 mysql -u $(whoami) -p -t festival < sql/Q07.sql > sql/Q07_out.txt
 
 QUERY 8
 mysql -u $(whoami) -p -t festival -e "SET @target_date = '2023-06-10'; SOURCE sql/Q08.sql;" > sql/Q08_out.txt
+mysql -u $(whoami) -p -t festival -e "SET @target_date = '2022-06-03'; SOURCE sql/Q08.sql;" > sql/Q08_out.txt
 
 QUERY 9
 mysql -u $(whoami) -p -t festival < sql/Q09.sql > sql/Q09_out.txt

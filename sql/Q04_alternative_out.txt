@@ -1,0 +1,266 @@
++-----------------------+
+| Strategy              |
++-----------------------+
+| DEFAULT JOIN STRATEGY |
++-----------------------+
++------+-------------+-------+-------+-------------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
+| id   | select_type | table | type  | possible_keys                                         | key                | key_len | ref                          | rows | Extra       |
++------+-------------+-------+-------+-------------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
+|    1 | SIMPLE      | p     | const | PRIMARY,stage_name_UNIQUE,idx_performer_stage_name    | stage_name_UNIQUE  | 137     | const                        | 1    | Using index |
+|    1 | SIMPLE      | perf  | ref   | PRIMARY,performer_id_idx,idx_performance_performer_id | performer_id_idx   | 4       | const                        | 2    | Using index |
+|    1 | SIMPLE      | r     | ref   | performance_id_idx,idx_rating_performance_id          | performance_id_idx | 4       | festival.perf.performance_id | 1    |             |
++------+-------------+-------+-------+-------------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
++------------+---------------------------+------------------------+
+| Performer  | Avg Artist Interpretation | Avg Overall Impression |
++------------+---------------------------+------------------------+
+| The Weeknd |                      4.00 |                   4.00 |
++------------+---------------------------+------------------------+
++---------------------------+
+| Strategy                  |
++---------------------------+
+| NESTED LOOP JOIN STRATEGY |
++---------------------------+
++------+-------------+-------+-------+----------------------------------------------------+-------------------+---------+-------+------+-------------------------------------------------+
+| id   | select_type | table | type  | possible_keys                                      | key               | key_len | ref   | rows | Extra                                           |
++------+-------------+-------+-------+----------------------------------------------------+-------------------+---------+-------+------+-------------------------------------------------+
+|    1 | SIMPLE      | p     | const | PRIMARY,stage_name_UNIQUE,idx_performer_stage_name | stage_name_UNIQUE | 137     | const | 1    | Using index                                     |
+|    1 | SIMPLE      | perf  | ALL   | PRIMARY                                            | NULL              | NULL    | NULL  | 175  | Using where                                     |
+|    1 | SIMPLE      | r     | ALL   | NULL                                               | NULL              | NULL    | NULL  | 80   | Using where; Using join buffer (flat, BNL join) |
++------+-------------+-------+-------+----------------------------------------------------+-------------------+---------+-------+------+-------------------------------------------------+
++------------+---------------------------+------------------------+
+| Performer  | Avg Artist Interpretation | Avg Overall Impression |
++------------+---------------------------+------------------------+
+| The Weeknd |                      4.00 |                   4.00 |
++------------+---------------------------+------------------------+
++--------------------------+
+| Strategy                 |
++--------------------------+
+| HASH JOIN STRATEGY (BNL) |
++--------------------------+
++------+-------------+-------+-------+----------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
+| id   | select_type | table | type  | possible_keys                                      | key                | key_len | ref                          | rows | Extra       |
++------+-------------+-------+-------+----------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
+|    1 | SIMPLE      | p     | const | PRIMARY,stage_name_UNIQUE,idx_performer_stage_name | stage_name_UNIQUE  | 137     | const                        | 1    | Using index |
+|    1 | SIMPLE      | perf  | ref   | performer_id_idx                                   | performer_id_idx   | 4       | const                        | 2    | Using index |
+|    1 | SIMPLE      | r     | ref   | performance_id_idx                                 | performance_id_idx | 4       | festival.perf.performance_id | 1    |             |
++------+-------------+-------+-------+----------------------------------------------------+--------------------+---------+------------------------------+------+-------------+
++------------+---------------------------+------------------------+
+| Performer  | Avg Artist Interpretation | Avg Overall Impression |
++------------+---------------------------+------------------------+
+| The Weeknd |                      4.00 |                   4.00 |
++------------+---------------------------+------------------------+
++---------------------+
+| Strategy            |
++---------------------+
+| MERGE JOIN STRATEGY |
++---------------------+
++------+-------------+-------+------+------------------------------+------------------------------+---------+------------------------------+------+--------------------------+
+| id   | select_type | table | type | possible_keys                | key                          | key_len | ref                          | rows | Extra                    |
++------+-------------+-------+------+------------------------------+------------------------------+---------+------------------------------+------+--------------------------+
+|    1 | SIMPLE      | p     | ref  | idx_performer_stage_name     | idx_performer_stage_name     | 137     | const                        | 1    | Using where; Using index |
+|    1 | SIMPLE      | perf  | ref  | idx_performance_performer_id | idx_performance_performer_id | 4       | festival.p.performer_id      | 3    | Using index              |
+|    1 | SIMPLE      | r     | ref  | idx_rating_performance_id    | idx_rating_performance_id    | 4       | festival.perf.performance_id | 1    |                          |
++------+-------------+-------+------+------------------------------+------------------------------+---------+------------------------------+------+--------------------------+
++------------+---------------------------+------------------------+
+| Performer  | Avg Artist Interpretation | Avg Overall Impression |
++------------+---------------------------+------------------------+
+| The Weeknd |                      4.00 |                   4.00 |
++------------+---------------------------+------------------------+
++-------------------+
+| Analysis          |
++-------------------+
+| PROFILING RESULTS |
++-------------------+
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                                                                                                                                                                                                                                                        |
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|        2 | 0.00006300 | CREATE INDEX IF NOT EXISTS idx_performance_performer_id ON PERFORMANCE(performer_id)                                                                                                                                                                                                                         |
+|        3 | 0.00007400 | CREATE INDEX IF NOT EXISTS idx_performer_stage_name ON PERFORMER(stage_name)                                                                                                                                                                                                                                 |
+|        4 | 0.00012000 | SELECT 'DEFAULT JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                 |
+|        5 | 0.00061200 | EXPLAIN
+SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    RATING r
+JOIN 
+    PERFORMANCE perf ON r.performance_id = perf.performance_id
+JOIN 
+    PERFORMER  |
+|        6 | 0.00040600 | SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    RATING r
+JOIN 
+    PERFORMANCE perf ON r.performance_id = perf.performance_id
+JOIN 
+    PERFORMER p ON per |
+|        7 | 0.00009100 | SELECT 'NESTED LOOP JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                             |
+|        8 | 0.00036700 | EXPLAIN
+SELECT STRAIGHT_JOIN
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p
+JOIN 
+    PERFORMANCE perf USE INDEX (PRIMARY) ON p.performer_id = perf.p |
+|        9 | 0.00049300 | SELECT STRAIGHT_JOIN
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p
+JOIN 
+    PERFORMANCE perf USE INDEX (PRIMARY) ON p.performer_id = perf.performer |
+|       10 | 0.00009600 | SELECT 'HASH JOIN STRATEGY (BNL)' AS 'Strategy'                                                                                                                                                                                                                                                              |
+|       11 | 0.00035400 | EXPLAIN
+SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p
+JOIN 
+    PERFORMANCE perf IGNORE INDEX (PRIMARY, idx_performance_performer_id) ON p.p |
+|       12 | 0.00055400 | SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p
+JOIN 
+    PERFORMANCE perf IGNORE INDEX (PRIMARY, idx_performance_performer_id) ON p.performer |
+|       13 | 0.00011400 | SELECT 'MERGE JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                   |
+|       14 | 0.00035500 | EXPLAIN
+SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p FORCE INDEX (idx_performer_stage_name)
+JOIN 
+    PERFORMANCE perf FORCE INDEX (idx_per |
+|       15 | 0.00036300 | SELECT 
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    PERFORMER p FORCE INDEX (idx_performer_stage_name)
+JOIN 
+    PERFORMANCE perf FORCE INDEX (idx_performance |
+|       16 | 0.00010800 | SELECT 'PROFILING RESULTS' AS 'Analysis'                                                                                                                                                                                                                                                                     |
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------+
+| Analysis                            |
++-------------------------------------+
+| DETAILED PROFILING FOR DEFAULT JOIN |
++-------------------------------------+
++-----------------------------------------+
+| Analysis                                |
++-----------------------------------------+
+| DETAILED PROFILING FOR NESTED LOOP JOIN |
++-----------------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000029 |
+| checking permissions   | 0.000003 |
+| Opening tables         | 0.000002 |
+| After opening tables   | 0.000008 |
+| init                   | 0.000017 |
+| Optimizing             | 0.000018 |
+| Executing              | 0.000013 |
+| End of update loop     | 0.000003 |
+| Query end              | 0.000002 |
+| closing tables         | 0.000002 |
+| Query end              | 0.000002 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000002 |
+| Updating status        | 0.000015 |
+| Reset for next command | 0.000002 |
++------------------------+----------+
++----------------------------------+
+| Analysis                         |
++----------------------------------+
+| DETAILED PROFILING FOR HASH JOIN |
++----------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000068 |
+| checking permissions   | 0.000004 |
+| Opening tables         | 0.000013 |
+| After opening tables   | 0.000004 |
+| System lock            | 0.000004 |
+| table lock             | 0.000005 |
+| init                   | 0.000028 |
+| Optimizing             | 0.000025 |
+| Statistics             | 0.000088 |
+| Preparing              | 0.000005 |
+| Unlocking tables       | 0.000004 |
+| Preparing              | 0.000027 |
+| Executing              | 0.000004 |
+| Sending data           | 0.000057 |
+| End of update loop     | 0.000007 |
+| Query end              | 0.000003 |
+| Commit                 | 0.000005 |
+| Query end              | 0.000003 |
+| closing tables         | 0.000003 |
+| Unlocking tables       | 0.000004 |
+| closing tables         | 0.000005 |
+| Query end              | 0.000005 |
+| Starting cleanup       | 0.000003 |
+| Freeing items          | 0.000006 |
+| Updating status        | 0.000022 |
+| Reset for next command | 0.000004 |
++------------------------+----------+
++-----------------------------------+
+| Analysis                          |
++-----------------------------------+
+| DETAILED PROFILING FOR MERGE JOIN |
++-----------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000070 |
+| checking permissions   | 0.000005 |
+| Opening tables         | 0.000011 |
+| After opening tables   | 0.000005 |
+| System lock            | 0.000004 |
+| table lock             | 0.000015 |
+| init                   | 0.000025 |
+| Optimizing             | 0.000023 |
+| Statistics             | 0.000046 |
+| Preparing              | 0.000004 |
+| Unlocking tables       | 0.000004 |
+| Preparing              | 0.000033 |
+| Executing              | 0.000022 |
+| Query end              | 0.000017 |
+| Commit                 | 0.000005 |
+| Query end              | 0.000004 |
+| closing tables         | 0.000004 |
+| Unlocking tables       | 0.000004 |
+| closing tables         | 0.000016 |
+| Query end              | 0.000004 |
+| Starting cleanup       | 0.000004 |
+| Freeing items          | 0.000008 |
+| Updating status        | 0.000030 |
+| Reset for next command | 0.000004 |
++------------------------+----------+
++----------------------------+
+| Analysis                   |
++----------------------------+
+| SUMMARY OF JOIN STRATEGIES |
++----------------------------+
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Strategy         | Description                        | Advantage                                           | Disadvantage                                     |
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Default Join     | Optimizer chooses best strategy    | Baseline for comparison                             | May not always choose optimal plan               |
+| Nested Loop Join | Good for small tables with indexes | Efficient when filtering reduces rows significantly | Poor performance on large tables without indexes |
+| Hash Join (BNL)  | Good for large unindexed tables    | Works well when indexes are missing                 | Memory intensive for large datasets              |
+| Merge Join       | Good when data is already sorted   | Efficient for large sorted datasets                 | Requires sorted input or indexes                 |
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+

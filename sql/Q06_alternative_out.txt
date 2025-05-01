@@ -1,0 +1,310 @@
++-----------------------+
+| Strategy              |
++-----------------------+
+| DEFAULT JOIN STRATEGY |
++-----------------------+
++------+-------------+-------+--------+--------------------------------------------------------------------------------------------------------------+----------------------------+---------+----------------------------+------+-------------+
+| id   | select_type | table | type   | possible_keys                                                                                                | key                        | key_len | ref                        | rows | Extra       |
++------+-------------+-------+--------+--------------------------------------------------------------------------------------------------------------+----------------------------+---------+----------------------------+------+-------------+
+|    1 | SIMPLE      | v     | const  | PRIMARY,email_UNIQUE,idx_visitor_email                                                                       | email_UNIQUE               | 767     | const                      | 1    | Using index |
+|    1 | SIMPLE      | r     | ref    | unique_visitor_performance,visitor_id_idx,performance_id_idx,idx_rating_performance_id,idx_rating_visitor_id | unique_visitor_performance | 4       | const                      | 2    | Using where |
+|    1 | SIMPLE      | perf  | eq_ref | PRIMARY,performer_id_idx,idx_performance_performer_id                                                        | PRIMARY                    | 4       | festival.r.performance_id  | 1    |             |
+|    1 | SIMPLE      | p     | eq_ref | PRIMARY                                                                                                      | PRIMARY                    | 4       | festival.perf.performer_id | 1    |             |
++------+-------------+-------+--------+--------------------------------------------------------------------------------------------------------------+----------------------------+---------+----------------------------+------+-------------+
++----------------+-----------+------------------------+
+| Performance ID | Performer | Avg Overall Impression |
++----------------+-----------+------------------------+
+|              1 | Beyoncé   |                   5.00 |
+|            116 | Beyoncé   |                   5.00 |
++----------------+-----------+------------------------+
++---------------------------+
+| Strategy                  |
++---------------------------+
+| NESTED LOOP JOIN STRATEGY |
++---------------------------+
++------+-------------+-------+--------+----------------------------------------+--------------+---------+----------------------------+------+----------------------------------------------+
+| id   | select_type | table | type   | possible_keys                          | key          | key_len | ref                        | rows | Extra                                        |
++------+-------------+-------+--------+----------------------------------------+--------------+---------+----------------------------+------+----------------------------------------------+
+|    1 | SIMPLE      | v     | const  | PRIMARY,email_UNIQUE,idx_visitor_email | email_UNIQUE | 767     | const                      | 1    | Using index; Using temporary; Using filesort |
+|    1 | SIMPLE      | r     | ALL    | NULL                                   | NULL         | NULL    | NULL                       | 80   | Using where                                  |
+|    1 | SIMPLE      | perf  | eq_ref | PRIMARY                                | PRIMARY      | 4       | festival.r.performance_id  | 1    |                                              |
+|    1 | SIMPLE      | p     | eq_ref | PRIMARY                                | PRIMARY      | 4       | festival.perf.performer_id | 1    |                                              |
++------+-------------+-------+--------+----------------------------------------+--------------+---------+----------------------------+------+----------------------------------------------+
++----------------+-----------+------------------------+
+| Performance ID | Performer | Avg Overall Impression |
++----------------+-----------+------------------------+
+|              1 | Beyoncé   |                   5.00 |
+|            116 | Beyoncé   |                   5.00 |
++----------------+-----------+------------------------+
++--------------------------+
+| Strategy                 |
++--------------------------+
+| HASH JOIN STRATEGY (BNL) |
++--------------------------+
++------+-------------+-------+-------+--------------------------------------------------------------+----------------------------+---------+-------+------+------------------------------------------------------------------------+
+| id   | select_type | table | type  | possible_keys                                                | key                        | key_len | ref   | rows | Extra                                                                  |
++------+-------------+-------+-------+--------------------------------------------------------------+----------------------------+---------+-------+------+------------------------------------------------------------------------+
+|    1 | SIMPLE      | v     | const | PRIMARY,email_UNIQUE,idx_visitor_email                       | email_UNIQUE               | 767     | const | 1    | Using index; Using temporary; Using filesort                           |
+|    1 | SIMPLE      | perf  | index | performer_id_idx                                             | performer_id_idx           | 4       | NULL  | 175  | Using index                                                            |
+|    1 | SIMPLE      | r     | range | unique_visitor_performance,visitor_id_idx,performance_id_idx | unique_visitor_performance | 4       | NULL  | 2    | Using index condition; Using where; Using join buffer (flat, BNL join) |
+|    1 | SIMPLE      | p     | index | NULL                                                         | stage_name_UNIQUE          | 137     | NULL  | 70   | Using where; Using index; Using join buffer (incremental, BNL join)    |
++------+-------------+-------+-------+--------------------------------------------------------------+----------------------------+---------+-------+------+------------------------------------------------------------------------+
++----------------+-----------+------------------------+
+| Performance ID | Performer | Avg Overall Impression |
++----------------+-----------+------------------------+
+|              1 | Beyoncé   |                   5.00 |
+|            116 | Beyoncé   |                   5.00 |
++----------------+-----------+------------------------+
++---------------------+
+| Strategy            |
++---------------------+
+| MERGE JOIN STRATEGY |
++---------------------+
++------+-------------+-------+--------+-----------------------+-----------------------+---------+----------------------------+------+-----------------------------------------------------------+
+| id   | select_type | table | type   | possible_keys         | key                   | key_len | ref                        | rows | Extra                                                     |
++------+-------------+-------+--------+-----------------------+-----------------------+---------+----------------------------+------+-----------------------------------------------------------+
+|    1 | SIMPLE      | v     | ref    | idx_visitor_email     | idx_visitor_email     | 767     | const                      | 1    | Using where; Using index; Using temporary; Using filesort |
+|    1 | SIMPLE      | r     | ref    | idx_rating_visitor_id | idx_rating_visitor_id | 4       | festival.v.visitor_id      | 1    |                                                           |
+|    1 | SIMPLE      | perf  | eq_ref | PRIMARY               | PRIMARY               | 4       | festival.r.performance_id  | 1    |                                                           |
+|    1 | SIMPLE      | p     | eq_ref | PRIMARY               | PRIMARY               | 4       | festival.perf.performer_id | 1    |                                                           |
++------+-------------+-------+--------+-----------------------+-----------------------+---------+----------------------------+------+-----------------------------------------------------------+
++----------------+-----------+------------------------+
+| Performance ID | Performer | Avg Overall Impression |
++----------------+-----------+------------------------+
+|              1 | Beyoncé   |                   5.00 |
+|            116 | Beyoncé   |                   5.00 |
++----------------+-----------+------------------------+
++-------------------+
+| Analysis          |
++-------------------+
+| PROFILING RESULTS |
++-------------------+
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                                                                                                                                                                                                                                                        |
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|        3 | 0.00016600 | CREATE INDEX IF NOT EXISTS idx_performance_performer_id ON PERFORMANCE(performer_id)                                                                                                                                                                                                                         |
+|        4 | 0.06074800 | CREATE INDEX IF NOT EXISTS idx_visitor_email ON VISITOR(email)                                                                                                                                                                                                                                               |
+|        5 | 0.00013300 | SELECT 'DEFAULT JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                 |
+|        6 | 0.00476800 | EXPLAIN
+SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    RATING r
+JOIN 
+    PERFORMANCE perf ON r.performance_id = perf.performance_id
+JOIN 
+    PERFORMER p ON perf.performer_id = p.per |
+|        7 | 0.00032500 | SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    RATING r
+JOIN 
+    PERFORMANCE perf ON r.performance_id = perf.performance_id
+JOIN 
+    PERFORMER p ON perf.performer_id = p.performer_i |
+|        8 | 0.00006600 | SELECT 'NESTED LOOP JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                             |
+|        9 | 0.00135200 | EXPLAIN
+SELECT STRAIGHT_JOIN
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v
+JOIN 
+    RATING r USE INDEX (PRIMARY) ON v.visitor_id = r.visitor_id
+JOIN 
+    PERFORMANCE perf USE INDE |
+|       10 | 0.00048400 | SELECT STRAIGHT_JOIN
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v
+JOIN 
+    RATING r USE INDEX (PRIMARY) ON v.visitor_id = r.visitor_id
+JOIN 
+    PERFORMANCE perf USE INDEX (PRIMA |
+|       11 | 0.00007300 | SELECT 'HASH JOIN STRATEGY (BNL)' AS 'Strategy'                                                                                                                                                                                                                                                              |
+|       12 | 0.00035000 | EXPLAIN
+SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v
+JOIN 
+    RATING r IGNORE INDEX (PRIMARY, idx_rating_visitor_id, idx_rating_performance_id) ON v.visitor_id = r.visito |
+|       13 | 0.00122900 | SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v
+JOIN 
+    RATING r IGNORE INDEX (PRIMARY, idx_rating_visitor_id, idx_rating_performance_id) ON v.visitor_id = r.visitor_id
+JOI |
+|       14 | 0.00005800 | SELECT 'MERGE JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                   |
+|       15 | 0.00026000 | EXPLAIN
+SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v FORCE INDEX (idx_visitor_email)
+JOIN 
+    RATING r FORCE INDEX (idx_rating_visitor_id) ON v.visitor_id = r.visitor_id
+ |
+|       16 | 0.00028100 | SELECT 
+    perf.performance_id AS 'Performance ID',
+    p.stage_name AS 'Performer',
+    ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
+FROM 
+    VISITOR v FORCE INDEX (idx_visitor_email)
+JOIN 
+    RATING r FORCE INDEX (idx_rating_visitor_id) ON v.visitor_id = r.visitor_id
+JOIN 
+   |
+|       17 | 0.00005500 | SELECT 'PROFILING RESULTS' AS 'Analysis'                                                                                                                                                                                                                                                                     |
++----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------+
+| Analysis                            |
++-------------------------------------+
+| DETAILED PROFILING FOR DEFAULT JOIN |
++-------------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000055 |
+| checking permissions   | 0.000003 |
+| Opening tables         | 0.000013 |
+| After opening tables   | 0.000005 |
+| init                   | 0.000013 |
+| Optimizing             | 0.000012 |
+| Executing              | 0.000010 |
+| End of update loop     | 0.000002 |
+| Query end              | 0.000001 |
+| closing tables         | 0.000002 |
+| Query end              | 0.000001 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000001 |
+| Updating status        | 0.000012 |
+| Reset for next command | 0.000001 |
++------------------------+----------+
++-----------------------------------------+
+| Analysis                                |
++-----------------------------------------+
+| DETAILED PROFILING FOR NESTED LOOP JOIN |
++-----------------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000044 |
+| checking permissions   | 0.000003 |
+| Opening tables         | 0.000012 |
+| After opening tables   | 0.000003 |
+| System lock            | 0.000002 |
+| table lock             | 0.000009 |
+| init                   | 0.000022 |
+| Optimizing             | 0.000020 |
+| Statistics             | 0.000042 |
+| Preparing              | 0.000003 |
+| Unlocking tables       | 0.000002 |
+| Preparing              | 0.000029 |
+| Creating tmp table     | 0.001057 |
+| Sorting result         | 0.000014 |
+| Executing              | 0.000019 |
+| Query end              | 0.000004 |
+| Removing tmp table     | 0.000004 |
+| Query end              | 0.000003 |
+| Commit                 | 0.000004 |
+| Query end              | 0.000002 |
+| closing tables         | 0.000002 |
+| Unlocking tables       | 0.000003 |
+| closing tables         | 0.000003 |
+| Query end              | 0.000004 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000009 |
+| Updating status        | 0.000028 |
+| Reset for next command | 0.000003 |
++------------------------+----------+
++----------------------------------+
+| Analysis                         |
++----------------------------------+
+| DETAILED PROFILING FOR HASH JOIN |
++----------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000050 |
+| checking permissions   | 0.000003 |
+| Opening tables         | 0.000026 |
+| After opening tables   | 0.000003 |
+| System lock            | 0.000002 |
+| table lock             | 0.000003 |
+| init                   | 0.000018 |
+| Optimizing             | 0.000014 |
+| Statistics             | 0.000055 |
+| Preparing              | 0.000004 |
+| Unlocking tables       | 0.000002 |
+| Preparing              | 0.000028 |
+| Creating tmp table     | 0.000014 |
+| Sorting result         | 0.000023 |
+| Executing              | 0.000002 |
+| Sending data           | 0.000841 |
+| Creating sort index    | 0.000037 |
+| End of update loop     | 0.000007 |
+| Removing tmp table     | 0.000006 |
+| End of update loop     | 0.000004 |
+| Query end              | 0.000004 |
+| Commit                 | 0.000004 |
+| Query end              | 0.000003 |
+| closing tables         | 0.000004 |
+| Unlocking tables       | 0.000004 |
+| closing tables         | 0.000005 |
+| Query end              | 0.000014 |
+| Starting cleanup       | 0.000004 |
+| Freeing items          | 0.000008 |
+| Updating status        | 0.000032 |
+| Reset for next command | 0.000005 |
++------------------------+----------+
++-----------------------------------+
+| Analysis                          |
++-----------------------------------+
+| DETAILED PROFILING FOR MERGE JOIN |
++-----------------------------------+
++------------------------+----------+
+| Status                 | Duration |
++------------------------+----------+
+| Starting               | 0.000010 |
+| checking permissions   | 0.000002 |
+| Opening tables         | 0.000002 |
+| After opening tables   | 0.000002 |
+| init                   | 0.000004 |
+| Optimizing             | 0.000004 |
+| Executing              | 0.000004 |
+| End of update loop     | 0.000002 |
+| Query end              | 0.000001 |
+| closing tables         | 0.000002 |
+| Query end              | 0.000002 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000002 |
+| Updating status        | 0.000014 |
+| Reset for next command | 0.000002 |
++------------------------+----------+
++----------------------------+
+| Analysis                   |
++----------------------------+
+| SUMMARY OF JOIN STRATEGIES |
++----------------------------+
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Strategy         | Description                        | Advantage                                           | Disadvantage                                     |
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+
+| Default Join     | Optimizer chooses best strategy    | Baseline for comparison                             | May not always choose optimal plan               |
+| Nested Loop Join | Good for small tables with indexes | Efficient when filtering reduces rows significantly | Poor performance on large tables without indexes |
+| Hash Join (BNL)  | Good for large unindexed tables    | Works well when indexes are missing                 | Memory intensive for large datasets              |
+| Merge Join       | Good when data is already sorted   | Efficient for large sorted datasets                 | Requires sorted input or indexes                 |
++------------------+------------------------------------+-----------------------------------------------------+--------------------------------------------------+
