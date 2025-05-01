@@ -74,10 +74,10 @@
 +----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Query_ID | Duration   | Query                                                                                                                                                                                                                                                                                                        |
 +----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|        2 | 0.05256400 | CREATE INDEX IF NOT EXISTS idx_performance_performer_id ON PERFORMANCE(performer_id)                                                                                                                                                                                                                         |
-|        3 | 0.05106700 | CREATE INDEX IF NOT EXISTS idx_performer_stage_name ON PERFORMER(stage_name)                                                                                                                                                                                                                                 |
-|        4 | 0.00021700 | SELECT 'DEFAULT JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                 |
-|        5 | 0.00607300 | EXPLAIN
+|        2 | 0.05200100 | CREATE INDEX IF NOT EXISTS idx_performance_performer_id ON PERFORMANCE(performer_id)                                                                                                                                                                                                                         |
+|        3 | 0.04983700 | CREATE INDEX IF NOT EXISTS idx_performer_stage_name ON PERFORMER(stage_name)                                                                                                                                                                                                                                 |
+|        4 | 0.00021400 | SELECT 'DEFAULT JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                 |
+|        5 | 0.00529000 | EXPLAIN
 SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
@@ -88,7 +88,7 @@ JOIN
     PERFORMANCE perf ON r.performance_id = perf.performance_id
 JOIN 
     PERFORMER  |
-|        6 | 0.00053600 | SELECT 
+|        6 | 0.00041400 | SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
     ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
@@ -98,8 +98,8 @@ JOIN
     PERFORMANCE perf ON r.performance_id = perf.performance_id
 JOIN 
     PERFORMER p ON per |
-|        7 | 0.00010500 | SELECT 'NESTED LOOP JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                             |
-|        8 | 0.00029900 | EXPLAIN
+|        7 | 0.00008400 | SELECT 'NESTED LOOP JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                             |
+|        8 | 0.00032700 | EXPLAIN
 SELECT STRAIGHT_JOIN
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
@@ -108,7 +108,7 @@ FROM
     PERFORMER p
 JOIN 
     PERFORMANCE perf USE INDEX (PRIMARY) ON p.performer_id = perf.p |
-|        9 | 0.00037600 | SELECT STRAIGHT_JOIN
+|        9 | 0.00037700 | SELECT STRAIGHT_JOIN
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
     ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
@@ -116,8 +116,8 @@ FROM
     PERFORMER p
 JOIN 
     PERFORMANCE perf USE INDEX (PRIMARY) ON p.performer_id = perf.performer |
-|       10 | 0.00006200 | SELECT 'HASH JOIN STRATEGY (BNL)' AS 'Strategy'                                                                                                                                                                                                                                                              |
-|       11 | 0.00026000 | EXPLAIN
+|       10 | 0.00007100 | SELECT 'HASH JOIN STRATEGY (BNL)' AS 'Strategy'                                                                                                                                                                                                                                                              |
+|       11 | 0.00029000 | EXPLAIN
 SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
@@ -126,7 +126,7 @@ FROM
     PERFORMER p
 JOIN 
     PERFORMANCE perf IGNORE INDEX (PRIMARY, idx_performance_performer_id) ON p.p |
-|       12 | 0.00024200 | SELECT 
+|       12 | 0.00025700 | SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
     ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
@@ -134,8 +134,8 @@ FROM
     PERFORMER p
 JOIN 
     PERFORMANCE perf IGNORE INDEX (PRIMARY, idx_performance_performer_id) ON p.performer |
-|       13 | 0.00006200 | SELECT 'MERGE JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                   |
-|       14 | 0.00025600 | EXPLAIN
+|       13 | 0.00006900 | SELECT 'MERGE JOIN STRATEGY' AS 'Strategy'                                                                                                                                                                                                                                                                   |
+|       14 | 0.00025700 | EXPLAIN
 SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
@@ -144,7 +144,7 @@ FROM
     PERFORMER p FORCE INDEX (idx_performer_stage_name)
 JOIN 
     PERFORMANCE perf FORCE INDEX (idx_per |
-|       15 | 0.00023000 | SELECT 
+|       15 | 0.00027700 | SELECT 
     p.stage_name AS 'Performer',
     ROUND(AVG(r.artist_interpretation), 2) AS 'Avg Artist Interpretation',
     ROUND(AVG(r.overall_impression), 2) AS 'Avg Overall Impression'
@@ -152,7 +152,7 @@ FROM
     PERFORMER p FORCE INDEX (idx_performer_stage_name)
 JOIN 
     PERFORMANCE perf FORCE INDEX (idx_performance |
-|       16 | 0.00007800 | SELECT 'PROFILING RESULTS' AS 'Analysis'                                                                                                                                                                                                                                                                     |
+|       16 | 0.00006200 | SELECT 'PROFILING RESULTS' AS 'Analysis'                                                                                                                                                                                                                                                                     |
 +----------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 +-------------------------------------+
 | Analysis                            |
@@ -162,32 +162,32 @@ JOIN
 +------------------------+----------+
 | Status                 | Duration |
 +------------------------+----------+
-| Starting               | 0.000074 |
-| checking permissions   | 0.000006 |
-| Opening tables         | 0.000015 |
-| After opening tables   | 0.000005 |
+| Starting               | 0.000067 |
+| checking permissions   | 0.000005 |
+| Opening tables         | 0.000012 |
+| After opening tables   | 0.000004 |
 | System lock            | 0.000004 |
-| table lock             | 0.000006 |
-| init                   | 0.000037 |
-| Optimizing             | 0.000032 |
-| Statistics             | 0.000145 |
-| Preparing              | 0.000009 |
-| Unlocking tables       | 0.000004 |
-| Preparing              | 0.000041 |
+| table lock             | 0.000005 |
+| init                   | 0.000031 |
+| Optimizing             | 0.000028 |
+| Statistics             | 0.000089 |
+| Preparing              | 0.000004 |
+| Unlocking tables       | 0.000003 |
+| Preparing              | 0.000030 |
 | Executing              | 0.000004 |
-| Sending data           | 0.000067 |
-| End of update loop     | 0.000007 |
-| Query end              | 0.000004 |
-| Commit                 | 0.000005 |
+| Sending data           | 0.000058 |
+| End of update loop     | 0.000006 |
+| Query end              | 0.000003 |
+| Commit                 | 0.000004 |
 | Query end              | 0.000003 |
 | closing tables         | 0.000003 |
-| Unlocking tables       | 0.000003 |
-| closing tables         | 0.000006 |
-| Query end              | 0.000004 |
-| Starting cleanup       | 0.000003 |
-| Freeing items          | 0.000007 |
-| Updating status        | 0.000037 |
-| Reset for next command | 0.000005 |
+| Unlocking tables       | 0.000004 |
+| closing tables         | 0.000003 |
+| Query end              | 0.000005 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000006 |
+| Updating status        | 0.000027 |
+| Reset for next command | 0.000004 |
 +------------------------+----------+
 +-----------------------------------------+
 | Analysis                                |
@@ -197,31 +197,31 @@ JOIN
 +------------------------+----------+
 | Status                 | Duration |
 +------------------------+----------+
-| Starting               | 0.000044 |
-| checking permissions   | 0.000003 |
+| Starting               | 0.000048 |
+| checking permissions   | 0.000004 |
 | Opening tables         | 0.000010 |
 | After opening tables   | 0.000003 |
-| System lock            | 0.000002 |
+| System lock            | 0.000003 |
 | table lock             | 0.000004 |
 | init                   | 0.000018 |
-| Optimizing             | 0.000016 |
-| Statistics             | 0.000039 |
-| Preparing              | 0.000005 |
+| Optimizing             | 0.000018 |
+| Statistics             | 0.000031 |
+| Preparing              | 0.000003 |
 | Unlocking tables       | 0.000003 |
-| Preparing              | 0.000024 |
-| Executing              | 0.000003 |
-| Sending data           | 0.000141 |
-| End of update loop     | 0.000007 |
+| Preparing              | 0.000020 |
+| Executing              | 0.000002 |
+| Sending data           | 0.000151 |
+| End of update loop     | 0.000005 |
 | Query end              | 0.000003 |
-| Commit                 | 0.000003 |
+| Commit                 | 0.000004 |
 | Query end              | 0.000002 |
-| closing tables         | 0.000002 |
+| closing tables         | 0.000003 |
 | Unlocking tables       | 0.000003 |
-| closing tables         | 0.000002 |
-| Query end              | 0.000003 |
+| closing tables         | 0.000003 |
+| Query end              | 0.000004 |
 | Starting cleanup       | 0.000002 |
-| Freeing items          | 0.000005 |
-| Updating status        | 0.000026 |
+| Freeing items          | 0.000006 |
+| Updating status        | 0.000021 |
 | Reset for next command | 0.000003 |
 +------------------------+----------+
 +----------------------------------+
@@ -232,32 +232,32 @@ JOIN
 +------------------------+----------+
 | Status                 | Duration |
 +------------------------+----------+
-| Starting               | 0.000042 |
+| Starting               | 0.000047 |
 | checking permissions   | 0.000003 |
-| Opening tables         | 0.000010 |
-| After opening tables   | 0.000003 |
-| System lock            | 0.000003 |
+| Opening tables         | 0.000009 |
+| After opening tables   | 0.000002 |
+| System lock            | 0.000004 |
 | table lock             | 0.000003 |
-| init                   | 0.000015 |
-| Optimizing             | 0.000013 |
-| Statistics             | 0.000043 |
-| Preparing              | 0.000005 |
+| init                   | 0.000017 |
+| Optimizing             | 0.000015 |
+| Statistics             | 0.000047 |
+| Preparing              | 0.000004 |
 | Unlocking tables       | 0.000002 |
-| Preparing              | 0.000017 |
-| Executing              | 0.000002 |
+| Preparing              | 0.000018 |
+| Executing              | 0.000003 |
 | Sending data           | 0.000029 |
-| End of update loop     | 0.000003 |
-| Query end              | 0.000003 |
-| Commit                 | 0.000002 |
+| End of update loop     | 0.000004 |
 | Query end              | 0.000002 |
-| closing tables         | 0.000002 |
-| Unlocking tables       | 0.000002 |
+| Commit                 | 0.000004 |
+| Query end              | 0.000002 |
 | closing tables         | 0.000003 |
+| Unlocking tables       | 0.000002 |
+| closing tables         | 0.000004 |
 | Query end              | 0.000003 |
-| Starting cleanup       | 0.000001 |
-| Freeing items          | 0.000005 |
-| Updating status        | 0.000022 |
-| Reset for next command | 0.000004 |
+| Starting cleanup       | 0.000002 |
+| Freeing items          | 0.000004 |
+| Updating status        | 0.000021 |
+| Reset for next command | 0.000003 |
 +------------------------+----------+
 +-----------------------------------+
 | Analysis                          |
@@ -267,31 +267,31 @@ JOIN
 +------------------------+----------+
 | Status                 | Duration |
 +------------------------+----------+
-| Starting               | 0.000037 |
+| Starting               | 0.000047 |
 | checking permissions   | 0.000003 |
 | Opening tables         | 0.000008 |
 | After opening tables   | 0.000003 |
-| System lock            | 0.000002 |
+| System lock            | 0.000003 |
 | table lock             | 0.000003 |
-| init                   | 0.000014 |
-| Optimizing             | 0.000012 |
-| Statistics             | 0.000032 |
-| Preparing              | 0.000020 |
-| Sorting result         | 0.000006 |
+| init                   | 0.000017 |
+| Optimizing             | 0.000014 |
+| Statistics             | 0.000059 |
+| Preparing              | 0.000022 |
+| Sorting result         | 0.000007 |
 | Executing              | 0.000002 |
-| Sending data           | 0.000031 |
+| Sending data           | 0.000036 |
 | End of update loop     | 0.000004 |
 | Query end              | 0.000003 |
-| Commit                 | 0.000002 |
+| Commit                 | 0.000003 |
 | Query end              | 0.000002 |
 | closing tables         | 0.000002 |
-| Unlocking tables       | 0.000002 |
+| Unlocking tables       | 0.000003 |
 | closing tables         | 0.000003 |
 | Query end              | 0.000003 |
-| Starting cleanup       | 0.000001 |
+| Starting cleanup       | 0.000003 |
 | Freeing items          | 0.000004 |
-| Updating status        | 0.000023 |
-| Reset for next command | 0.000008 |
+| Updating status        | 0.000020 |
+| Reset for next command | 0.000003 |
 +------------------------+----------+
 +----------------------------+
 | Analysis                   |

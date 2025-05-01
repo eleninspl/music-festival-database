@@ -1733,5 +1733,5 @@ END //
 
 DELIMITER ;
 
--- Εκτέλεση της διορθωμένης stored procedure
-CALL process_resale_matches();
+-- Εκτέλεση της stored procedure
+--CALL process_resale_matches();
