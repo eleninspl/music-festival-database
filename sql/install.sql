@@ -1166,7 +1166,8 @@ BEGIN
     SELECT COUNT(*) INTO existing_rating
     FROM RATING
     WHERE visitor_id = NEW.visitor_id
-      AND performance_id = NEW.performance_id;
+      AND performance_id = NEW.performance_id
+      AND rating_id <> NEW.rating_id;
 
     IF existing_rating > 0 THEN
         SET error_message = CONCAT('Visitor has already rated this performance. Visitor ID: ', 
@@ -1215,12 +1216,12 @@ USE `festival`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `festival`.`trg_resale_validate_seller_before_insert` BEFORE INSERT ON `RESALE_SELLER_QUEUE` FOR EACH ROW
 BEGIN
 DECLARE ticket_owner INT;
-    DECLARE is_activated BOOLEAN;
+    DECLARE v_is_activated BOOLEAN;
     DECLARE already_listed BOOLEAN;
 
     -- 1. Έλεγχος ότι ο πωλητής είναι ο ιδιοκτήτης του εισιτηρίου
     SELECT visitor_id, is_activated
-    INTO ticket_owner, is_activated
+    INTO ticket_owner, v_is_activated
     FROM TICKET
     WHERE ticket_id = NEW.ticket_id;
 
@@ -1230,7 +1231,7 @@ DECLARE ticket_owner INT;
     END IF;
 
     -- 2. Έλεγχος ότι το εισιτήριο δεν έχει ενεργοποιηθεί
-    IF is_activated = 1 THEN
+    IF v_is_activated = 1 THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Τα ενεργοποιημένα εισιτήρια δεν μπορούν να μεταπωληθούν';
     END IF;

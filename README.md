@@ -183,10 +183,8 @@ With the sample data, the first call completes 15 resales: 10 for specific ticke
 
 ## Known limitations
 
-The SQL is kept as it was submitted. While writing this README, I rebuilt the database from scratch, re-ran every script and found the issues below:
+The SQL is kept as it was submitted, apart from two small trigger fixes. In the resale seller trigger, a local variable had the same name as the `is_activated` column, so activated tickets could be listed for resale. In the rating update trigger, the duplicate check counted the row being updated, so every rating update was rejected. While writing this README, I rebuilt the database from scratch, re-ran every script and found the issues below:
 
-- **Resale listing of activated tickets.** In `trg_resale_validate_seller_before_insert`, a local variable is named `is_activated`, like the `TICKET` column it reads. Inside the trigger, the name refers to the variable, which is still `NULL`, so the check never fires. An activated ticket can be listed for resale.
-- **Rating updates always fail.** The duplicate check in `trg_rating_validate_values_before_update` counts the row being updated, so every `UPDATE` on `RATING` is rejected with "Visitor has already rated this performance".
 - **Minimum staffing is only checked on removal.** `trg_event_staff_requirements_before_insert` calculates the required security and auxiliary staff but never compares it with the actual count. In the sample data, events 14 and 16 have fewer auxiliary staff than the 2% rule requires.
 - **Ticket insert validation.** The insert trigger on `TICKET` does not check the category or the payment method. Only the update trigger does.
 - **Resale procedure.** It decides which matches are "new" by comparing timestamps with the last second, so two calls less than a second apart report the same matches twice (without creating duplicates). Each call matches only the earliest category buyer for each event and category; the others wait for the next call. `RESALE_MATCHES` is filled by triggers, but nothing reads it.
