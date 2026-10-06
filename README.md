@@ -89,8 +89,6 @@ The business rules are enforced with `BEFORE` triggers that raise `SIGNAL SQLSTA
 | `EVENT_STAFF` | Removing staff from an event is blocked if security staff would drop below 5% of the stage's capacity, or auxiliary staff below 2%. |
 | `RESALE_*` | Only the owner can list a ticket, and only once. A buyer asks either for a specific listed ticket or for an event and ticket category, not both. |
 
-Section 2 of the [report](docs/report.pdf) explains every index and which queries it serves. Section 3 describes every trigger.
-
 ## Sample data
 
 `load.sql` fills the database with synthetic data. Visitor emails use `example.com` and phone numbers use the fictional 555 range. Performer names are real artists, used as sample data.
@@ -149,7 +147,7 @@ The queries use common table expressions, aggregate functions, correlated subque
 | "Hash join (BNL)" | `IGNORE INDEX` on the join columns, aiming for a block nested-loop join |
 | "Merge join" | `FORCE INDEX` on the join columns |
 
-Timings measured by the team, from section 4 of the [report](docs/report.pdf):
+Timings measured by the team and recorded in the project report:
 
 | Variant | Query 4 | Query 6 |
 |---------|---------|---------|
@@ -177,7 +175,6 @@ With the sample data, the first call completes 15 resales: 10 for specific ticke
 
 ## Documentation
 
-- [`docs/report.pdf`](docs/report.pdf): Project report covering the diagrams, every index and trigger, and the join strategy analysis (in Greek)
 - [`diagrams/er.pdf`](diagrams/er.pdf): ER diagram
 - [`diagrams/relational.pdf`](diagrams/relational.pdf): Relational diagram
 
